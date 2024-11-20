@@ -29,7 +29,7 @@ const Page = () => {
     const getTemplate = async () => {
       try {
         const result = await axios.post(
-          `http://localhost:8000/templates/getTemplateId/${templateId}`
+          `https://pro1-ubq1.onrender.com/templates/getTemplateId/${templateId}`
         );
         setTemplate(result.data);
       } catch (err) {
@@ -83,7 +83,7 @@ const Page = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/survey/${siteId}`,
+        `https://pro1-ubq1.onrender.com/survey/${siteId}`,
         surveyData
       );
 

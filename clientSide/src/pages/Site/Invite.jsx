@@ -26,7 +26,7 @@ const Invite = () => {
   const navigate = useNavigate();
   const [Error, setError] = useState(false);
   const [{ userInfo }] = useStateProvider();
-  const socket = io('http://localhost:8000', {
+  const socket = io('https://pro1-ubq1.onrender.com', {
     transports: ['websocket', 'polling'],
   });
 
@@ -36,7 +36,7 @@ const Invite = () => {
     if (input.length > 1) {
       try {
         const result = await axios.get(
-          `http://localhost:8000/user/searchByEmail?email=${input}`
+          `https://pro1-ubq1.onrender.com/user/searchByEmail?email=${input}`
         );
         setSuggestions(result.data);
       } catch (err) {
@@ -59,12 +59,12 @@ const Invite = () => {
 
     try {
       const result = await axios.post(
-        `http://localhost:8000/site/invite/${id}/${userInfo._id}`,
+        `https://pro1-ubq1.onrender.com/site/invite/${id}/${userInfo._id}`,
         { email, role }
       );
 
       const user = await axios.get(
-        `http://localhost:8000/user/getUserEmail/${email}`
+        `https://pro1-ubq1.onrender.com/user/getUserEmail/${email}`
       );
 
       const successMessage =
@@ -76,7 +76,7 @@ const Invite = () => {
       setMessageType('success'); // Success type
       toast.success(successMessage);
 
-      await axios.post('http://localhost:8000/notification/createNotif', {
+      await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
         recipientId: user.data._id,
         senderId: userInfo._id,
         message: successMessage,
@@ -119,7 +119,7 @@ const Invite = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:8000/site/getSiteId/${id}/${userInfo._id}`
+          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
         );
         setSite(result.data);
       } catch (err) {

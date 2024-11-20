@@ -35,7 +35,7 @@ const TemplateGallery = () => {
     const getTemplates = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:8000/templates/getTemplates'
+          'https://pro1-ubq1.onrender.com/templates/getTemplates'
         );
         const result = response.data;
         setTemplates(result);
@@ -52,7 +52,7 @@ const TemplateGallery = () => {
   const searchTemplate = async (name) => {
     try {
       const response = await axios.post(
-        'http://localhost:8000/templates/searchTemplate',
+        'https://pro1-ubq1.onrender.com/templates/searchTemplate',
         { name }
       );
       const result = response.data;

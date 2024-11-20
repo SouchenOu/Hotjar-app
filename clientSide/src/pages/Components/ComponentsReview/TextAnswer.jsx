@@ -22,7 +22,7 @@ const LongTextAnswer = ({
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'http://localhost:8000';
+  const baseURL = 'https://pro1-ubq1.onrender.com';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   return (
