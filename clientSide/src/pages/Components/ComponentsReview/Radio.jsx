@@ -16,7 +16,7 @@ const Radio = ({
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openRadio, setOpenRadio] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>
@@ -48,11 +48,11 @@ const Radio = ({
       </div>
 
       <div
-        className={`bg-white border-[2px] border-gray-100 shadow-lg flex flex-col gap-[20px] items-center justify-center overflow-y rounded-xl mb-[8px] ${displayMode === 'mobile' ? 'w-[400px] h-[670px]' : 'w-[500px] h-[680px]'}`}
+        className={`bg-white border-[2px] border-gray-100  flex flex-col gap-[20px] items-center justify-center overflow-y rounded-2xl shadow-2xl mb-[8px] ${displayMode === 'mobile' ? 'w-[400px] h-[670px]' : 'w-[500px] h-[680px]'}`}
       >
         {openRadio && (
           <div
-            className="relative flex flex-col items-center gap-[20px] border-[1px] bg-white border-gray-300 ml-[280px] mt-[170px] rounded-xl"
+            className="relative flex flex-col items-center  shadow-2xl gap-[20px] border-[1px] bg-white border-gray-200 ml-[280px] mt-[170px] rounded-2xl"
             style={{
               width: displayMode === 'mobile' ? '300px' : '350px',
               height: displayMode === 'mobile' ? '500px' : '500px',

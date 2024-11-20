@@ -72,7 +72,7 @@ const Questions = ({
             }
           )}
         >
-          <div className="flex gap-[400px] overflow-y-auto px-[10px] py-[60px]">
+          <div className="flex justify-between   py-[60px]">
             <div className="flex flex-col gap-[50px] px-[20px]">
               <TemplateDetails
                 template={template}

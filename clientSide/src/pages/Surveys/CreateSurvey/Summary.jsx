@@ -78,8 +78,8 @@ const Summary = ({
         </div>
 
         {openComponent === 'summary' && (
-          <div className="flex items-center gap-[380px] overflow-y-auto p-8 bg-gray-100 rounded-lg shadow-md">
-            <div className="flex flex-col p-10 w-[600px] gap-6 bg-white rounded-lg shadow-lg">
+          <div className="flex items-center justify-between  p-[10px] bg-gray-100 rounded-lg shadow-md">
+            <div className="flex flex-col p-10 2xl:w-[600px] w-[300px] gap-6 bg-white rounded-lg shadow-lg">
               <div className="flex flex-col gap-4">
                 <h1 className="text-[17px] font-bold text-gray-800">
                   {state.name}
@@ -236,7 +236,7 @@ const Summary = ({
                 </div>
               </div>
               <button
-                className={`border-2 border-transparent rounded-xl text-lg py-2 px-4  font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-[500px] ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`border-2 border-transparent rounded-xl text-lg py-2 px-4  font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-[200px] ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={handleProcessSurvey}
                 disabled={processing}
                 data-testid="create-survey-button"
@@ -250,11 +250,9 @@ const Summary = ({
                     : 'Create Survey'}
               </button>
             </div>
-            <Component
-              state={state}
-              nextQuestion={nextQuestion}
-              setNextQuestion={setNextQuestion}
-            />
+            <div className="sticky top-0  self-start">
+              <Component state={state} nextQuestion={nextQuestion} />
+            </div>
           </div>
         )}
       </div>

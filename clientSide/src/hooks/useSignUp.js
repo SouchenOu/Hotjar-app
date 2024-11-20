@@ -12,7 +12,7 @@ const useSignUp = () => {
       setError(null);
       setLoading(true);
       const emailVerificationResult = await fetch(
-        'https://pro1-ubq1.onrender.com/auth/sendVerificationCode',
+        'http://localhost:8000/auth/sendVerificationCode',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,7 @@ const useSignUp = () => {
 
       const body = { ...values, verificationCode };
 
-      const res = await fetch('https://pro1-ubq1.onrender.com/auth/register', {
+      const res = await fetch('http://localhost:8000/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

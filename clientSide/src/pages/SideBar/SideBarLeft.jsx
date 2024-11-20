@@ -47,7 +47,7 @@ const SideBarLeft = () => {
   const handleSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+        `http://localhost:8000/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;
@@ -62,67 +62,67 @@ const SideBarLeft = () => {
 
   return (
     <div
-      className={`relative bg-white border-r-[0.5px] border-solid border-gray-300 transition-all duration-500 ease-in-out ${open ? 'w-[140px]' : 'w-[60px]'}`}
+      className={`relative bg-gradient-to-b from-gray-100 to-gray-300 border-r border-gray-300 shadow-lg transition-all duration-500 ease-in-out ${
+        open ? 'w-[180px]' : 'w-[60px]'
+      }`}
     >
       <div
-        className={`flex flex-col items-center  justify-between  min-h-[100vh] p-2 transition-all duration-500 ease-in-out`}
+        className={`flex flex-col items-center justify-between min-h-[100vh] p-4 transition-all duration-500 ease-in-out`}
       >
-        <div className={`flex flex-col items-center`}>
+        <div className="flex flex-col items-center">
           <img
             src="/avito-logo.png"
-            alt=""
-            className="flex items-center w-[30px] h-[30px]"
+            alt="Logo"
+            className="w-[40px] h-[40px] mb-8"
           />
-          <div className="flex flex-col py-[60px] cursor-pointer gap-[50px] border-b-[3px]">
+          <div className="flex flex-col gap-8 border-b border-gray-400 pb-8">
             <div
-              className={`relative flex items-center gap-[20px] ${open && 'hover:bg-gray-100  w-[130px] py-[8px]  rounded-lg'}`}
+              className={`relative flex items-center cursor-pointer gap-4 ${
+                open ? 'px-4 py-2' : 'p-2'
+              } hover:bg-gray-200 rounded-lg transition-all duration-300`}
               onMouseEnter={(e) => handleMouseEnter(e, 'Home')}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleClick('home')}
             >
               <HouseOutlinedIcon
-                className="cursor-pointer transition-all duration-200 text-gray-700 rounded-lg hover:border hover:border-gray-100 hover:bg-gray-100 hover:text-[#0D19A3]"
-                style={{
-                  width: open ? '23px' : '23px',
-                  height: open ? '23px' : '23px',
-                }}
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                style={{ fontSize: open ? '24px' : '20px' }}
               />
-              {open && <h1 className="text-[17px] text-gray-600">Home</h1>}
+              {open && <span className="text-gray-700 font-medium">Home</span>}
             </div>
             <div
-              className={`relative flex items-center gap-[20px] px-[5px] ${open && 'hover:bg-gray-100 ]  w-[120px] py-[8px] rounded-lg'}`}
+              className={`relative flex cursor-pointer items-center gap-4 ${
+                open ? 'px-4 py-2' : 'p-2'
+              } hover:bg-gray-200 rounded-lg transition-all duration-300`}
               onMouseEnter={(e) => handleMouseEnter(e, 'Sites')}
               onMouseLeave={handleMouseLeave}
               onClick={navigateAllSite}
             >
               <LanguageIcon
-                className="cursor-pointer transition-all duration-200 text-gray-700 hover:border hover:border-gray-100 hover:bg-gray-200 hover:text-[#0D19A3]"
-                style={{
-                  width: open ? '20px' : '18px',
-                  height: open ? '20px' : '18px',
-                }}
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                style={{ fontSize: open ? '24px' : '20px' }}
               />
-              {open && <h1 className="text-[17px] text-gray-600">Sites</h1>}
+              {open && <span className="text-gray-700 font-medium">Sites</span>}
             </div>
-          </div>
-          <div className="  p-[20px] items-center  flex flex-col gap-[50px] cursor-pointer">
             <div
-              className={`relative flex items-center gap-[20px] ${open && 'hover:bg-gray-100  w-[130px] py-[8px] px-[8px] rounded-lg'}`}
+              className={`relative flex cursor-pointer items-center gap-4 ${
+                open ? 'px-4 py-2' : 'p-2'
+              } hover:bg-gray-200 rounded-lg transition-all duration-300`}
               onMouseEnter={(e) => handleMouseEnter(e, 'Surveys')}
               onMouseLeave={handleMouseLeave}
               onClick={handleSurveys}
             >
               <InsertCommentOutlinedIcon
-                className="transition-all duration-200 text-gray-700 rounded-lg hover:border hover:border-gray-100 hover:bg-gray-100 hover:text-[#0D19A3] cursor-pointer"
-                style={{
-                  width: open ? '20px' : '18px',
-                  height: open ? '20px' : '18px',
-                }}
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                style={{ fontSize: open ? '24px' : '20px' }}
               />
-              {open && <h1 className="text-[17px] text-gray-600">Surveys</h1>}
+              {open && (
+                <span className="text-gray-700 font-medium">Surveys</span>
+              )}
             </div>
           </div>
         </div>
+
         {tooltip.visible && !open && (
           <ToolTip
             text={tooltip.text}
@@ -141,15 +141,14 @@ const SideBarLeft = () => {
           />
         )}
         <div
-          className="flex items-center gap-[20px] cursor-pointer"
+          className="flex items-center gap-4 cursor-pointer mt-8"
           onClick={() => setOpen(!open)}
         >
-          <CompareArrowsIcon className="text-gray-700 cursor-pointer text-[15px] hover:text-gray-700 transition-colors duration-300 ease-in-out" />
-          {open && (
-            <h1 className="lg:text-[17px] text-[10px] text-gray-500">
-              Collapse
-            </h1>
-          )}
+          <CompareArrowsIcon
+            className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+            style={{ fontSize: '20px' }}
+          />
+          {open && <span className="text-gray-700 font-medium">Collapse</span>}
         </div>
       </div>
     </div>

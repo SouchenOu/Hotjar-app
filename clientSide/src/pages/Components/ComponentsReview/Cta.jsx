@@ -8,7 +8,7 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openCta, setOpenCta] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -58,8 +58,8 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
                 icon={faCaretDown}
                 className={`absolute w-[19px] h-[19px] p-[17px] cursor-pointer mb-[130px] ${
                   displayMode === 'mobile'
-                    ? 'ml-[240px] mb-[300px]'
-                    : 'ml-[360px] mb-[300px]'
+                    ? 'ml-[240px] mb-[160px]'
+                    : 'ml-[360px] mb-[160px]'
                 }`}
                 onClick={() => setOpenCta(false)}
                 style={{ color: 'black', transition: 'color 0.3s' }}

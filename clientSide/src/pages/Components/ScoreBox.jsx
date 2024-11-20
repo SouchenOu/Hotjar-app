@@ -30,7 +30,7 @@ const ScoreBox = ({ onChange, components }) => {
   };
 
   return (
-    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 w-[550px] h-auto hover:bg-gray-100 overflow-hidden ">
+    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 md:w-[300px] xl:w-[400px] 2xl:w-[600px] h-auto hover:bg-gray-100 overflow-auto ">
       <div className="flex items-center gap-3 bg-gradient-to-r from-gray-900 to-blue-200 rounded-lg py-3 px-4 shadow-md">
         <FontAwesomeIcon icon={faFaceSmile} className="w-5 h-5 text-white" />
         <span className="text-[15px] text-white font-bold font-montserrat">

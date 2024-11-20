@@ -52,7 +52,7 @@ const Appearance = ({
       formData.append('logo', file);
       try {
         const response = await fetch(
-          'https://pro1-ubq1.onrender.com/survey/updateLogo',
+          'http://localhost:8000/survey/updateLogo',
           {
             method: 'POST',
             body: formData,
@@ -127,8 +127,8 @@ const Appearance = ({
           }
         )}
       >
-        <div className="flex gap-[380px] overflow-y-auto items-start p-[60px]">
-          <div className="flex flex-col gap-12 w-[40%] bg-white p-8 rounded-lg shadow-lg">
+        <div className="flex justify-between  items-start p-[10px]">
+          <div className="flex flex-col gap-12 w-[50%] bg-white p-8 rounded-lg shadow-lg">
             <div className="relative w-full">
               <select
                 className="border-2 text-[14px] font-montserrat border-gray-300 shadow-sm px-4 py-2 rounded-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-600 w-full"

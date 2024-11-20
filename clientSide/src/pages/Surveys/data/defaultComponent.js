@@ -32,8 +32,6 @@ const defaultComponents = {
         "I didn't find the website easy to use",
         'It was too expensive for me',
         'I found a better product/price elsewhere',
-        "I didn't have enough information",
-        'Something else',
       ],
     },
     {

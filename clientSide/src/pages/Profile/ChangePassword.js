@@ -62,7 +62,7 @@ const ChangePassword = ({ setCurrentForm }) => {
     }
 
     try {
-      await axios.post(`https://pro1-ubq1.onrender.com/auth/ChangePassword/${id}`, {
+      await axios.post(`http://localhost:8000/auth/ChangePassword/${id}`, {
         currentPassword,
         newPassword,
         confirmNewPassword,
@@ -87,7 +87,7 @@ const ChangePassword = ({ setCurrentForm }) => {
       <div className="flex flex-col  ">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-10 bg-white shadow-lg p-10 rounded-lg lg:w-[500px] w-[300px] mx-auto"
+          className="flex flex-col gap-6 bg-white shadow-lg p-5 rounded-lg lg:w-[500px] w-[300px] mx-auto"
         >
           <div className="flex gap-4 text-gray-500 text-lg">
             <h1
@@ -179,7 +179,7 @@ const ChangePassword = ({ setCurrentForm }) => {
             </div>
             <button
               type="submit"
-              className="flex items-center lg:ml-[100px] ml-[20px] mt-8 bg-blue-600 text-white px-[80px] py-2 font-bold text-[17px] rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg w-[200px] "
+              className="flex items-center lg:ml-[120px] ml-[30px] mt-8 bg-blue-600 text-white px-[80px] py-2 font-bold text-[17px] rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg w-[200px] "
             >
               {!Loading ? 'Save' : 'Changing...'}
             </button>

@@ -59,7 +59,7 @@ const Type = ({
           )}
         </div>
         {openComponent === 'type' && (
-          <div className="p-[20px] flex items-center gap-[600px] overflow-y-auto">
+          <div className="p-[20px] flex items-center justify-between ">
             <div className="flex flex-col gap-[200px] px-[20px]">
               <div className="flex flex-wrap gap-8 justify-center">
                 <div className="flex flex-col items-center rounded-xl justify-center gap-5 border-2 hover:border-2 hover:border-gray-500 border-gray-300 transition duration-200 p-5 w-72 h-70 cursor-pointer bg-white shadow-md">

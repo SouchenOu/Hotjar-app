@@ -21,7 +21,7 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   return (
@@ -116,7 +116,7 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
                     ))}
                   </div>
                   <div
-                    className="flex justify-between text-[13px] mt-1 text-gray-500"
+                    className="flex justify-between text-[14px] mt-1 text-gray-500"
                     style={{ color: textColor }}
                   >
                     <span className="font-montserrat">
@@ -127,63 +127,29 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-[20px] justify-center   mt-6">
+                <div className="flex items-center gap-4 justify-between mt-6">
                   <button
-                    className="underline text-[15px]  text-gray-700 hover:text-gray-900 transition-all"
+                    className="underline text-[15px] text-gray-700 hover:text-gray-900 transition-all"
                     onClick={nextComponent}
                   >
                     {language === 'en' && 'Skip'}
                     {language === 'ar' && 'تجاوز'}
                     {language === 'fr' && 'Passer'}
                   </button>
-                  {language === 'en' && (
-                    <button
-                      className={`border-2 border-transparent   rounded-xl text-[13px] py-1 px-4 w-30 font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 }`}
-                      onClick={nextComponent}
-                      style={{ background: score > 0 ? buttonColor : 'gray' }}
-                      disabled={score <= 0}
-                    >
-                      Next{' '}
-                      {score <= 0 && (
-                        <FontAwesomeIcon
-                          icon={faBan}
-                          className="ml-[10px] text-red-700"
-                        />
-                      )}
-                    </button>
-                  )}
-                  {language === 'fr' && (
-                    <button
-                      className={`border-2 border-transparent  rounded-xl text-[13px] py-1 px-4 w-30 font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 }`}
-                      onClick={nextComponent}
-                      style={{ background: score > 0 ? buttonColor : 'gray' }}
-                      disabled={score <= 0}
-                    >
-                      Suivant{' '}
-                      {score <= 0 && (
-                        <FontAwesomeIcon
-                          icon={faBan}
-                          className="ml-[10px] text-red-700"
-                        />
-                      )}
-                    </button>
-                  )}
-                  {language === 'ar' && (
-                    <button
-                      className={`border-2 border-transparent rounded-xl text-[13px] py-1 px-4 w-30 font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 }`}
-                      onClick={nextComponent}
-                      style={{ background: score > 0 ? buttonColor : 'gray' }}
-                      disabled={score <= 0}
-                    >
-                      التالي{' '}
-                      {score <= 0 && (
-                        <FontAwesomeIcon
-                          icon={faBan}
-                          className="ml-[10px] text-red-700"
-                        />
-                      )}
-                    </button>
-                  )}
+                  <button
+                    className={`border-2 border-transparent rounded-xl text-[14px] py-2 px-4 w-[100px] font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50`}
+                    onClick={nextComponent}
+                    style={{ background: score > 0 ? buttonColor : 'gray' }}
+                    disabled={score <= 0}
+                  >
+                    Next
+                    {score <= 0 && (
+                      <FontAwesomeIcon
+                        icon={faBan}
+                        className="ml-2 text-red-700"
+                      />
+                    )}
+                  </button>
                 </div>
               </div>
             </div>

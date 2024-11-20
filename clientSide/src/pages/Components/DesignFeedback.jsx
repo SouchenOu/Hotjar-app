@@ -49,7 +49,7 @@ const DesignFeedback = ({ onChange, components }) => {
       formData.append('image', file);
 
       try {
-        const response = await fetch('https://pro1-ubq1.onrender.com/survey/upload', {
+        const response = await fetch('http://localhost:8000/survey/upload', {
           method: 'POST',
           body: formData,
         });
@@ -64,7 +64,7 @@ const DesignFeedback = ({ onChange, components }) => {
   };
 
   return (
-    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 w-[550px] h-auto hover:bg-gray-100 overflow-hidden ">
+    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 sm:w-full md:w-[300px] xl:w-[400px] 2xl:w-[600px] h-auto hover:bg-gray-100 overflow-auto ">
       <div className="flex items-center gap-3 bg-gradient-to-r from-gray-900 to-blue-200 rounded-lg py-3 px-4 shadow-md">
         <FontAwesomeIcon icon={faFaceSmile} className="w-5 h-5 text-white" />
         <span className="text-[14px] text-white font-bold font-montserrat">

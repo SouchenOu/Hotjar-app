@@ -42,7 +42,7 @@ const Radio = ({ onChange, components }) => {
   };
 
   return (
-    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 w-[550px] h-auto hover:bg-gray-100 overflow-hidden ">
+    <div className="flex flex-col gap-[30px] border-[2px] p-[30px] border-gray-300 sm:w-full md:w-[300px] xl:w-[400px] 2xl:w-[600px] h-auto hover:bg-gray-100 overflow-auto ">
       <textarea
         value={TemplateTitle}
         onChange={handleTemplateTitleChange}
@@ -62,19 +62,21 @@ const Radio = ({ onChange, components }) => {
                 {index}
               </a>
             </h1>
-            <input
-              type="text"
-              value={option}
-              onChange={(e) => handleOptionChange(index, e.target.value)}
-              placeholder="enter the label for this answer"
-              className=" shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 hover:border-blue-600 border-[2px] border-gray-300 rounded-2xl p-2 w-[400px] text-[15px]"
-            />
-            {!option && (
-              <FontAwesomeIcon
-                icon={faExclamationCircle}
-                className="absolute left-[620px] w-[15px] h-[15px] text-red-500"
+            <div className="relative">
+              <input
+                type="text"
+                value={option}
+                onChange={(e) => handleOptionChange(index, e.target.value)}
+                placeholder="Enter the label for this answer"
+                className="relative shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 hover:border-blue-600 border-[2px] border-gray-300 rounded-2xl p-2 w-full text-[15px] 2xl:w-[300px]"
               />
-            )}
+              {!option && (
+                <FontAwesomeIcon
+                  icon={faExclamationCircle}
+                  className="absolute right-3 top-[13px] w-[15px] h-[15px] text-red-500"
+                />
+              )}
+            </div>
             <div className="flex gap-[10px]">
               <FontAwesomeIcon
                 icon={faTrashCan}

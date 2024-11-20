@@ -32,7 +32,7 @@ const Nps = ({ onChange, components }) => {
   };
 
   return (
-    <div className="relative flex flex-col gap-6 border-2 p-6 border-gray-300 w-full  h-auto bg-white shadow-lg rounded-lg hover:bg-gray-100 transition duration-300 ease-in-out">
+    <div className="relative flex flex-col gap-6 border-2 p-6 border-gray-300 sm:w-full md:w-[300px] xl:w-[400px] 2xl:w-[600px] max-w-full h-auto max-h-[700px] bg-white shadow-lg rounded-lg hover:bg-gray-100 transition duration-300 ease-in-out overflow-auto">
       <div className="flex items-center gap-3 bg-gradient-to-r from-gray-900 to-blue-200 rounded-lg py-3 px-4 shadow-md">
         <FontAwesomeIcon icon={faFaceSmile} className="w-5 h-5 text-white" />
         <span className="text-[15px] text-white font-bold font-montserrat">

@@ -17,7 +17,7 @@ const Checkbox = ({
 
   const [openCheckbox, setOpenCheckbox] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const handleCheckboxChange = (index) => {
@@ -33,6 +33,8 @@ const Checkbox = ({
     }
     return text;
   };
+
+  console.log('component-->', component.options);
 
   return (
     <div
@@ -50,66 +52,92 @@ const Checkbox = ({
       </div>
 
       <div
-        className={`bg-white border-[2px] border-gray-100 shadow-lg flex flex-col gap-[20px] items-center justify-center overflow-y rounded-xl mb-[8px] ${displayMode === 'mobile' ? 'w-[400px] h-[670px]' : 'w-[500px] h-[680px]'}`}
+        className={`bg-white border-[2px] border-gray-100 shadow-lg flex flex-col gap-[20px] items-center justify-center overflow-y rounded-xl mb-[3px] ${
+          displayMode === 'mobile'
+            ? 'w-[400px] h-[670px]'
+            : 'w-[500px] h-[680px]'
+        }`}
       >
         {openCheckbox && (
           <div
-            className="relative flex flex-col items-center gap-[20px] border-[1px] bg-white border-gray-300 ml-[240px] mt-[170px] rounded-xl"
+            className="relative flex flex-col items-center justify-start mt-[60px] ml-[90px] transition-all ease-in-out duration-500"
             style={{
-              width: displayMode === 'mobile' ? '340px' : '350px',
-              height: displayMode === 'mobile' ? '500px' : '500px',
-              background: bgColor,
-              marginRight: displayMode === 'mobile' ? '190px' : '130px',
+              width: displayMode === 'mobile' ? '400px' : '500px',
+              height: displayMode === 'mobile' ? '600px' : '600px',
+              borderRadius: '15px',
             }}
           >
-            {logo && (
-              <img
-                alt=""
-                src={logoPath}
-                className="w-[40px] h-[40px] mt-[30px]"
+            <div className="flex flex-col items-center justify-center w-full relative">
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                className={`absolute w-[19px] h-[19px] p-[17px] cursor-pointer mb-[500px] ${
+                  displayMode === 'mobile'
+                    ? 'ml-[240px] mb-[300px]'
+                    : 'ml-[360px] mb-[500px]'
+                }`}
+                onClick={() => setOpenCheckbox(false)}
+                style={{ color: 'black', transition: 'color 0.3s' }}
               />
-            )}
-            <FontAwesomeIcon
-              icon={faCaretDown}
-              className={`w-[19px] h-[19px] p-[17px] cursor-pointer ${displayMode === 'mobile' ? 'ml-[300px]' : 'ml-[300px]'}`}
-              onClick={() => setOpenCheckbox(false)}
-            />
-            <h1
-              className="text-[15px] p-[20px] font-bold"
-              style={{ color: textColor }}
-            >
-              {component.question}
-            </h1>
-            <div
-              className="  relative flex flex-col gap-[7px] items-center overflow-y-auto w-full"
-              style={{ maxHeight: 'calc(100% - 100px)' }}
-            >
-              {component.options.map((option, index) => (
-                <div
-                  key={index}
-                  className="flex gap-[7px] items-center cursor-pointer"
-                >
-                  <input
-                    className={`absolute w-[40px] h-[20px]`}
-                    type="checkbox"
-                    checked={checkboxStates[index]}
-                    onChange={() => handleCheckboxChange(index)}
-                  />
-                  <span
-                    className={`border-[2px] font-montserrat hover:border-blue-100 border-gray-600  shadow-xl  rounded-2xl text-[14px] ${option ? '' : 'text-gray-400'} ${displayMode === 'mobile' ? 'w-[280px] px-[50px] py-[1px] ' : 'w-[280px] px-[50px] py-[1px]  '}`}
+              <div
+                className={`bg-white p-8  rounded-2xl shadow-2xl border-gray-200 border-[1px] w-full max-w-[350px] ${
+                  displayMode === 'mobile'
+                    ? 'p-6 mr-[36px] mt-[26px]'
+                    : 'p-8 ml-[58px] mt-[40px]'
+                }`}
+                style={{ background: bgColor }}
+              >
+                <div className="w-full h-[60px] flex items-center justify-center mb-[20px]">
+                  {logo && (
+                    <img alt="" src={logoPath} className="w-[40px] h-[40px]" />
+                  )}
+                </div>
+
+                <div className="overflow-y-auto max-h-[70px] min-h-[50px]">
+                  <h1
+                    className="text-[18px] min-h-[40px] text-gray-800 font-semibold text-center font-montserrat mb-[15px]"
                     style={{ color: textColor }}
                   >
-                    {option || 'Enter option text here'}
-                  </span>
+                    {component.question || ' '}
+                  </h1>
                 </div>
-              ))}
+                <div
+                  className="relative flex flex-col gap-[7px] items-center overflow-y-auto overflow-x-hidden  w-full"
+                  style={{ height: '300px' }}
+                >
+                  {component.options.map((option, index) => (
+                    <div className="flex gap-[10px] border-[2px] p-2  font-montserrat hover:border-green-100 border-gray-600 shadow-xl rounded-2xl items-center cursor-pointer">
+                      <input
+                        className="w-[20px] h-[20px]"
+                        type="checkbox"
+                        checked={checkboxStates[index]}
+                        onChange={() => handleCheckboxChange(index)}
+                      />
+                      <span
+                        className={`text-[14px] flex items-center justify-center ${
+                          option ? '' : 'text-gray-400'
+                        }`}
+                        style={{
+                          width: '210px',
+                          color: textColor,
+                          whiteSpace: 'normal',
+                          textOverflow: 'ellipsis',
+                          maxHeight: '60px',
+                          overflowY: 'auto',
+                        }}
+                      >
+                        {option || 'Enter optionnnn text here'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <ButtonCheckBox
+                  language={language}
+                  nextComponent={nextComponent}
+                  buttonColor={buttonColor}
+                  checkboxStates={checkboxStates}
+                />
+              </div>
             </div>
-            <ButtonCheckBox
-              language={language}
-              nextComponent={nextComponent}
-              buttonColor={buttonColor}
-              checkboxStates={checkboxStates}
-            />
           </div>
         )}
         {!openCheckbox && (
@@ -137,7 +165,6 @@ const Checkbox = ({
   );
 };
 
-// Define prop types
 Checkbox.propTypes = {
   displayMode: PropTypes.string.isRequired,
   state: PropTypes.shape({

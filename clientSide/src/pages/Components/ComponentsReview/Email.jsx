@@ -13,7 +13,7 @@ const Email = ({ state, displayMode, component, nextComponent }) => {
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const truncateText = (text, maxLength) => {

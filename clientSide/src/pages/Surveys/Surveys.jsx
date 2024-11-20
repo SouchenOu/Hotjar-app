@@ -32,7 +32,7 @@ const Surveys = () => {
   const getSurveys = async () => {
     try {
       const AllSurveys = await axios.get(
-        `https://pro1-ubq1.onrender.com/survey/getSurveys/${id}/${userInfo._id}`
+        `http://localhost:8000/survey/getSurveys/${id}/${userInfo._id}`
       );
       const surveysData = await Promise.all(
         AllSurveys.data.surveys.map(async (survey) => {
@@ -59,7 +59,7 @@ const Surveys = () => {
   const searchSurveys = async (query) => {
     try {
       const response = await axios.get(
-        `https://pro1-ubq1.onrender.com/survey/search/${userInfo._id}`,
+        `http://localhost:8000/survey/search/${userInfo._id}`,
         { params: { query } }
       );
       const formattedSurveys = response.data.map((survey) => ({
@@ -115,7 +115,7 @@ const Surveys = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `https://pro1-ubq1.onrender.com/survey/delete/${deleteSurveyId}`
+        `http://localhost:8000/survey/delete/${deleteSurveyId}`
       );
       setSurveys(surveys.filter((survey) => survey._id !== deleteSurveyId));
     } catch (error) {
@@ -134,7 +134,7 @@ const Surveys = () => {
   const toggleSurveyStatus = async (id, currentStatus) => {
     try {
       const response = await axios.post(
-        `https://pro1-ubq1.onrender.com/survey/updateStatus/${id}`,
+        `http://localhost:8000/survey/updateStatus/${id}`,
         { status: !currentStatus }
       );
       const updatedSurvey = response.data;
@@ -163,7 +163,7 @@ const Surveys = () => {
   const countResponses = async (id) => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/response/numberResponses/${id}`
+        `http://localhost:8000/response/numberResponses/${id}`
       );
       return result.data.responseCount;
     } catch (error) {
@@ -188,7 +188,7 @@ const Surveys = () => {
   useEffect(() => {
     const getTemplates = async () => {
       const templates = await axios.get(
-        'https://pro1-ubq1.onrender.com/templates/getTemplates'
+        'http://localhost:8000/templates/getTemplates'
       );
       const result = templates.data;
       const filteredTemplate = result.slice(0, 3);
@@ -197,7 +197,7 @@ const Surveys = () => {
     const fetchTrackingCode = async () => {
       try {
         const response = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `http://localhost:8000/site/getSiteId/${id}/${userInfo._id}`
         );
         setSiteData(response.data);
       } catch (error) {
@@ -214,7 +214,7 @@ const Surveys = () => {
     const getSiteId = async () => {
       try {
         await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `http://localhost:8000/site/getSiteId/${id}/${userInfo._id}`
         );
       } catch (err) {
         console.error(err);

@@ -25,13 +25,13 @@ const PopularTemplate = ({ templates, handleClick, NavigateToTemplate }) => {
             <img
               src={template.image}
               alt={template.name}
-              className="w-full h-56 object-cover rounded-md transition-transform duration-300 ease-in-out"
+              className="w-full h-50 object-cover rounded-md transition-transform duration-300 ease-in-out"
             />
             <div className="flex flex-col gap-[10px]">
-              <h1 className="text-lg text-gray-800 font-bold font-rubik">
+              <h1 className="text-[13px] text-gray-800 font-bold font-rubik">
                 {template.name}
               </h1>
-              <p className="text-sm text-gray-600 font-rubik">
+              <p className="text-[12px] text-gray-600 font-rubik">
                 {template.description}
               </p>
             </div>
@@ -44,11 +44,11 @@ const PopularTemplate = ({ templates, handleClick, NavigateToTemplate }) => {
           <img
             src="/template.svg"
             alt="Browse templates"
-            className="w-full h-56 object-cover rounded-md transition-transform duration-300 ease-in-out"
+            className="w-full h-50 object-cover rounded-md transition-transform duration-300 ease-in-out"
           />
           <div className="border-[1px] flex items-center gap-2 justify-center border-blue-900 px-6 py-2 rounded-full">
             <FontAwesomeIcon icon={faBars} className="w-5 h-5 text-blue-900" />
-            <h1 className="text-md text-blue-900 cursor-pointer font-medium font-rubik">
+            <h1 className="text-[12px] text-blue-900 cursor-pointer font-medium font-rubik">
               Browse Templates
             </h1>
           </div>

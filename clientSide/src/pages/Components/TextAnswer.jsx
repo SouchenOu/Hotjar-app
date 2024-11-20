@@ -26,7 +26,7 @@ const TextAnswer = ({ onChange, components }) => {
   };
 
   return (
-    <div className="relative flex flex-col gap-6 border-2 p-6 border-gray-300 w-[550px] h-full hover:bg-gray-100 transition duration-200 ease-in-out rounded-lg shadow-md">
+    <div className="relative flex flex-col gap-6 border-2 p-6 border-gray-300 sm:w-full md:w-[300px] xl:w-[400px] 2xl:w-[600px] h-full hover:bg-gray-100 transition duration-200 ease-in-out rounded-lg shadow-md">
       <div className="flex items-center gap-3 bg-gradient-to-r from-gray-900 to-blue-200 rounded-lg py-3 px-4 shadow-md">
         <FontAwesomeIcon icon={faFileLines} className="w-5 h-5 text-white" />
         <span className="text-[14px] text-white font-bold font-montserrat">

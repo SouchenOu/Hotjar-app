@@ -11,7 +11,7 @@ const DesignFeedback = ({ state, displayMode, component, nextComponent }) => {
   const [selectedNumber, setSelectedNumber] = useState('0');
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const number = ['1', '2', '3', '4', '5'];

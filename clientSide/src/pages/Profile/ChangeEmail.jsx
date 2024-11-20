@@ -24,7 +24,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     setLoading(true);
     try {
       const result = await axios.post(
-        'https://pro1-ubq1.onrender.com/auth/sendVerificationCode',
+        'http://localhost:8000/auth/sendVerificationCode',
         { newEmail: emailValue }
       );
       if (result.status === 200) {
@@ -80,7 +80,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     const finalCode = verificationCode.join('');
     try {
       const response = await axios.post(
-        'https://pro1-ubq1.onrender.com/auth/verifyCodeAndUpdateEmail',
+        'http://localhost:8000/auth/verifyCodeAndUpdateEmail',
         {
           userId: id,
           newEmail: emailValue,
@@ -102,7 +102,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
 
   return (
     <div className="flex">
-      <div className="flex flex-col items-start gap-4 p-10">
+      <div className="flex flex-col items-start gap-4 p-6">
         <div className="flex flex-col  gap-[30px]">
           <div className="flex gap-4 p-[5px] text-gray-500 text-lg">
             <h1

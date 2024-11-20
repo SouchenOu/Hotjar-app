@@ -37,7 +37,7 @@ const SiteForm = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        'https://pro1-ubq1.onrender.com/site/AddSite',
+        'http://localhost:8000/site/AddSite',
         site
       );
       toast.success('Site added successfully');
@@ -52,7 +52,7 @@ const SiteForm = () => {
   const navigateToSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+        `http://localhost:8000/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;
@@ -73,7 +73,7 @@ const SiteForm = () => {
         <NavBarSign />
         <div className="flex flex-1 overflow-hidden p-6 md:p-10">
           <div className="mx-auto flex flex-col w-full max-w-6xl">
-            <div className="flex items-center gap-4 lg:mb-[8rem] mb-[30px] cursor-pointer">
+            <div className="flex items-center gap-4 lg:mb-[1rem] mb-[20px] cursor-pointer">
               <div
                 className="flex items-center text-blue-600 hover:text-blue-800"
                 onClick={navigateToSurveys}
@@ -82,8 +82,8 @@ const SiteForm = () => {
                 <span className="ml-2 text-[17px]">Back to all surveys</span>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row items-center gap-10 p-6 md:p-10 w-full bg-white shadow-md rounded-lg">
-              <div className="w-full md:max-w-2xl bg-white p-6 rounded-lg shadow-lg border border-blue-300">
+            <div className="flex flex-col lg:flex-row items-center gap-10 p-6 md:p-3 w-full xl:mt-[40px] bg-white shadow-md rounded-lg">
+              <div className="w-full lg:max-w-lg bg-white p-6 rounded-lg shadow-lg border border-blue-300">
                 <h2 className="text-2xl font-semibold mb-6 text-center text-blue-700">
                   Add New Site
                 </h2>
@@ -100,7 +100,7 @@ const SiteForm = () => {
                       name="organisation"
                       value={site.organisation}
                       onChange={handleChange}
-                      className="mt-1 block w-full px-4 py-2 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
+                      className="mt-1 block w-full px-4 py-1 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
                       required
                     />
                   </div>
@@ -116,7 +116,7 @@ const SiteForm = () => {
                       name="name"
                       value={site.name}
                       onChange={handleChange}
-                      className="mt-1 block w-full px-4 py-2 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
+                      className="mt-1 block w-full px-4 py-1 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
                       required
                     />
                   </div>
@@ -137,7 +137,7 @@ const SiteForm = () => {
                       name="url"
                       value={site.url}
                       onChange={handleChange}
-                      className="mt-1 block w-full px-4 py-2 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
+                      className="mt-1 block w-full px-4 py-1 text-gray-800 text-sm border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 hover:border-blue-400 ease-in-out transition-all duration-300"
                       required
                     />
                   </div>
@@ -153,7 +153,7 @@ const SiteForm = () => {
               <img
                 src="/yess.png"
                 alt="Site illustration"
-                className="rounded-lg shadow-lg w-full max-w-lg mt-6 md:mt-0 lg:block hidden"
+                className="hidden lg:block rounded-lg shadow-lg w-full max-w-sm mt-6 md:mt-0"
               />
             </div>
           </div>

@@ -22,7 +22,7 @@ const LongTextAnswer = ({
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = 'http://localhost:8000';
   const logoPath = logo ? `${baseURL}${logo}` : '';
 
   return (
@@ -45,7 +45,7 @@ const LongTextAnswer = ({
       >
         {openLongTextAnswer && (
           <div
-            className="relative flex flex-col items-center overflow-y-auto overflow-x-hidden  gap-[20px] border-[1px] bg-white border-gray-300 ml-[280px] mt-[179px] rounded-xl"
+            className="relative flex flex-col shadow-2xl items-center overflow-y-auto overflow-x-hidden  gap-[20px] border-[1px] bg-white border-gray-200 ml-[280px] mt-[179px] rounded-2xl"
             style={{
               width: displayMode === 'mobile' ? '300px' : '350px',
               height: displayMode === 'mobile' ? '600px' : '600px',

@@ -58,7 +58,7 @@ const Profile = () => {
 
     try {
       await axios.put(
-        `https://pro1-ubq1.onrender.com/user/updateUser/${id}`,
+        `http://localhost:8000/user/updateUser/${id}`,
         updatedUserInfo
       );
       const newUserInfo = {
@@ -84,7 +84,7 @@ const Profile = () => {
 
   const deleteAccount = async () => {
     try {
-      await axios.get(`https://pro1-ubq1.onrender.com/user/deleteUser/${id}`);
+      await axios.get(`http://localhost:8000/user/deleteUser/${id}`);
       handleLogout();
       toast.success('Account deleted successfully');
       navigate('/');
@@ -108,7 +108,7 @@ const Profile = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro1-ubq1.onrender.com/site/lastSite/${id}`
+      `http://localhost:8000/site/lastSite/${id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);
@@ -127,7 +127,7 @@ const Profile = () => {
       return (
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-8 lg:mr-[10px] mr-[10px] flex flex-col gap-8 rounded-lg shadow-xl lg:w-[500px] w-[300px] lg:h-[500px] h-[300px]"
+          className="bg-white p-8 lg:mr-[10px] mr-[10px] flex flex-col gap-8 rounded-lg shadow-xl lg:w-[500px] w-[300px]  "
         >
           <div className="space-y-6">
             <div>
@@ -175,7 +175,7 @@ const Profile = () => {
       <SideBarLeft />
       <div className="flex-1 overflow-hidden">
         <NavBarSign />
-        <div className="container lg:w-[1000px] flex flex-col gap-16 lg:mx-auto lg:p-[20px] p-[10px] bg-white lg:m-[20px] shadow-lg rounded-lg">
+        <div className="container lg:w-[1000px] flex flex-col gap-6 lg:mx-auto lg:p-[20px] p-[20px] bg-white shadow-lg rounded-lg">
           <div className="flex items-center gap-4 mb-6 cursor-pointer">
             <div
               className="flex items-center text-blue-600 hover:text-blue-800"

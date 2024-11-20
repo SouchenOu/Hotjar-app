@@ -59,8 +59,8 @@ const Home = () => {
   return (
     <div className="w-full flex flex-col items-center gap-[170px]">
       <NavBar />
-      <div className="flex flex-col  md:flex-row items-center  mr-[20px] mt-[250px] px-8">
-        <div className="flex flex-col gap-6 max-w-lg w-full md:max-w-lg lg:max-w-xl xl:max-w-3xl">
+      <div className="flex flex-col  md:flex-row items-center  mr-[20px] mt-[200px] px-8">
+        <div className="flex flex-col gap-6 max-w-lg w-full md:max-w-sm lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
           <h2 className="text-[15px] text-gray-500">
             YOU'VE BEEN INVITED TO TRY HOTJAR SURVEYS
           </h2>
