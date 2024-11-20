@@ -49,7 +49,7 @@ const DesignFeedback = ({ onChange, components }) => {
       formData.append('image', file);
 
       try {
-        const response = await fetch('http://localhost:8000/survey/upload', {
+        const response = await fetch('https://pro1-ubq1.onrender.com/survey/upload', {
           method: 'POST',
           body: formData,
         });

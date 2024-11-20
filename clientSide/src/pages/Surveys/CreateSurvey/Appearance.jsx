@@ -52,7 +52,7 @@ const Appearance = ({
       formData.append('logo', file);
       try {
         const response = await fetch(
-          'http://localhost:8000/survey/updateLogo',
+          'https://pro1-ubq1.onrender.com/survey/updateLogo',
           {
             method: 'POST',
             body: formData,

@@ -62,7 +62,7 @@ const ChangePassword = ({ setCurrentForm }) => {
     }
 
     try {
-      await axios.post(`http://localhost:8000/auth/ChangePassword/${id}`, {
+      await axios.post(`https://pro1-ubq1.onrender.com/auth/ChangePassword/${id}`, {
         currentPassword,
         newPassword,
         confirmNewPassword,

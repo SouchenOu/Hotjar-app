@@ -11,14 +11,14 @@ import { useParams } from 'react-router-dom';
 const NotAllowed = () => {
   const [{ userInfo }] = useStateProvider();
   const [site, setSite] = useState('');
-  const socket = io('http://localhost:8000', {
+  const socket = io('https://pro1-ubq1.onrender.com', {
     transports: ['websocket', 'polling'],
   });
   const { id } = useParams();
   useEffect(() => {
     const getSite = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/site/getSite/${id}`);
+        const res = await axios.get(`https://pro1-ubq1.onrender.com/site/getSite/${id}`);
         setSite(res.data);
       } catch (err) {
         console.log('err', err);
@@ -29,12 +29,12 @@ const NotAllowed = () => {
   const handleSendInvite = async () => {
     try {
       const result = await axios.post(
-        `http://localhost:8000/site/sendInvite/${site._id}/${userInfo._id}/${site.user}`
+        `https://pro1-ubq1.onrender.com/site/sendInvite/${site._id}/${userInfo._id}/${site.user}`
       );
       if (result.status === 200) {
         toast.success('request send successfully');
         const msg = `${userInfo.username} has requested to join ${site.name}`;
-        await axios.post('http://localhost:8000/notification/createNotif', {
+        await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
           recipientId: site.user,
           senderId: userInfo._id,
           message: msg,

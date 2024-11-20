@@ -47,7 +47,7 @@ const SideBarLeft = () => {
   const handleSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `http://localhost:8000/site/lastSite/${userInfo._id}`
+        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;

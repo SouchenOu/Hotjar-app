@@ -18,7 +18,7 @@ const Overview = () => {
     const fetchTrackingCode = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/site/getSiteId/${id}/${userInfo._id}`
+          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
         );
         setTrackingCode(response.data.trackingCode);
       } catch (error) {
@@ -42,7 +42,7 @@ const Overview = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `http://localhost:8000/site/lastSite/${userInfo._id}`
+      `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);

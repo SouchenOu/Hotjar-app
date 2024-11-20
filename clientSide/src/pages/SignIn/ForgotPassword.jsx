@@ -11,7 +11,7 @@ const ForgotPassword = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('http://localhost:8000/auth/forgotPassword', { email });
+      await axios.post('https://pro1-ubq1.onrender.com/auth/forgotPassword', { email });
       setSuccess('Email sent successfully');
       setError(null);
     } catch (err) {

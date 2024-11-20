@@ -12,7 +12,7 @@ const useSignIN = () => {
       setError(null);
       setLoading(true);
 
-      const res = await fetch('http://localhost:8000/auth/login', {
+      const res = await fetch('https://pro1-ubq1.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),

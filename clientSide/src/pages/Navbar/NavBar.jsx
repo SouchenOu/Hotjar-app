@@ -51,7 +51,7 @@ const NavBar = () => {
 
     try {
       const result = await axios.get(
-        `http://localhost:8000/notification/getNotification/${userInfo._id}`
+        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
       );
 
       setNotifications(result.data.notifications);
@@ -63,7 +63,7 @@ const NavBar = () => {
   useEffect(() => {
     if (!userInfo?._id) return;
 
-    const socket = io('http://localhost:8000', {
+    const socket = io('https://pro1-ubq1.onrender.com', {
       transports: ['websocket', 'polling'],
     });
 
@@ -80,7 +80,7 @@ const NavBar = () => {
 
     socket.on('inviteNotification', async () => {
       const Result = await axios.get(
-        `http://localhost:8000/notification/getNotification/${userInfo._id}`
+        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
       );
       setNotifications(Result.data.notifications);
     });
@@ -95,7 +95,7 @@ const NavBar = () => {
     const unreadNotif = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:8000/notification/getUnreadNotif/${userInfo._id}`
+          `https://pro1-ubq1.onrender.com/notification/getUnreadNotif/${userInfo._id}`
         );
         setUnreadCount(result.data.unreadCount);
       } catch (error) {
@@ -135,7 +135,7 @@ const NavBar = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8000/site/GetUserSites/${userInfo._id}`
+        `https://pro1-ubq1.onrender.com/site/GetUserSites/${userInfo._id}`
       );
       const { createdSites, memberSites } = response.data.sites;
 
@@ -168,7 +168,7 @@ const NavBar = () => {
   const searchByUrl = async (url) => {
     try {
       const result = await axios.post(
-        `http://localhost:8000/site/searchSite/${userInfo._id}`,
+        `https://pro1-ubq1.onrender.com/site/searchSite/${userInfo._id}`,
         { url }
       );
       if (result.data.createdSites) {
@@ -223,7 +223,7 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       try {
         await axios.get(
-          `http://localhost:8000/notification/marknotifRead/${userInfo?._id}`
+          `https://pro1-ubq1.onrender.com/notification/marknotifRead/${userInfo?._id}`
         );
       } catch (err) {
         console.log(err);

@@ -37,7 +37,7 @@ const SiteForm = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        'http://localhost:8000/site/AddSite',
+        'https://pro1-ubq1.onrender.com/site/AddSite',
         site
       );
       toast.success('Site added successfully');
@@ -52,7 +52,7 @@ const SiteForm = () => {
   const navigateToSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `http://localhost:8000/site/lastSite/${userInfo._id}`
+        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;

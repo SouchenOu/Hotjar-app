@@ -9,7 +9,7 @@ const generateTrackingCode = (siteId) => {
         (function() {
             const siteId = '${siteId}';
             const script = document.createElement('script');
-            script.src = 'http://localhost:8000/js/survey-loader.js?siteId=' + siteId;
+            script.src = 'https://pro1-ubq1.onrender.com/js/survey-loader.js?siteId=' + siteId;
             document.head.appendChild(script);
         })();
       </script>`;
@@ -555,7 +555,7 @@ export const sendInvite = async (req, res) => {
         .status(400)
         .json({ message: `You are already a member of ${site.name}` });
     }
-    const acceptRequestUrl = `http://localhost:8000/site/accept-request/${siteId}/${senderUserId}`;
+    const acceptRequestUrl = `https://pro1-ubq1.onrender.com/site/accept-request/${siteId}/${senderUserId}`;
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

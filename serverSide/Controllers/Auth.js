@@ -98,7 +98,7 @@ export const ForgotPassword = async (req, res, next) => {
     const token = jwt.sign({ email: user.email, _id: user._id }, secret, {
       expiresIn: '90d',
     });
-    const link = `http://localhost:8000/auth/reset-password/${user._id}/${token}`;
+    const link = `https://pro1-ubq1.onrender.com/auth/reset-password/${user._id}/${token}`;
 
     await nodemailer.createTestAccount();
 

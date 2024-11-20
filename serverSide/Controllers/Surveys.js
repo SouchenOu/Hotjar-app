@@ -428,7 +428,7 @@ export const getSurveyData = async (req, res) => {
     const textAlign = isArabic ? 'right' : 'left';
     let imagePath = '';
     let fullImageURL = '';
-    const baseURL = 'http://localhost:8000';
+    const baseURL = 'https://pro1-ubq1.onrender.com';
     const feedbackComp = survey.components.find(
       (comp) => comp.type === 'designFeedback'
     );

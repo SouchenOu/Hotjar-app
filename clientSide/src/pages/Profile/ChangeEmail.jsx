@@ -24,7 +24,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     setLoading(true);
     try {
       const result = await axios.post(
-        'http://localhost:8000/auth/sendVerificationCode',
+        'https://pro1-ubq1.onrender.com/auth/sendVerificationCode',
         { newEmail: emailValue }
       );
       if (result.status === 200) {
@@ -80,7 +80,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     const finalCode = verificationCode.join('');
     try {
       const response = await axios.post(
-        'http://localhost:8000/auth/verifyCodeAndUpdateEmail',
+        'https://pro1-ubq1.onrender.com/auth/verifyCodeAndUpdateEmail',
         {
           userId: id,
           newEmail: emailValue,

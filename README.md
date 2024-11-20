@@ -71,7 +71,7 @@ Running the Server
             cd serverSide
             npm run start
 
-    The server will start on http://localhost:8000.
+    The server will start on https://pro1-ubq1.onrender.com.
 
 2. Start the client:
 

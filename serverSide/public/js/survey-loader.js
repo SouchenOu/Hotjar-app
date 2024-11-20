@@ -10,7 +10,7 @@
     return;
   }
 
-  fetch(`http://localhost:8000/survey/getSurveyData/${siteId}`)
+  fetch(`https://pro1-ubq1.onrender.com/survey/getSurveyData/${siteId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data && data.html) {
@@ -403,7 +403,7 @@
             if (response) {
               try {
                 const backendResponse = await fetch(
-                  'http://localhost:8000/response/saveResponse',
+                  'https://pro1-ubq1.onrender.com/response/saveResponse',
                   {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
