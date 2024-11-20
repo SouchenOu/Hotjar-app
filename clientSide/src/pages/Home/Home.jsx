@@ -39,14 +39,14 @@ const Home = () => {
   const handleGetStarted = async () => {
     try {
       const checkRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/checkSites/${userInfo._id}`
+        `http://localhost:8000/site/checkSites/${userInfo._id}`
       );
       const { hasSites } = checkRes.data;
       if (!hasSites) {
         navigate('/site');
       } else {
         const lastSiteRes = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+          `http://localhost:8000/site/lastSite/${userInfo._id}`
         );
         const lastSite = lastSiteRes.data;
         navigate(`/site/${lastSite.siteId}/surveys`);
@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <div className="w-full flex flex-col items-center gap-[170px]">
       <NavBar />
-      <div className="flex flex-col md:flex-row items-center lg:ml-[100px] mt-[100px] p-2">
+      <div className="flex flex-col  md:flex-row items-center  mr-[20px] mt-[250px] px-8">
         <div className="flex flex-col gap-6 max-w-lg w-full md:max-w-lg lg:max-w-xl xl:max-w-3xl">
           <h2 className="text-[15px] text-gray-500">
             YOU'VE BEEN INVITED TO TRY HOTJAR SURVEYS
@@ -85,10 +85,11 @@ const Home = () => {
             Get started
           </button>
         </div>
+
         <img
           src="/test.svg"
           alt="Illustration"
-          className="w-full md:w-1/2 lg:w-[600px] 2xl:w-[700px] mt-8 md:mt-0 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:rotate-2"
+          className="w-full md:w-1/2 lg:w-[450px] 2xl:w-[450px] mt-8 md:mt-0 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:rotate-2 max-w-full"
         />
       </div>
 
@@ -103,7 +104,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="w-full flex flex-col lg:flex-row gap-8">
+        <div className="w-full flex flex-col sm:flex-row gap-8">
           {openFeedback && (
             <video
               src="/feedback.mp4"
@@ -123,15 +124,15 @@ const Home = () => {
             />
           )}
 
-          <div className="flex flex-col items-center justify-center gap-8 w-full lg:w-[600px]">
-            <div className="flex flex-col gap-4 border-2 border-gray-300 px-4 py-6 lg:w-[400px] 2xl:w-[600px] w-[300px] rounded-lg shadow-md">
+          <div className="flex flex-col items-center justify-center gap-3 w-full lg:w-[600px]">
+            <div className="flex flex-col gap-4 border-2 border-gray-300 px-4 py-6 lg:w-[400px] 2xl:w-[600px] w-[400px] rounded-lg shadow-md">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <FontAwesomeIcon
                     icon={faMessage}
                     className="w-6 h-6 text-orange-700"
                   />
-                  <span className="text-xl font-bold">Feedback</span>
+                  <span className="text-[17px] font-bold">Feedback</span>
                 </div>
                 <FontAwesomeIcon
                   icon={faChevronDown}
@@ -142,7 +143,7 @@ const Home = () => {
 
               {openFeedback && (
                 <div>
-                  <p className="text-lg text-gray-400">
+                  <p className="text-[13px] text-gray-400">
                     Hear directly from your users as they experience your site.
                     Find out what they love, and what’s driving them off your
                     site. Make the changes that matter.
@@ -151,14 +152,14 @@ const Home = () => {
               )}
             </div>
 
-            <div className="flex flex-col gap-4 border-2 border-gray-300 px-4 py-6 lg:w-[400px] 2xl:w-[600px] w-[300px] rounded-lg shadow-md">
+            <div className="flex flex-col gap-4 border-2 border-gray-300 px-4 py-6 lg:w-[400px] 2xl:w-[600px] w-[400px] rounded-lg shadow-md">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <FontAwesomeIcon
                     icon={faComment}
                     className="w-6 h-6 text-orange-700"
                   />
-                  <span className="text-xl font-bold">Survey</span>
+                  <span className="text-[17px] font-bold">Survey</span>
                 </div>
                 <FontAwesomeIcon
                   icon={faChevronDown}
@@ -169,7 +170,7 @@ const Home = () => {
 
               {openSurvey && (
                 <div>
-                  <p className="text-lg text-gray-400">
+                  <p className="text-[13px] text-gray-400">
                     Bring your customer voice to your decision-making. Validate
                     your plans, measure customer satisfaction, and learn from
                     every churn.
@@ -181,7 +182,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center gap-[10px] p-[30px]">
+      <div className="flex flex-col xl:flex-row items-center gap-[10px] p-[30px]">
         <div className="flex items-center justify-center gap-4 w-full md:w-[500px]">
           <img
             alt="Avito"
@@ -197,7 +198,7 @@ const Home = () => {
         </div>
 
         <div className="flex flex-wrap gap-5 justify-center w-full max-w-full">
-          <div className="flex gap-16 flex-wrap justify-center w-full">
+          <div className="flex gap-10 flex-wrap justify-center w-full">
             <div className="flex flex-col items-center gap-4 bg-white p-6 rounded-lg shadow-xl w-full max-w-[400px] transition-all hover:scale-105">
               <FontAwesomeIcon
                 icon={faCheck}
@@ -231,7 +232,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex gap-16 flex-wrap justify-center w-full">
+          <div className="flex gap-10 flex-wrap justify-center w-full">
             <div className="flex flex-col items-center gap-4 bg-white p-6 rounded-lg shadow-xl w-full max-w-[400px] transition-all hover:scale-105">
               <FontAwesomeIcon
                 icon={faCheck}
@@ -267,8 +268,8 @@ const Home = () => {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-between gap-[40px] lg:gap-[100px] px-40 py-12 w-full max-w-full">
-        <div className="flex flex-col items-center lg:items-start gap-[20px] w-full lg:w-[700px] justify-center">
-          <h1 className="text-center lg:text-left text-[24px] md:text-[30px] 2xl:text-[36px] font-extrabold text-gray-800 leading-snug">
+        <div className="flex flex-col items-center lg:items-start gap-[20px] w-full lg:w-[900px] sm:w-[700px] justify-center">
+          <h1 className="text-center lg:text-left text-[24px] md:text-[23px] 2xl:text-[24px] font-extrabold text-gray-800 leading-snug">
             Enjoy unlimited questions
           </h1>
           <p className="text-center lg:text-left text-[16px] md:text-[18px] 2xl:text-[19px] text-gray-500 leading-relaxed max-w-[750px] mx-auto lg:mx-0">
@@ -281,7 +282,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="relative w-full max-w-full md:w-[700px] h-[400px] md:h-[500px] overflow-hidden rounded-lg shadow-lg">
+        <div className="relative w-full max-w-full xl:w-[700px] 2xl:w-[500px] md:w-[700px] h-[400px] md:h-[300px] overflow-hidden rounded-lg shadow-lg">
           <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-40 rounded-lg"></div>
           <img
             src="/2.gif"

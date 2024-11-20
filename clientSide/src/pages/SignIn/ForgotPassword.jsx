@@ -11,88 +11,100 @@ const ForgotPassword = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('https://pro1-ubq1.onrender.com/auth/forgotPassword', { email });
-      setSuccess('Email sent successfully');
+      await axios.post('http://localhost:8000/auth/forgotPassword', { email });
+      setSuccess('Email sent successfully.');
       setError(null);
     } catch (err) {
-      setError('Failed to send email');
+      setError('Failed to send email. Please try again.');
       setSuccess(null);
     }
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <NavBarSign />
-      <div className="flex items-center gap-[60px] justify-center ">
-        <Card className="w-[450px] p-[40px] lg:mt-[10px] mt-[50px] rounded-lg shadow-2xl bg-white">
-          <h1 className="text-center text-[19px] font-bold text-blue-600">
-            Forgot Password
-          </h1>
+      <div className="flex flex-col gap-[20px] lg:flex-row items-center justify-center w-full max-w-7xl min-h-[90vh] px-4">
+        <Card
+          className="w-full max-w-[500px] lg:w-[400px] xl:w-[450px] p-4 mx-2"
+          style={{
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+            borderRadius: '12px',
+          }}
+        >
+          <div className="flex flex-col gap-8 bg-white p-6 md:p-8 w-full rounded-lg shadow-xl">
+            <h1 className="text-center text-[20px] md:text-[24px] font-bold text-blue-800">
+              Forgot Password
+            </h1>
 
-          <Typography.Paragraph className="text-center text-gray-500 text-[12px] mb-[30px]">
-            Please enter the email address you used when creating your account,
-            and we will send you a reset link.
-          </Typography.Paragraph>
+            <Typography.Paragraph className="text-center text-gray-600 text-[12px] md:text-[14px] mb-4">
+              Please enter the email address you used when creating your
+              account. We will send you a password reset link.
+            </Typography.Paragraph>
 
-          <Form
-            layout="vertical"
-            onFinish={handleSubmit}
-            className="space-y-[20px]"
-          >
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[{ required: true, message: 'Please input your email' }]}
+            <Form
+              layout="vertical"
+              onFinish={handleSubmit}
+              className="space-y-4"
             >
-              <Input
-                size="large"
-                placeholder="Enter your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full py-2 px-4 border text-[13px] border-gray-300 rounded-lg"
-              />
-            </Form.Item>
-
-            {error && (
-              <Alert
-                className="p-2 flex items-center justify-center text-gray-800"
-                description={error}
-                type="error"
-                showIcon
-                closable
-              />
-            )}
-            {success && (
-              <Alert
-                className="p-2 flex items-center justify-center text-gray-800"
-                description={success}
-                type="success"
-                showIcon
-                closable
-              />
-            )}
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                size="large"
-                className="w-full bg-blue-700 text-[14px] hover:bg-blue-800 text-white py-3 rounded-lg font-bold"
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: 'Please input your email' },
+                  { type: 'email', message: 'Please enter a valid email' },
+                ]}
               >
-                Send Reset Email
-              </Button>
-            </Form.Item>
+                <Input
+                  size="large"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full py-2 px-4 border text-[13px] border-gray-300 rounded-lg"
+                />
+              </Form.Item>
 
-            <div className="text-center">
-              <Link
-                to="/login"
-                className="text-blue-600 hover:text-blue-800 text-[12px] font-bold"
-              >
-                Go back to sign-in
-              </Link>
-            </div>
-          </Form>
+              {error && (
+                <Alert
+                  className="p-2 flex items-center justify-center text-gray-800"
+                  description={error}
+                  type="error"
+                  showIcon
+                  closable
+                />
+              )}
+              {success && (
+                <Alert
+                  className="p-2 flex items-center justify-center text-gray-800"
+                  description={success}
+                  type="success"
+                  showIcon
+                  closable
+                />
+              )}
+
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  className="w-full bg-blue-700 text-[14px] hover:bg-blue-800 text-white py-3 rounded-lg font-bold"
+                >
+                  Send Reset Email
+                </Button>
+              </Form.Item>
+
+              <div className="text-center">
+                <Link
+                  to="/login"
+                  className="text-blue-600 hover:text-blue-800 text-[12px] font-bold"
+                >
+                  Go back to sign-in
+                </Link>
+              </div>
+            </Form>
+          </div>
         </Card>
+
         <div className="w-full md:w-1/2 h-64 md:h-screen hidden md:flex items-center justify-center">
           <img
             src="/img2.jpg"

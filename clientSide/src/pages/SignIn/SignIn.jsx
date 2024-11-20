@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Form, Typography, Input, Button, Spin, Alert } from 'antd';
-import NavBarSign from '../Navbar/NavBarSign';
 import useSignIN from '../../hooks/useSignIn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -23,15 +22,13 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
-      <NavBarSign />
-      <div className="flex flex-col lg:flex-row items-center gap-[150px]  lg:justify-center ">
-        <Card className="lg:w-[500px] w-full flex items-center justify-center lg:h-screen p-4 lg:p-0">
-          <div className="flex flex-col gap-8 bg-white p-8 md:p-12 w-full lg:w-[400px] rounded-xl shadow-2xl">
-            <h1 className="text-center text-[24px] font-bold text-blue-800">
-              SignIn
+    <div className="bg-white min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl min-h-[90vh]">
+        <Card className="w-full max-w-[500px] lg:w-[400px] xl:w-[450px] p-4 mx-2">
+          <div className="flex flex-col gap-8 bg-white p-6 md:p-8 w-full rounded-lg shadow-xl">
+            <h1 className="text-center text-[20px] md:text-[24px] font-bold text-blue-800">
+              Sign In
             </h1>
-
             <div className="flex items-center gap-4 w-full">
               <div className="border-t-2 w-1/4 lg:w-32 border-gray-400"></div>
               <Typography.Text className="text-center text-gray-600">
@@ -44,24 +41,15 @@ const SignIn = () => {
               layout="vertical"
               autoComplete="off"
               onFinish={handleClick}
-              className="w-full "
+              className="w-full"
             >
               <Form.Item
                 label="Email"
                 name="email"
                 rules={[
-                  {
-                    required: true,
-                    message: 'Please input your email',
-                  },
-                  {
-                    type: 'email',
-                    message: 'Please enter a valid email',
-                  },
+                  { required: true, message: 'Please input your email' },
+                  { type: 'email', message: 'Please enter a valid email' },
                 ]}
-                style={{
-                  marginBottom: '30px',
-                }}
               >
                 <Input
                   size="large"
@@ -70,14 +58,6 @@ const SignIn = () => {
                   className="px-4 py-2 w-full border text-[13px] text-gray-800 border-gray-300 rounded-lg"
                 />
               </Form.Item>
-
-              <style jsx global>{`
-                .ant-form-item-explain-error {
-                  font-size: 12px !important;
-                  color: red !important;
-                }
-              `}</style>
-
               <Form.Item
                 label="Password"
                 name="password"
@@ -90,7 +70,7 @@ const SignIn = () => {
                     size="large"
                     placeholder="Enter your password"
                     type={showCurrentPassword ? 'text' : 'password'}
-                    className="px-4 py-2 w-full border  text-[13px] text-gray-800 border-gray-300 rounded-lg"
+                    className="px-4 py-2 w-full border text-[13px] text-gray-800 border-gray-300 rounded-lg"
                   />
                   <FontAwesomeIcon
                     icon={showCurrentPassword ? faEyeSlash : faEye}
@@ -99,7 +79,6 @@ const SignIn = () => {
                   />
                 </div>
               </Form.Item>
-
               {error && (
                 <Alert
                   description={error}
@@ -109,7 +88,6 @@ const SignIn = () => {
                   className="mb-4 p-2 flex text-[12px] items-center justify-center text-gray-700"
                 />
               )}
-
               {success && (
                 <Alert
                   className="mb-4 p-2 flex text-[12px] items-center justify-center text-gray-700"
@@ -119,7 +97,6 @@ const SignIn = () => {
                   closable
                 />
               )}
-
               <div className="text-left mb-4">
                 <span
                   className="text-blue-600 underline text-[13px] cursor-pointer"
@@ -128,7 +105,6 @@ const SignIn = () => {
                   Forgot password?
                 </span>
               </div>
-
               <Form.Item>
                 <Button
                   type="primary"
@@ -139,7 +115,6 @@ const SignIn = () => {
                   {loading ? <Spin /> : 'Sign In'}
                 </Button>
               </Form.Item>
-
               <div className="text-center mt-6">
                 <Link
                   to="/register"

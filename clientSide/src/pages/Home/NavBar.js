@@ -32,7 +32,7 @@ const NavBar = () => {
   const [notifications, setNotifications] = useState([]);
   const [sitesVisible, setSitesVisible] = useState(false);
 
-  const socket = io('https://pro1-ubq1.onrender.com', {
+  const socket = io('http://localhost:8000', {
     transports: ['websocket', 'polling'],
   });
   const fetchNotifications = async () => {
@@ -40,7 +40,7 @@ const NavBar = () => {
 
     try {
       const result = await axios.get(
-        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
+        `http://localhost:8000/notification/getNotification/${userInfo._id}`
       );
       setNotifications(result.data.notifications);
     } catch (error) {
@@ -53,7 +53,7 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       try {
         await axios.get(
-          `https://pro1-ubq1.onrender.com/notification/marknotifRead/${userInfo?._id}`
+          `http://localhost:8000/notification/marknotifRead/${userInfo?._id}`
         );
       } catch (err) {
         console.log(err);
@@ -71,7 +71,7 @@ const NavBar = () => {
   const handleSites = async () => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/getSites/${userInfo._id}`
+        `http://localhost:8000/site/getSites/${userInfo._id}`
       );
       setSites(result.data);
       setSitesVisible(!sitesVisible);
@@ -85,12 +85,12 @@ const NavBar = () => {
   const handleSendInvite = async (site) => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/sendInvite/${site.id}/${userInfo._id}/${site.created._id}`
+        `http://localhost:8000/site/sendInvite/${site.id}/${userInfo._id}/${site.created._id}`
       );
       if (result.status === 200) {
         toast.success('request send successfully');
         const msg = `${userInfo.username} has requested to join ${site.name}`;
-        await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
+        await axios.post('http://localhost:8000/notification/createNotif', {
           recipientId: site.created._id,
           senderId: userInfo._id,
           message: msg,
@@ -113,7 +113,7 @@ const NavBar = () => {
   const handleSurveys = async () => {
     try {
       const checkRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/checkSites/${userInfo._id}`
+        `http://localhost:8000/site/checkSites/${userInfo._id}`
       );
       const { hasSites } = checkRes.data;
 
@@ -121,7 +121,7 @@ const NavBar = () => {
         navigate('/site');
       } else {
         const lastSiteRes = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+          `http://localhost:8000/site/lastSite/${userInfo._id}`
         );
         const lastSite = lastSiteRes.data;
         navigate(`/site/${lastSite.siteId}/surveys`);
@@ -139,7 +139,7 @@ const NavBar = () => {
   useEffect(() => {
     if (!userInfo?._id) return;
 
-    const socket = io('https://pro1-ubq1.onrender.com', {
+    const socket = io('http://localhost:8000', {
       transports: ['websocket', 'polling'],
     });
 
@@ -152,7 +152,7 @@ const NavBar = () => {
 
     socket.on('inviteNotification', async () => {
       const Result = await axios.get(
-        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
+        `http://localhost:8000/notification/getNotification/${userInfo._id}`
       );
       setNotifications(Result.data.notifications);
     });
@@ -167,7 +167,7 @@ const NavBar = () => {
     const unreadNotif = async () => {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/notification/getUnreadNotif/${userInfo._id}`
+          `http://localhost:8000/notification/getUnreadNotif/${userInfo._id}`
         );
         setUnreadCount(result.data.unreadCount);
       } catch (error) {
@@ -207,7 +207,7 @@ const NavBar = () => {
               src="/Hotjar.png"
               className="w-[14px] h-[14px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] lg:w-[20px] lg:h-[20px] 2xl:w-[20px] 2xl:h-[20px]"
             />
-            <h1 className="2xl:text-[17px] text-gray-800 text-[9px]  font-bold font-ubuntu">
+            <h1 className="2xl:text-[17px]  text-gray-800  font-bold font-ubuntu">
               Avito surveys
             </h1>
           </div>
@@ -265,7 +265,7 @@ const NavBar = () => {
           )}
           {isAuthenticated && (
             <button
-              className="2xl:text-[16px] xl:text-[10px] items-center border-[2px] text-white font-medium font-ubuntu rounded-xl py-[1px] px-[3px] bg-[#0D19A3] border-[#0D19A3] 2xl:px-[20px] 2xl:py-[6px] sm:py-[1px] 2xl:w-[130px] sm:w-[100px] hover:bg-blue-950 hover:text-white"
+              className="text-[16px] items-center border-[2px] text-white font-medium font-ubuntu rounded-xl  bg-[#0D19A3] border-[#0D19A3] px-[20px] py-[6px]  w-[130px]  hover:bg-blue-950 hover:text-white"
               onClick={handleLogout}
             >
               SignOut
@@ -273,7 +273,7 @@ const NavBar = () => {
           )}
           {!isAuthenticated && (
             <button
-              className="2xl:text-[16px] xl:text-[10px] items-center border-[2px] text-white font-medium font-ubuntu rounded-xl py-[1px] px-[3px] bg-[#0D19A3] border-[#0D19A3] 2xl:px-[20px] 2xl:py-[6px] sm:py-[2px] 2xl:w-[130px] sm:w-[100px] hover:bg-blue-950 hover:text-white"
+              className="text-[16px] items-center border-[2px] text-white font-medium font-ubuntu rounded-xl  bg-[#0D19A3] border-[#0D19A3] px-[20px] py-[6px]  w-[130px] hover:bg-blue-950 hover:text-white"
               onClick={handleSignIn}
             >
               SignIn
