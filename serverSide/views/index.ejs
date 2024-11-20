@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        form {
+            padding: 50px;
+            text-align: center;
+            background: white;
+            width: 30%;
+        }
+
+        input[type="password"], input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 12px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="password"]:hover {
+            border-color: #2660ac;
+        }
+
+        input[type="password"]:focus {
+            border-color: #71b7e6;
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        input[type="submit"] {
+            background-color: #395fdf;
+            color: white;
+            margin: 15px 0;
+            padding: 13px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+            color: #2074d4;
+            border-color: #1a72c5;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            letter-spacing: 1px;
+            color: #2074d4;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .image-container {
+                width: 100%;
+            }
+            form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <form action="" method="post" onsubmit="validatePassword(event)">
+                <h1>Reset Password</h1>
+                <p>Enter and confirm your new password below.</p>
+                <input type="password" name="password" id="password" placeholder="New Password" required/><br/>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required/><br/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <div class="image-container">
+                <img
+                    src="/img2.jpg"
+                    alt="Reset Password"
+                />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showToast(message, type) {
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add("show");
+            }, 100);
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 500);
+            }, 3000);
+        }
+
+        function validatePassword(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+
+            if (!passwordRegex.test(password)) {
+                showToast("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.", 'error');
+                event.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showToast("Passwords do not match!", 'error');
+                event.preventDefault();
+            }
+        }
+
+        var status = '<%- JSON.stringify(status) %>';
+        if (JSON.parse(status) === "verified") {
+            showToast("Your password has been updated successfully.", 'success');
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000/login";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
