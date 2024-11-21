@@ -235,10 +235,13 @@
         switch (timing) {
           case 'immediate':
             if (!sessionStorage.getItem(`surveyClosed-${surveyId}`)) {
-              window.addEventListener('load', () => {
-                window.scrollTo(0, 0);
+              // window.addEventListener('load', () => {
+              //   window.scrollTo(0, 0);
+              //   adjustFixedComponentPosition();
+              // });
+              setTimeout(() => {
                 adjustFixedComponentPosition();
-              });
+              }, 1000);
             }
 
             break;
