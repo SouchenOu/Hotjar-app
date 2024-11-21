@@ -21,7 +21,7 @@ const Invite = () => {
   const [role, setRole] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const [messageType, setMessageType] = useState(null); // New state for message type
+  const [messageType, setMessageType] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
   const [Error, setError] = useState(false);
@@ -50,7 +50,7 @@ const Invite = () => {
   const sendInvite = async () => {
     if (!email || !role) {
       setMessage('Please provide both email and role.');
-      setMessageType('error'); // Error type
+      setMessageType('error'); 
       return;
     }
 
@@ -73,7 +73,7 @@ const Invite = () => {
           : `${userInfo.username} changed your role to ${role} in the site ${site.name}`;
 
       setMessage(successMessage);
-      setMessageType('success'); // Success type
+      setMessageType('success'); 
       toast.success(successMessage);
 
       await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
@@ -93,7 +93,7 @@ const Invite = () => {
       console.error(err);
       const errorMessage = err.response?.data?.message || 'An error occurred.';
       setMessage(errorMessage);
-      setMessageType('error'); // Error type
+      setMessageType('error'); 
       toast.error(errorMessage);
     } finally {
       setLoading(false);

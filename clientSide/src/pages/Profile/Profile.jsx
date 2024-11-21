@@ -8,7 +8,7 @@ import {
   faLock,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import NavBarSign from '../Navbar/NavBarSign';
 import { useAuth } from '../../context/AuthenticationContext';
 import { useStateProvider } from '../../context/StateContext';
@@ -23,7 +23,7 @@ const Profile = () => {
   const [{ userInfo }] = useStateProvider();
   const [isChanged, setIsChanged] = useState(false);
   const [, dispatch] = useStateProvider();
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [isLoading, setIsLoading] = useState(false); 
   const [currentForm, setCurrentForm] = useState('profile');
   const [initialUserInfo, setInitialUserInfo] = useState({
     username: userInfo.username,
@@ -172,6 +172,7 @@ const Profile = () => {
 
   return (
     <div className="flex bg-gray-100 min-h-screen overflow-hidden">
+      <ToastContainer />
       <SideBarLeft />
       <div className="flex-1 overflow-hidden">
         <NavBarSign />
@@ -225,7 +226,7 @@ const Profile = () => {
         </div>
         {showModal && (
           <div
-            className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 backdrop-blur-sm"
             onClick={handleCancelDelete}
           >
             <div

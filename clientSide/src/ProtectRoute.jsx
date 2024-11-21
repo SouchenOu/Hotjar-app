@@ -32,9 +32,8 @@ const ProtectedRoute = ({ children }) => {
   return hasSites ? children : <Navigate to="/site" />;
 };
 
-// Define prop types
 ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired, // Specify that children is required
+  children: PropTypes.node.isRequired, 
 };
 
 export default ProtectedRoute;

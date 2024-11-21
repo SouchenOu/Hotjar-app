@@ -78,9 +78,9 @@ const LongTextAnswer = ({
                 style={{
                   minHeight: '150px',
                   maxWidth: displayMode === 'mobile' ? '270px' : '300px',
-                  overflowX: 'hidden', // Ensure no horizontal scroll
-                  resize: 'vertical', // Allow resizing only vertically
-                  wordWrap: 'break-word', // Prevent overflow from long unbroken words
+                  overflowX: 'hidden', 
+                  resize: 'vertical',
+                  wordWrap: 'break-word', 
                 }}
                 value={textInput}
                 onChange={handleTextInputChange}

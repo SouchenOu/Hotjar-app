@@ -17,7 +17,7 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
     if (text && text.length > maxLength) {
       return text.slice(0, maxLength) + '...';
     }
-    return text || ''; // Ensure it always returns a string
+    return text || '';
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';

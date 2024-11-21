@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { useState, React } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStateProvider } from '../../context/StateContext';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChangeEmail = ({ setCurrentForm }) => {
   const [verificationCode, setVerificationCode] = useState(
@@ -102,6 +103,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
 
   return (
     <div className="flex">
+      <ToastContainer />
       <div className="flex flex-col items-start gap-4 p-6">
         <div className="flex flex-col  gap-[30px]">
           <div className="flex gap-4 p-[5px] text-gray-500 text-lg">
@@ -148,13 +150,13 @@ const ChangeEmail = ({ setCurrentForm }) => {
 
       {openVerify && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-xl shadow-lg w-[400px] md:w-[500px]">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+          <div className="bg-white p-8 rounded-xl shadow-lg w-[400px] md:w-[400px]">
+            <h3 className="text-[16px] font-semibold mb-4 text-gray-800">
               Verify Your Email
             </h3>
-            <p className="text-lg mb-6 text-gray-600">
+            <p className="text-[14px] mb-6 text-gray-600">
               We sent a verification code to{' '}
-              <span className="text-blue-600">{emailValue}</span>.
+              <span className="text-blue-600 text-[12px]">{emailValue}</span>.
             </p>
             <div className="flex justify-center gap-2 mb-6">
               {[...Array(6)].map((_, index) => (
@@ -171,19 +173,19 @@ const ChangeEmail = ({ setCurrentForm }) => {
                 />
               ))}
             </div>
-            <p className="text-lg text-gray-500 mb-6">
+            <p className="text-[15px] text-gray-500 mb-6">
               Can&apos;t find the email? Check your spam folder, or re-enter
               your email and try again.
             </p>
             <div className="flex justify-between">
               <button
-                className="border-2 border-gray-300 text-gray-700 font-medium px-6 py-2 rounded-md hover:bg-gray-100 transition duration-150"
+                className="border-2 border-gray-300 text-[15px] text-gray-700 font-medium px-6 py-2 rounded-md hover:bg-gray-100 transition duration-150"
                 onClick={() => setOpenVerify(false)}
               >
                 Cancel
               </button>
               <button
-                className="bg-blue-600 text-white font-bold px-6 py-2 rounded-md hover:bg-blue-700 transition duration-150"
+                className="bg-blue-600 text-white text-[15px] font-bold px-6 py-2 rounded-md hover:bg-blue-700 transition duration-150"
                 onClick={handleVerifyCode}
               >
                 Confirm Code
@@ -196,7 +198,6 @@ const ChangeEmail = ({ setCurrentForm }) => {
   );
 };
 
-// Define PropTypes
 ChangeEmail.propTypes = {
   setCurrentForm: PropTypes.func.isRequired,
 };

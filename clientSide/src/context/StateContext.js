@@ -10,11 +10,10 @@ export const StateProvider = ({ initialState, reducer, children }) => (
   </StateContext.Provider>
 );
 
-// Define prop types
 StateProvider.propTypes = {
-  initialState: PropTypes.object.isRequired, // Assuming initialState is an object
-  reducer: PropTypes.func.isRequired, // Assuming reducer is a function
-  children: PropTypes.node.isRequired, // Specify that children is required
+  initialState: PropTypes.object.isRequired, 
+  reducer: PropTypes.func.isRequired, 
+  children: PropTypes.node.isRequired,
 };
 
 export const useStateProvider = () => useContext(StateContext);

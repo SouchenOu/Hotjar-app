@@ -8,11 +8,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../Navbar/NavBar';
 import SideBarLeft from '../SideBar/SideBarLeft';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import Table from './Table';
 import PopularTemplate from '../Templates/PopularTemplate';
 import TrackingCode from './TrackingCode';
 import { useStateProvider } from '../../context/StateContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Surveys = () => {
   const navigate = useNavigate();
@@ -226,6 +227,7 @@ const Surveys = () => {
   }, [id, navigate, userInfo?._id]);
   return (
     <div className="absolute flex h-screen bg-gray-100 scroll-hidden w-full">
+      <ToastContainer />
       <SideBarLeft />
       <div className="flex-1 flex flex-col overflow-hidden">
         <NavBar />

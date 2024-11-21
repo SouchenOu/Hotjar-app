@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
 import Toast from '../Surveys/data/Toast';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChangePassword = ({ setCurrentForm }) => {
   const { id } = useParams();
@@ -84,6 +85,8 @@ const ChangePassword = ({ setCurrentForm }) => {
 
   return (
     <div className="flex">
+      <ToastContainer />
+
       <div className="flex flex-col  ">
         <form
           onSubmit={handleSubmit}

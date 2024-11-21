@@ -4,11 +4,12 @@ import NavBarSign from '../Navbar/NavBarSign';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useStateProvider } from '../../context/StateContext';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import QueueIcon from '@mui/icons-material/Queue';
 import Modal from './Modal';
 import { Table } from './Table';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SiteTable = () => {
   const [sites, setSites] = useState([]);
@@ -130,6 +131,7 @@ const SiteTable = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      <ToastContainer />
       <NavBarSign />
       <div className="container mx-auto py-16 px-4">
         <div className="flex items-center justify-between gap-4 mb-6 cursor-pointer">
