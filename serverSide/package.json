@@ -8,7 +8,8 @@
     "start": "nodemon index.js",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}'",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "apt-get update && apt-get install -y chromium"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
     "puppeteer": "^23.3.0",
+    "puppeteer-core": "^23.9.0",
     "react-toastify": "^10.0.5",
     "socket.io": "^4.8.0"
   },
