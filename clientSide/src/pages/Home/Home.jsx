@@ -267,7 +267,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-[40px] lg:gap-[100px] px-40 py-12 w-full max-w-full">
+      <div className="flex flex-col lg:flex-row items-center  gap-[40px] lg:gap-[40px] px-40 py-12 w-full max-w-full">
         <div className="flex flex-col items-center lg:items-start gap-[20px] w-full lg:w-[900px] sm:w-[700px] justify-center">
           <h1 className="text-center lg:text-left text-[24px] md:text-[23px] 2xl:text-[24px] font-extrabold text-gray-800 leading-snug">
             Enjoy unlimited questions
