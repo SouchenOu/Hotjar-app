@@ -1,6 +1,6 @@
 export const generateLogo = (logoPath, isArabic) => {
   return logoPath
-    ? `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-${isArabic ? 'right' : 'left'}: 120px;">`
+    ? `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-${isArabic ? 'right' : 'left'}: 110px;">`
     : '';
 };
 
@@ -50,19 +50,23 @@ export const generateScore = (component, survey) => {
 
   return `
         <div style="display: flex; flex-wrap: wrap; gap: 20px; padding-top: 30px">
-            <div style="cursor: pointer">
-                ${number
-                  .map(
-                    (num) => `
-                    <span class="scoreNumber" style="font-size: 18px; font-weight: bold; border: 2px solid #d1d5db; padding: 10px; padding-left: 20px; padding-right: 20px; color: ${survey.textColor};">${num}</span>
-                `
-                  )
-                  .join('')}
-            </div>
-            <div style="display: flex; gap: 80px; justify-content: space-between; font-size: 16px; margin-top: 5px; color: #000000">
-                <span style="color: ${survey.textColor}; font-size: 15px">${component.lowScoreTitle}</span>
-                <span style="color: ${survey.textColor}; font-size: 15px">${component.highScoreTitle}</span>
-            </div>
+            <div style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    ${number
+                      .map(
+                        (num) => `
+                            <span 
+                            class="scoreNumber" 
+                            style="border: 2px solid #d1d5db; color: ${survey.textColor}; padding: 5px 10px; text-align: center;">
+                            ${num}
+                            </span>
+                        `
+                      )
+                      .join('')}
+                    </div>
+           <div style="display: flex; justify-content: space-between; width: 100%; max-width: 400px; font-size: 13px; margin-top: 5px; color: #000000;">
+                    <span style="color: ${survey.textColor}; text-align: left;">${component.lowScoreTitle}</span>
+                    <span style="color: ${survey.textColor}; text-align: right;">${component.highScoreTitle}</span>
+                </div>
         </div>
     `;
 };
@@ -80,21 +84,25 @@ export const generateFeedback = (component, survey, fullImageURL) => {
   const number = ['1', '2', '3', '4', '5'];
 
   return `
-        <div>
-        ${component.image ? `<img src="${fullImageURL}" alt="Design Feedback Image" style="width: 100%; max-width: 400px; height: auto; max-height: 300px; object-fit: contain;" />` : ''}
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; ">
+        ${component.image ? `<img class="pic" src="${fullImageURL}" alt="Design Feedback Image" style="width: 100%; max-width: 400px; height: auto; object-fit: contain;" />` : ''}
             <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px">
-                <div style="cursor: pointer">
+                <div style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; width: 100%;">
                     ${number
                       .map(
                         (num) => `
-                        <span class="scoreNumber" style="font-size: 18px; font-weight: bold; border: 2px solid #d1d5db; padding: 10px; padding-left: 20px; padding-right: 20px; color: ${survey.textColor};">${num}</span>
-                    `
+                            <span 
+                            class="scoreNumber" 
+                            style="border: 2px solid #d1d5db; color: ${survey.textColor}; padding: 5px 10px; text-align: center;">
+                            ${num}
+                            </span>
+                        `
                       )
                       .join('')}
-                </div>
-                <div style="display: flex; gap: 70px; justify-content: space-between; font-size: 16px; margin-top: 5px; color: #000000">
-                    <span style="color: ${survey.textColor}">${component.lowScoreTitle}</span>
-                    <span style="color: ${survey.textColor}">${component.highScoreTitle}</span>
+                    </div>
+                <div style="display: flex; justify-content: space-between; width: 100%; max-width: 400px; font-size: 13px; margin-top: 5px; color: #000000;">
+                    <span style="color: ${survey.textColor}; text-align: left;">${component.lowScoreTitle}</span>
+                    <span style="color: ${survey.textColor}; text-align: right;">${component.highScoreTitle}</span>
                 </div>
             </div>
         </div>

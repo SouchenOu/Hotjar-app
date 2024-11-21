@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 
 const Component = ({ state, nextQuestion }) => {
   const { currentType, components, language } = state;
-  console.log('state-->', components);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [checkboxStates, setCheckboxStates] = useState([]);

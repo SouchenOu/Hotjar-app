@@ -23,7 +23,7 @@ const Profile = () => {
   const [{ userInfo }] = useStateProvider();
   const [isChanged, setIsChanged] = useState(false);
   const [, dispatch] = useStateProvider();
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const [currentForm, setCurrentForm] = useState('profile');
   const [initialUserInfo, setInitialUserInfo] = useState({
     username: userInfo.username,

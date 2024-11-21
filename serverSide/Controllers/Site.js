@@ -21,7 +21,6 @@ export const verifyTracking = async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: false,
-      executablePath: '/usr/bin/google-chrome-stable',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 

@@ -71,6 +71,14 @@
                                 textarea, input[type="email"] {
                                     height: 30px;
                                 }
+                                .scoreNumber {
+                                  font-size: 18px;
+                                  padding: 20px; 
+                                 
+                                }
+                                .pic{
+                                  max-height: 200px; 
+                                }
                         }
                         @media (min-width: 540px) {
                                 #survey-content-container {
@@ -109,6 +117,14 @@
 
                                 textarea, input[type="email"] {
                                     height: 30px;
+                                }
+                                .scoreNumber {
+                                  font-size: 19px;
+                                  padding: 16px; 
+                                 
+                                }
+                                   .pic{
+                                  max-height: 300px; 
                                 }
                         }
                      </style>

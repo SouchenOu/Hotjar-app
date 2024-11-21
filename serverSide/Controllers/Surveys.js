@@ -532,14 +532,14 @@ export const getSurveyData = async (req, res) => {
                         return `
                                 <div class="component" style="display: ${index === 0 ? 'block' : 'none'};  position: fixed; z-index: 9999">
                                     <div id="survey-content-container" class="survey-content" style=" background-color: ${survey.backgroundColor};  border: 1px solid #d1d5db; height: auto; border-radius: 0.5rem;">
-                                            ${!isArabic ? `${logoPath && `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-left: 120px;">`} ` : ` ${logoPath && `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-right: 120px;">`}`}
+                                            ${!isArabic ? `${logoPath && `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-left: 110px;">`} ` : ` ${logoPath && `<img src="${logoPath}" alt="Survey Logo" style="width: 30px; height: 30px; margin-right: 120px;">`}`}
                                         <div style="padding-top: 20px; display: flex; flex-wrap: wrap; gap: 20px">
 
-                                            <h2 style="font-size: 17px; color: ${survey.textColor};  font-weight: bold;">${component.question}</h2>
+                                            <h2 style="font-size: 17px; color: ${survey.textColor}; ">${component.question}</h2>
                                             ${
                                               isArabic
-                                                ? `<button id="close-survey-btn" style="font-size: 15px; width: 60px ; margin-right: 120px; height: 30px; font-weight: bold;  background-color: #007BFF; color: white; border: none; cursor: pointer; background-color: ${survey.buttonColor}">اغلق</button>`
-                                                : `<button id="close-survey-btn" style="font-size: 15px; width: 60px ; margin-left: 120px; height: 30px; font-weight: bold;  background-color: #007BFF; color: white; border: none; cursor: pointer; background-color: ${survey.buttonColor}">Close</button>`
+                                                ? `<button id="close-survey-btn" style="font-size: 15px; width: 60px ; margin-right: 100px; height: 30px; font-weight: bold;  background-color: #007BFF; color: white; border: none; cursor: pointer; background-color: ${survey.buttonColor}">اغلق</button>`
+                                                : `<button id="close-survey-btn" style="font-size: 15px; width: 60px ; margin-left: 100px; height: 30px; font-weight: bold;  background-color: #007BFF; color: white; border: none; cursor: pointer; background-color: ${survey.buttonColor}">Close</button>`
                                             }
                                         </div>     
                                     </div>

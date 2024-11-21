@@ -11,7 +11,7 @@ let verificationCodeStore = {};
 
 export const register = async (req, res) => {
   try {
-    const { email, password, verificationCode } = req.body;
+    const { email, password, username, verificationCode } = req.body;
 
     const user = await Users.findOne({ email });
 
@@ -31,6 +31,7 @@ export const register = async (req, res) => {
     const newUser = new Users({
       ...req.body,
       password: hashedPassword,
+      username: username,
     });
 
     // Generate a token

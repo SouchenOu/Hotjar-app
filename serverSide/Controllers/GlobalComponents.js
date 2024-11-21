@@ -53,16 +53,16 @@ export const generateComponent = (
                     ${buttonsHtml}
                 </div>
             </div>
-            <div class="additional-content-container" style="display: none; background-color: ${survey.backgroundColor}; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+            <div class="additional-content-container" style="display: none; background-color: ${survey.backgroundColor}; border: 1px solid #d1d5db; border-radius: 0.5rem; padding : 5px">
                 ${
                   !isArabic
                     ? `
-                    <i class="toggle-icon fas fa-caret-up" style="position: absolute; top: 20px; margin-left: 20px; font-size: 25px; width: 30px; height: 30px; cursor: pointer; color: #686868;"></i>
-                    <h1 class="text-question" style="font-size: 20px; color: #000000; margin-left: 50px;">${component.question}</h1>
+                    <i class="toggle-icon fas fa-caret-up" style="position: absolute; top: 30px; margin-left: 20px; font-size: 20px; width: 30px; height: 30px; cursor: pointer; color: #686868;"></i>
+                    <h1 class="text-question" style="font-size: 18px; color: #000000;  margin-left: 50px;">${component.question}</h1>
                 `
                     : `
-                    <i class="toggle-icon fas fa-caret-up" style="position: absolute; top: 20px; margin-right: 20px; font-size: 25px; width: 30px; height: 30px; cursor: pointer; color: #686868;"></i>
-                    <h1 class="text-question" style="font-size: 20px; color: #000000; margin-right: 50px;">${component.question}</h1>
+                    <i class="toggle-icon fas fa-caret-up" style="position: absolute; top: 30px; margin-right: 20px; font-size: 20px; width: 30px; height: 30px; cursor: pointer; color: #686868;"></i>
+                    <h1 class="text-question" style="font-size: 18px; color: #000000; margin-right: 50px;">${component.question}</h1>
                 `
                 }
             </div>

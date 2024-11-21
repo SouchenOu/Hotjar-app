@@ -11,8 +11,8 @@ export const StateProvider = ({ initialState, reducer, children }) => (
 );
 
 StateProvider.propTypes = {
-  initialState: PropTypes.object.isRequired, 
-  reducer: PropTypes.func.isRequired, 
+  initialState: PropTypes.object.isRequired,
+  reducer: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 

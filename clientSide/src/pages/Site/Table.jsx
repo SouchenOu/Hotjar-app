@@ -14,9 +14,9 @@ export const Table = ({
   handleDeleteClick,
 }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-auto max-h-[500px] scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-orange-200">
       {' '}
-      <table className="min-w-full bg-white border border-gray-200">
+      <table className="min-w-full bg-white border  border-gray-200">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-3 px-4 border-b text-left text-[14px] text-gray-700">
