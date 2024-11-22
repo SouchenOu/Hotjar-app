@@ -600,7 +600,9 @@ export const updateLogo = async (req, res) => {
 
       const logoUrl = result.secure_url;
 
-      res.send({ logoUrl });
+
+      // res.send({ logoUrl });
+      res.send({ logoUrl: logoUrl });
 
     });
   } catch (error) {
