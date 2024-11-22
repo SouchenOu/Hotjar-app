@@ -589,10 +589,13 @@ export const updateLogo = async (req, res) => {
     if (!req.file) {
       return res.status(400).send({ error: 'No file uploaded' });
     }
-    const filePath = `/uploads/${req.file.filename}`;
+    //const filePath = `/uploads/${req.file.filename}`;
+    const filePath = `https://pro1-ubq1.onrender.com/uploads/${req.file.filename}`;
+
     res.send({ logoUrl: filePath });
   } catch (error) {
     console.error('Error saving the logo URL', error);
     res.status(500).send({ error: 'Internal server error' });
   }
 };
+
