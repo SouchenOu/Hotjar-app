@@ -588,6 +588,7 @@ export const getSurveyData = async (req, res) => {
 
 export const updateLogo = async (req, res) => {
   try {
+    console.log("yes", req.file);
     if (!req.file) {
       return res.status(400).send({ error: 'No file uploaded' });
     }

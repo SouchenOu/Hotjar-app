@@ -34,7 +34,6 @@ const Checkbox = ({
     return text;
   };
 
-  console.log('component-->', component.options);
 
   return (
     <div
