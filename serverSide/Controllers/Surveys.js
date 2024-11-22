@@ -597,7 +597,6 @@ export const updateLogo = async (req, res) => {
       }
 
       const filePath = result.secure_url;
-      console.log("filePath-->", filePath);
       res.send({ logoUrl: filePath });
 
 

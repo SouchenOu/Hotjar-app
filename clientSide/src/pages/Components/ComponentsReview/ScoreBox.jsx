@@ -13,7 +13,6 @@ const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
   const number = ['1', '2', '3', '4', '5'];
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const baseURL = 'https://pro1-ubq1.onrender.com';
-  const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -72,7 +71,7 @@ const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
                     {logo && (
                       <img
                         alt=""
-                        src={logoPath}
+                        src={logo}
                         className="w-[40px] h-[40px]"
                       />
                     )}

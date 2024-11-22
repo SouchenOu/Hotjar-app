@@ -14,7 +14,6 @@ const Email = ({ state, displayMode, component, nextComponent }) => {
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const baseURL = 'https://pro1-ubq1.onrender.com';
-  const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -80,7 +79,7 @@ const Email = ({ state, displayMode, component, nextComponent }) => {
               >
                 <div className="w-full h-[60px] flex items-center justify-center mb-[20px]">
                   {logo && (
-                    <img alt="" src={logoPath} className="w-[40px] h-[40px]" />
+                    <img alt="" src={logo} className="w-[40px] h-[40px]" />
                   )}
                 </div>
                 <div className="flex flex-col items-center gap-[20px] max-h-[170px] overflow-y-auto overflow-x-hidden p-2  mt-[30px]">

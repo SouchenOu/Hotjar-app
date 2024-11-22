@@ -18,7 +18,6 @@ const Checkbox = ({
   const [openCheckbox, setOpenCheckbox] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const baseURL = 'https://pro1-ubq1.onrender.com';
-  const logoPath = logo ? `${baseURL}${logo}` : '';
 
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>
@@ -87,7 +86,7 @@ const Checkbox = ({
               >
                 <div className="w-full h-[60px] flex items-center justify-center mb-[20px]">
                   {logo && (
-                    <img alt="" src={logoPath} className="w-[40px] h-[40px]" />
+                    <img alt="" src={logo} className="w-[40px] h-[40px]" />
                   )}
                 </div>
 

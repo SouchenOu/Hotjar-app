@@ -23,7 +23,6 @@ const LongTextAnswer = ({
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const baseURL = 'https://pro1-ubq1.onrender.com';
-  const logoPath = logo ? `${baseURL}${logo}` : '';
 
   return (
     <div
@@ -57,7 +56,7 @@ const LongTextAnswer = ({
               {logo && (
                 <img
                   alt=""
-                  src={logoPath}
+                  src={logo}
                   className="w-[40px] h-[40px] mt-[15px]"
                 />
               )}

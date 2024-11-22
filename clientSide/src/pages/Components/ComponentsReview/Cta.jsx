@@ -9,7 +9,6 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
   const [openCta, setOpenCta] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const baseURL = 'https://pro1-ubq1.onrender.com';
-  const logoPath = logo ? `${baseURL}${logo}` : '';
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.slice(0, maxLength) + '...';
@@ -74,7 +73,7 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
               >
                 <div className="flex items-center justify-center">
                   {logo && (
-                    <img alt="" src={logoPath} className="w-[40px] h-[40px]" />
+                    <img alt="" src={logo} className="w-[40px] h-[40px]" />
                   )}
                 </div>
                 <h1
