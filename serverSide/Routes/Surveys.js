@@ -41,8 +41,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/updateLogo', upload.single('logo'), updateLogo);
-
-
 router.post('/:siteId', createSurveys);
 router.get('/getSurveys/:siteId/:userId', getAllSurveysBySite);
 router.get('/search/:id', SearchSurvey);

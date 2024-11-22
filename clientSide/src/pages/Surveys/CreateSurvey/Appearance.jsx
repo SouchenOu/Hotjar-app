@@ -58,7 +58,7 @@ const Appearance = ({
             body: formData,
           }
         );
-
+        console.log("response-->", response);
         if (response.ok) {
           const data = await response.json();
           dispatch({ type: reducerCases.SET_LOGO, payload: data.logoUrl });
