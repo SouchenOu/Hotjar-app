@@ -5,6 +5,8 @@ import ComponentSchema from '../Modules/Component.js';
 import Site from '../Modules/Site.js';
 import Response from '../Modules/Response.js';
 import { generateComponent } from './GlobalComponents.js';
+import { v2 as cloudinary } from 'cloudinary';
+
 
 const Component = mongoose.model('Component', ComponentSchema);
 
@@ -589,10 +591,17 @@ export const updateLogo = async (req, res) => {
     if (!req.file) {
       return res.status(400).send({ error: 'No file uploaded' });
     }
-    //const filePath = `/uploads/${req.file.filename}`;
-    const filePath = `https://pro1-ubq1.onrender.com/uploads/${req.file.filename}`;
 
-    res.send({ logoUrl: filePath });
+    cloudinary.uploader.upload(req.file.path, (error, result) => {
+      if (error) {
+        return res.status(500).send({ error: 'Error uploading to Cloudinary' });
+      }
+
+      const logoUrl = result.secure_url;
+
+      res.send({ logoUrl });
+
+    });
   } catch (error) {
     console.error('Error saving the logo URL', error);
     res.status(500).send({ error: 'Internal server error' });
