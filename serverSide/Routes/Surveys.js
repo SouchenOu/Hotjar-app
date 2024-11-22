@@ -40,7 +40,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/updateLogo', upload.single('logo'), updateLogo);
+// router.post('/updateLogo', upload.single('logo'), updateLogo);
+router.post('/uploadLogo', upload.single('logo'), async (req, res) => {
+  console.log("enter here-->", req.file);
+  try {
+    // Upload image to Cloudinary
+    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'survey_logos', // Store in a specific folder
+      public_id: req.body.public_id, // Use a custom public ID if desired
+    });
+
+    // Respond with the image URL from Cloudinary
+    res.json({
+      message: 'Logo uploaded successfully',
+      imageUrl: uploadResult.secure_url, // Cloudinary URL of the uploaded image
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error uploading logo', error });
+  }
+});
 router.post('/:siteId', createSurveys);
 router.get('/getSurveys/:siteId/:userId', getAllSurveysBySite);
 router.get('/search/:id', SearchSurvey);
