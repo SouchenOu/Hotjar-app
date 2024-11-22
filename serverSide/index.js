@@ -24,7 +24,8 @@ dotenv.config();
 
 // CORS configuration: Allow multiple origins
 const allowedOrigins = [
-  'https://sitewebb-hotjarr.netlify.app',  // First frontend domain
+  'https://sitewebb-hotjarr.netlify.app',
+  'https://pro1-ubq1.onrender.com',  // First frontend domain
   'https://testsouchen-testt.netlify.app',  // Second frontend domain for the survey
   'https://website-testtt.netlify.app',    // Add the new frontend domain
 ];

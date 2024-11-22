@@ -56,6 +56,8 @@ const Appearance = ({
           {
             method: 'POST',
             body: formData,
+            credentials: 'include',
+
           }
         );
         if (response.ok) {
