@@ -602,6 +602,8 @@ export const updateLogo = async (req, res) => {
 
 
       // res.send({ logoUrl });
+      console.log("result-->", result);
+      console.log("logoUrl-->", logoUrl);
       res.send({ logoUrl: logoUrl });
 
     });
