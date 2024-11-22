@@ -21,10 +21,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 dotenv.config();
 
+// CORS configuration: Allow multiple origins
 const allowedOrigins = [
-  'http://localhost:3000',
   'https://sitewebb-hotjarr.netlify.app',
-  'https://testsouchen-testt.netlify.app', // Second frontend domain for the survey
+  'https://testsouchen-testt.netlify.app',  // Second frontend domain for the survey
 ];
 
 // CORS configuration
