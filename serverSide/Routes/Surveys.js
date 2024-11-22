@@ -5,6 +5,7 @@ import {
   deleteSurvey,
   getAllSurveysBySite,
   getSurveyData,
+  updateLogo,
   updateStatus,
   updateSurvey,
 } from '../Controllers/Surveys.js';
@@ -40,34 +41,34 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+router.post('/updateLogo', upload.single('logo'), updateLogo);
 
-router.post('/updateLogo', upload.single('logo'), async (req, res) => {
-  try {
-    console.log("yes", req.file);
-    if (!req.file) {
-      return res.status(400).send({ error: 'No file uploaded' });
-    }
-
-
-    cloudinary.uploader.upload(req.file.path, (error, result) => {
-      if (error) {
-        return res.status(500).send({ error: 'Error uploading to Cloudinary' });
-      }
-
-      const logoUrl = result.secure_url;
+// router.post('/updateLogo', upload.single('logo'), async (req, res) => {
+//   try {
+//     console.log("yes", req.file);
+//     if (!req.file) {
+//       return res.status(400).send({ error: 'No file uploaded' });
+//     }
 
 
-      // res.send({ logoUrl });
-      console.log("result-->", result);
-      console.log("logoUrl-->", logoUrl);
-      res.send({ logoUrl: logoUrl });
+//     cloudinary.uploader.upload(req.file.path, (error, result) => {
+//       if (error) {
+//         return res.status(500).send({ error: 'Error uploading to Cloudinary' });
+//       }
 
-    });
-  } catch (error) {
-    console.error('Error saving the logo URL', error);
-    res.status(500).send({ error: 'Internal server error' });
-  }
-});
+//       const filePath = result.secure_url;
+
+
+//       console.log("filePath-->", filePath);
+//       res.send({ logoUrl: filePath });
+
+
+//     });
+//   } catch (error) {
+//     console.error('Error saving the logo URL', error);
+//     res.status(500).send({ error: 'Internal server error' });
+//   }
+// });
 
 router.get('/uploads', (req, res) => {
   const uploadsPath = path.join(__dirname, 'uploads');

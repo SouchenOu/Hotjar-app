@@ -56,12 +56,13 @@ const Appearance = ({
           {
             method: 'POST',
             body: formData,
-            credentials: 'include',
 
           }
         );
+        console.log("response", response);
         if (response.ok) {
           const data = await response.json();
+          console.log("data here-->", data.logoUrl);
           dispatch({ type: reducerCases.SET_LOGO, payload: data.logoUrl });
         } else {
           throw new Error('Error uploading logo');

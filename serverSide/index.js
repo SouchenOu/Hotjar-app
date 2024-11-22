@@ -22,6 +22,7 @@ const app = express();
 dotenv.config();
 
 const allowedOrigins = [
+  'http://localhost:3000',
   'https://sitewebb-hotjarr.netlify.app',
   'https://testsouchen-testt.netlify.app', // Second frontend domain for the survey
 ];

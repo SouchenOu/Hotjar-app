@@ -588,24 +588,18 @@ export const getSurveyData = async (req, res) => {
 
 export const updateLogo = async (req, res) => {
   try {
-    console.log("yes", req.file);
     if (!req.file) {
       return res.status(400).send({ error: 'No file uploaded' });
     }
-
-
     cloudinary.uploader.upload(req.file.path, (error, result) => {
       if (error) {
         return res.status(500).send({ error: 'Error uploading to Cloudinary' });
       }
 
-      const logoUrl = result.secure_url;
+      const filePath = result.secure_url;
+      console.log("filePath-->", filePath);
+      res.send({ logoUrl: filePath });
 
-
-      // res.send({ logoUrl });
-      console.log("result-->", result);
-      console.log("logoUrl-->", logoUrl);
-      res.send({ logoUrl: logoUrl });
 
     });
   } catch (error) {
