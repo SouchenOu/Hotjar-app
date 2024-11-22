@@ -12,21 +12,18 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import http from 'http'; // Required to create an HTTP server
-import { Server } from 'socket.io'; // Import Socket.IO
+import http from 'http';
+import { Server } from 'socket.io';
 
-// Resolve __dirname and __filename for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 dotenv.config();
 
-// CORS configuration: Allow multiple origins
 const allowedOrigins = [
   'https://sitewebb-hotjarr.netlify.app',
-  'https://testsouchen-testt.netlify.app',  // Second frontend domain for the survey
-  'https://website-testtt.netlify.app',    // Add the new frontend domain
+  'https://testsouchen-testt.netlify.app', // Second frontend domain for the survey
 ];
 
 // CORS configuration
