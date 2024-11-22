@@ -596,7 +596,6 @@ export const updateLogo = async (req, res) => {
       if (error) {
         return res.status(500).send({ error: 'Error uploading to Cloudinary' });
       }
-      console.log('Cloudinary upload result:', result);
 
       const logoUrl = result.secure_url;
 
