@@ -25,24 +25,23 @@ dotenv.config();
 // CORS configuration: Allow multiple origins
 const allowedOrigins = [
   'https://sitewebb-hotjarr.netlify.app',  // First frontend domain
-  'https://testsouchen-testt.netlify.app',      // Second frontend domain for the survey
-  'https://website-testtt.netlify.app',   // Add the new frontend domain
+  'https://testsouchen-testt.netlify.app',  // Second frontend domain for the survey
+  'https://website-testtt.netlify.app',    // Add the new frontend domain
 ];
 
 // CORS configuration
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.includes(origin) || !origin) {
-      // Allow the origin if it's in the list or if there's no origin (for certain requests)
-      callback(null, true);
+      callback(null, true);  // Allow the origin
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS'));  // Reject the origin
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Allow OPTIONS method
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Allow credentials (cookies, etc.)
-  preflightContinue: false, // Stop the preflight response from being handled by default CORS middleware
+  credentials: true,  // Allow cookies and credentials
+  preflightContinue: true,  // Pass on the OPTIONS request to the next handler
 };
 
 // Use CORS middleware for all routes
@@ -80,7 +79,7 @@ app.use('/notification', notificationRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Handle OPTIONS requests for CORS preflight
-app.options('*', cors(corsOptions));  // Automatically handle all OPTIONS requests
+app.options('*', cors(corsOptions));  // Automatically handle OPTIONS requests for all routes
 
 // Set up HTTP server and Socket.IO
 const server = http.createServer(app);
