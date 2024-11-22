@@ -593,6 +593,7 @@ export const updateLogo = async (req, res) => {
       return res.status(400).send({ error: 'No file uploaded' });
     }
 
+
     cloudinary.uploader.upload(req.file.path, (error, result) => {
       if (error) {
         return res.status(500).send({ error: 'Error uploading to Cloudinary' });
