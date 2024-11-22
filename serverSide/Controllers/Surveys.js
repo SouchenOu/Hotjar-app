@@ -439,7 +439,7 @@ export const getSurveyData = async (req, res) => {
       fullImageURL = `${baseURL}${imagePath}`;
     }
 
-    const logoPath = survey.logo ? `${baseURL}${survey.logo}` : '';
+    const logoPath = survey.logo ? `${survey.logo}` : '';
 
     const surveyHtml = `
             <div class="survey" style="font-family: Arial, sans-serif;  direction: ${textDirection}; text-align: ${textAlign};">
