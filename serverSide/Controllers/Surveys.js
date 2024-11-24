@@ -598,8 +598,6 @@ export const updateLogo = async (req, res) => {
 
       const filePath = result.secure_url;
       res.send({ logoUrl: filePath });
-
-
     });
   } catch (error) {
     console.error('Error saving the logo URL', error);

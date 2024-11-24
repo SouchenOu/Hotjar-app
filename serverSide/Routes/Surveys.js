@@ -14,7 +14,6 @@ import multer from 'multer';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
-import fs from 'fs';
 
 
 
@@ -43,44 +42,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 router.post('/updateLogo', upload.single('logo'), updateLogo);
 
-// router.post('/updateLogo', upload.single('logo'), async (req, res) => {
-//   try {
-//     console.log("yes", req.file);
-//     if (!req.file) {
-//       return res.status(400).send({ error: 'No file uploaded' });
-//     }
-
-
-//     cloudinary.uploader.upload(req.file.path, (error, result) => {
-//       if (error) {
-//         return res.status(500).send({ error: 'Error uploading to Cloudinary' });
-//       }
-
-//       const filePath = result.secure_url;
-
-
-//       console.log("filePath-->", filePath);
-//       res.send({ logoUrl: filePath });
-
-
-//     });
-//   } catch (error) {
-//     console.error('Error saving the logo URL', error);
-//     res.status(500).send({ error: 'Internal server error' });
-//   }
-// });
-
-router.get('/uploads', (req, res) => {
-  const uploadsPath = path.join(__dirname, 'uploads');
-  
-  fs.readdir(uploadsPath, (err, files) => {
-    if (err) {
-      console.error('Error reading uploads folder:', err);
-      return res.status(500).send({ error: 'Unable to read uploads folder' });
-    }
-    res.send({ files });
-  });
-});
 router.post('/:siteId', createSurveys);
 router.get('/getSurveys/:siteId/:userId', getAllSurveysBySite);
 router.get('/search/:id', SearchSurvey);
