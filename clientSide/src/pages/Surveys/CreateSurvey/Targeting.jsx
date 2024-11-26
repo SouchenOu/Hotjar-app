@@ -63,7 +63,6 @@ const Targeting = ({
   };
 
   const handleMatchTypeChange = (e) => {
-    console.log(e.target.value);
     setMatchType(e.target.value);
     dispatch({
       type: reducerCases.SET_TARGET_URL,
@@ -246,13 +245,9 @@ const Targeting = ({
 };
 
 Targeting.propTypes = {
-  targetUrlVal: PropTypes.shape({
-    url: PropTypes.string,
-    matchType: PropTypes.string,
-  }),
   isEditMode: PropTypes.bool.isRequired,
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
   state: PropTypes.shape({
     target: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,

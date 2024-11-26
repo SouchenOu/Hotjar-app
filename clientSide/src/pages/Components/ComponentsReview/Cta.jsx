@@ -8,7 +8,7 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openCta, setOpenCta] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.slice(0, maxLength) + '...';

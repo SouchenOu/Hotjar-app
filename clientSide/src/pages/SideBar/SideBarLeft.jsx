@@ -47,7 +47,7 @@ const SideBarLeft = () => {
   const handleSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;
@@ -56,7 +56,7 @@ const SideBarLeft = () => {
         navigate('/site');
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

@@ -49,10 +49,13 @@ const DesignFeedback = ({ onChange, components }) => {
       formData.append('image', file);
 
       try {
-        const response = await fetch('https://pro1-ubq1.onrender.com/survey/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/survey/upload`,
+          {
+            method: 'POST',
+            body: formData,
+          }
+        );
 
         const data = await response.json();
         setImage(data.filePath);
@@ -138,11 +141,11 @@ DesignFeedback.propTypes = {
   onChange: PropTypes.func.isRequired,
   components: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      question: PropTypes.string.isRequired,
-      highScoreTitle: PropTypes.string.isRequired,
-      lowScoreTitle: PropTypes.string.isRequired,
+      _id: PropTypes.string,
+      type: PropTypes.string,
+      question: PropTypes.string,
+      highScoreTitle: PropTypes.string,
+      lowScoreTitle: PropTypes.string,
       image: PropTypes.string,
     })
   ).isRequired,

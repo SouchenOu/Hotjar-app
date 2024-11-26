@@ -122,7 +122,7 @@ export const searchByEmail = async (req, res) => {
     const users = await Users.find({ email: { $regex: email, $options: 'i' } });
     res.status(200).json(users);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).send({ message: 'Server error' });
   }
 };

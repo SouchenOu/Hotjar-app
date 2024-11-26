@@ -87,28 +87,30 @@ const TemplateDetails = ({ dispatch, state, setNextQuestion }) => {
   };
 
   return (
-    <div className="flex flex-col gap-[30px] overflow-y-auto">
-      {state.components.map((component, index) =>
-        renderComponent(
-          component.type,
-          index,
-          handleComponentChange,
-          state,
-          dispatch,
-          setNextQuestion
-        )
-      )}
+    <div className="flex flex-col gap-[30px]">
+      {state.components.map((component, index) => (
+        <div key={component.type + index}>
+          {renderComponent(
+            component.type,
+            index,
+            handleComponentChange,
+            state,
+            dispatch,
+            setNextQuestion
+          )}
+        </div>
+      ))}
     </div>
   );
 };
 
 TemplateDetails.propTypes = {
-  template: PropTypes.object.isRequired,
+  template: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
-    components: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
-  setNextQuestion: PropTypes.func.isRequired,
+    components: PropTypes.arrayOf(PropTypes.object),
+  }),
+  setNextQuestion: PropTypes.func,
 };
 
 export default TemplateDetails;

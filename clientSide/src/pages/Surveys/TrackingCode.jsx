@@ -16,7 +16,7 @@ const TrackingCode = ({ setOpenTracking, siteData, handleCopyCode }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'https://pro1-ubq1.onrender.com/site/verifyTracking',
+        `${process.env.REACT_APP_BACKEND_URL}/site/verifyTracking`,
         {
           url: siteData.url,
           trackingCode: siteData.trackingCode,

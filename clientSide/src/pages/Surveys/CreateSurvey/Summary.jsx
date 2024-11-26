@@ -261,8 +261,8 @@ const Summary = ({
 };
 
 Summary.propTypes = {
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
   state: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

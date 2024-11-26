@@ -63,11 +63,14 @@ const ChangePassword = ({ setCurrentForm }) => {
     }
 
     try {
-      await axios.post(`https://pro1-ubq1.onrender.com/auth/ChangePassword/${id}`, {
-        currentPassword,
-        newPassword,
-        confirmNewPassword,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/ChangePassword/${id}`,
+        {
+          currentPassword,
+          newPassword,
+          confirmNewPassword,
+        }
+      );
 
       toast.success('Password changed successfully!');
       setToastMessage('Password changed successfully!');
@@ -196,9 +199,6 @@ const ChangePassword = ({ setCurrentForm }) => {
       </div>
     </div>
   );
-};
-ChangePassword.propTypes = {
-  setCurrentForm: PropTypes.func.isRequired,
 };
 
 export default ChangePassword;

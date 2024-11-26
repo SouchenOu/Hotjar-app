@@ -28,9 +28,7 @@ export const Table = ({
             <th className="py-3 px-4 border-b text-left text-[14px] text-gray-700">
               Site URL
             </th>
-            <th className="py-3 px-4 border-b text-left text-[14px] text-gray-700">
-              Industry
-            </th>
+
             <th className="py-3 px-4 border-b text-left text-[14px] text-gray-700">
               Tracking Code
             </th>
@@ -76,9 +74,6 @@ export const Table = ({
                   </div>
                 )}
               </td>
-              <td className="py-3 px-4 border-b text-left text-[14px] text-gray-700">
-                {site.industry}
-              </td>
               <td className="py-3 px-4 border-b text-left">
                 <button
                   onClick={() => copyToClipboard(site.trackingCode)}
@@ -109,7 +104,6 @@ Table.propTypes = {
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
-      industry: PropTypes.string.isRequired,
       trackingCode: PropTypes.string.isRequired,
     })
   ).isRequired,

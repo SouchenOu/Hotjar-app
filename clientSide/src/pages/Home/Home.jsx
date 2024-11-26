@@ -39,14 +39,14 @@ const Home = () => {
   const handleGetStarted = async () => {
     try {
       const checkRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/checkSites/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/site/checkSites/${userInfo._id}`
       );
       const { hasSites } = checkRes.data;
       if (!hasSites) {
         navigate('/site');
       } else {
         const lastSiteRes = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
         );
         const lastSite = lastSiteRes.data;
         navigate(`/site/${lastSite.siteId}/surveys`);

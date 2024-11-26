@@ -16,7 +16,7 @@ const Radio = ({
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openRadio, setOpenRadio] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>
       idx === index ? !state : state
@@ -60,11 +60,7 @@ const Radio = ({
             }}
           >
             {logo && (
-              <img
-                alt=""
-                src={logo}
-                className="w-[40px] h-[40px] mt-[6px]"
-              />
+              <img alt="" src={logo} className="w-[40px] h-[40px] mt-[6px]" />
             )}
             <FontAwesomeIcon
               icon={faCaretDown}

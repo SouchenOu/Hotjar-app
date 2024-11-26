@@ -122,8 +122,8 @@ Details.propTypes = {
     description: PropTypes.string,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
 };
 
 export default Details;

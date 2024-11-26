@@ -25,7 +25,7 @@ const Response = () => {
     const getSurvey = async () => {
       try {
         const survey = await axios.get(
-          `https://pro1-ubq1.onrender.com/survey/getSurvey/${surveyId}`
+          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
         );
         if (survey.status === 200) {
           const surveyData = survey.data;
@@ -49,7 +49,7 @@ const Response = () => {
     const getResponses = async () => {
       try {
         const response = await axios.post(
-          `https://pro1-ubq1.onrender.com/response/responseSurvey/${surveyId}`
+          `${process.env.REACT_APP_BACKEND_URL}/response/responseSurvey/${surveyId}`
         );
         if (response.status === 200) {
           setResponses(response.data);
@@ -65,7 +65,7 @@ const Response = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+      `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);
@@ -74,7 +74,7 @@ const Response = () => {
   const deleteResponse = async () => {
     try {
       const response = await axios.post(
-        `https://pro1-ubq1.onrender.com/response/deleteResponse/${deleteResponseId}`
+        `${process.env.REACT_APP_BACKEND_URL}/response/deleteResponse/${deleteResponseId}`
       );
       if (response.status === 200) {
         setResponses(Responses.filter((r) => r._id !== deleteResponseId));

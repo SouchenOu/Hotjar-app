@@ -34,13 +34,13 @@ export const getResponseSurvey = async (req, res) => {
 
     if (responses.length === 0) {
       return res
-        .status(404)
+        .status(201)
         .json({ message: 'No responses found for this survey' });
     }
 
     return res.status(200).json(responses);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

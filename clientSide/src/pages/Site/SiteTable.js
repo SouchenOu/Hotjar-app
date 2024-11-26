@@ -27,7 +27,7 @@ const SiteTable = () => {
     const fetchSites = async () => {
       try {
         const response = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/GetUserSites/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/GetUserSites/${userInfo._id}`
         );
         setSites(response.data.sites.createdSites);
         setFilterWebsites(response.data.sites.createdSites);
@@ -55,7 +55,7 @@ const SiteTable = () => {
     if (siteToDelete) {
       try {
         await axios.delete(
-          `https://pro1-ubq1.onrender.com/site/deleteSite/${siteToDelete}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/deleteSite/${siteToDelete}`
         );
         setFilterWebsites(
           filterWebsites.filter((site) => site._id !== siteToDelete)
@@ -75,7 +75,7 @@ const SiteTable = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+      `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);
@@ -84,7 +84,7 @@ const SiteTable = () => {
   const searchByUrl = async (url) => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/searchSite/${userInfo._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/site/searchSite/${userInfo._id}`,
         { url }
       );
       setFilterWebsites(result.data.createdSites || []);
@@ -114,10 +114,13 @@ const SiteTable = () => {
 
   const handleSaveUrl = async (siteId) => {
     try {
-      await axios.post('https://pro1-ubq1.onrender.com/site/updateSiteUrl', {
-        siteId,
-        newUrl: newSiteUrl,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/site/updateSiteUrl`,
+        {
+          siteId,
+          newUrl: newSiteUrl,
+        }
+      );
       const updatedSites = filterWebsites.map((site) =>
         site._id === siteId ? { ...site, url: newSiteUrl } : site
       );

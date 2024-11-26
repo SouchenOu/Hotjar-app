@@ -101,10 +101,10 @@ Radio.propTypes = {
   onChange: PropTypes.func.isRequired,
   components: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      question: PropTypes.string.isRequired,
-      options: PropTypes.arrayOf(PropTypes.string).isRequired,
+      _id: PropTypes.string,
+      type: PropTypes.string,
+      question: PropTypes.string,
+      options: PropTypes.arrayOf(PropTypes.string),
     })
   ).isRequired,
 };

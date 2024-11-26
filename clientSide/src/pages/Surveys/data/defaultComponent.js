@@ -23,6 +23,102 @@ const defaultComponents = {
         'Thank you for answering this survey. Your feedback is highly appreciated!',
     },
   ],
+  textAnswer: [
+    {
+      type: 'longTextAnswer',
+      question:
+        'What are the top challenges that you or your company are facing now?',
+      text: '',
+    },
+    {
+      type: 'nps',
+      question: 'How likely are you to recommend us to a friend or colleague?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+    {
+      type: 'longTextAnswer',
+      question: 'Which features are most valuable to you from those products?',
+      text: '',
+    },
+    {
+      type: 'email',
+      question:
+        "We may want to follow up. If you're happy to be contacted, enter your email:",
+      validation: '',
+    },
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
+  AllSurveys: [
+    {
+      type: 'checkbox',
+      question: "We're sorry to see you go! What's your reason for leaving?",
+      options: [
+        "I didn't find what I was looking for",
+        "I didn't find the website easy to use",
+      ],
+    },
+    {
+      type: 'longTextAnswer',
+      question:
+        'What are the top challenges that you or your company are facing now?',
+      text: '',
+    },
+
+    {
+      type: 'longTextAnswer',
+      question: 'Which features are most valuable to you from those products?',
+      text: '',
+    },
+
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
+  CheckboxScore: [
+    {
+      type: 'checkbox',
+      question: "We're sorry to see you go! What's your reason for leaving?",
+      options: [
+        "I didn't find what I was looking for",
+        "I didn't find the website easy to use",
+      ],
+    },
+    {
+      type: 'scoreBox',
+      question: 'How likely are you to recommend us to a friend or colleague?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+    {
+      type: 'nps',
+      question: 'How likely are you to recommend us to a friend or colleague?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+    {
+      type: 'longTextAnswer',
+      question: 'Which features are most valuable to you from those products?',
+      text: '',
+    },
+    {
+      type: 'email',
+      question:
+        "We may want to follow up. If you're happy to be contacted, enter your email:",
+      validation: '',
+    },
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
   checkbox: [
     {
       type: 'checkbox',

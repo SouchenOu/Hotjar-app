@@ -14,9 +14,12 @@ import PropTypes from 'prop-types';
 
 const Component = ({ state, nextQuestion }) => {
   const { currentType, components, language } = state;
+  const compo = components.find((comp) => comp.type === 'checkbox');
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
-  const [checkboxStates, setCheckboxStates] = useState([]);
+  const [checkboxStates, setCheckboxStates] = useState(
+    new Array(compo.options.length).fill(false)
+  );
   const [textInput, setTextInput] = useState('');
   const [displayMode, setDisplayMode] = useState('desktop');
 

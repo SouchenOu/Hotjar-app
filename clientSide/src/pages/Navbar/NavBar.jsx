@@ -44,43 +44,32 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       fetchNotifications();
     }
-  });
-
+  }, []);
   const fetchNotifications = async () => {
     if (!userInfo?._id) return;
 
     try {
       const result = await axios.get(
-        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/notification/getNotification/${userInfo._id}`
       );
-
       setNotifications(result.data.notifications);
     } catch (error) {
       console.error('Error fetching notifications:', error);
     }
   };
-
   useEffect(() => {
     if (!userInfo?._id) return;
 
-    const socket = io('https://pro1-ubq1.onrender.com', {
+    const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
       transports: ['websocket', 'polling'],
     });
 
     socket.on('connect', () => {
       socket.emit('registerUser', userInfo?._id);
     });
-    socket.on('connect_error', (err) => {
-      console.error('Connection error:', err);
-    });
-
-    socket.on('disconnect', (reason) => {
-      console.log('Socket disconnected:', reason);
-    });
-
     socket.on('inviteNotification', async () => {
       const Result = await axios.get(
-        `https://pro1-ubq1.onrender.com/notification/getNotification/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/notification/getNotification/${userInfo._id}`
       );
       setNotifications(Result.data.notifications);
     });
@@ -89,13 +78,12 @@ const NavBar = () => {
       socket.disconnect();
     };
   }, [userInfo?._id]);
-
   useEffect(() => {
     if (!userInfo) return;
     const unreadNotif = async () => {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/notification/getUnreadNotif/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/notification/getUnreadNotif/${userInfo._id}`
         );
         setUnreadCount(result.data.unreadCount);
       } catch (error) {
@@ -135,7 +123,7 @@ const NavBar = () => {
 
     try {
       const response = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/GetUserSites/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/site/GetUserSites/${userInfo._id}`
       );
       const { createdSites, memberSites } = response.data.sites;
 
@@ -168,7 +156,7 @@ const NavBar = () => {
   const searchByUrl = async (url) => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/searchSite/${userInfo._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/site/searchSite/${userInfo._id}`,
         { url }
       );
       if (result.data.createdSites) {
@@ -223,10 +211,10 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       try {
         await axios.get(
-          `https://pro1-ubq1.onrender.com/notification/marknotifRead/${userInfo?._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/notification/marknotifRead/${userInfo?._id}`
         );
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };
@@ -261,7 +249,7 @@ const NavBar = () => {
             </div>
             {menuVisible && (
               <div
-                className="absolute top-full overflow-auto left-0 mt-2 w-full bg-white border border-gray-300 shadow-lg rounded-lg z-10"
+                className="absolute top-full left-0 mt-2 w-full bg-white border border-gray-300 shadow-lg rounded-lg z-10"
                 ref={menuRef}
               >
                 <div className="p-3 flex flex-col gap-4">
@@ -280,7 +268,7 @@ const NavBar = () => {
                       />
                     </button>
                   </div>
-                  <ul className="list-none p-0 m-0 text-gray-800 lg:text-[14px] text-[10px]">
+                  <ul className="list-none p-0 m-0 text-gray-800 lg:text-[14px] text-[10px] h-[300px] overflow-auto scrollbar-thin">
                     <li className="lg:font-semibold text-blue-500 py-2">
                       Created Sites
                     </li>

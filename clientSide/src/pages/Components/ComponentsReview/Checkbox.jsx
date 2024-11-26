@@ -17,7 +17,7 @@ const Checkbox = ({
 
   const [openCheckbox, setOpenCheckbox] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
 
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>
@@ -32,7 +32,6 @@ const Checkbox = ({
     }
     return text;
   };
-
 
   return (
     <div
@@ -103,11 +102,14 @@ const Checkbox = ({
                   style={{ height: '300px' }}
                 >
                   {component.options.map((option, index) => (
-                    <div className="flex gap-[10px] border-[2px] p-2  font-montserrat hover:border-green-100 border-gray-600 shadow-xl rounded-2xl items-center cursor-pointer">
+                    <div
+                      key={index}
+                      className="flex gap-[10px] border-[2px] p-2  font-montserrat hover:border-green-100 border-gray-600 shadow-xl rounded-2xl items-center cursor-pointer"
+                    >
                       <input
                         className="w-[20px] h-[20px]"
                         type="checkbox"
-                        checked={checkboxStates[index]}
+                        checked={checkboxStates[index] || false}
                         onChange={() => handleCheckboxChange(index)}
                       />
                       <span
@@ -178,7 +180,7 @@ Checkbox.propTypes = {
   }).isRequired,
   checkboxStates: PropTypes.arrayOf(PropTypes.bool).isRequired,
   setCheckboxStates: PropTypes.func.isRequired,
-  nextComponent: PropTypes.object.isRequired,
+  nextComponent: PropTypes.func.isRequired,
 };
 
 export default Checkbox;

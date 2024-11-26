@@ -26,7 +26,7 @@ const Invite = () => {
   const navigate = useNavigate();
   const [Error, setError] = useState(false);
   const [{ userInfo }] = useStateProvider();
-  const socket = io('https://pro1-ubq1.onrender.com', {
+  const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
     transports: ['websocket', 'polling'],
   });
 
@@ -36,7 +36,7 @@ const Invite = () => {
     if (input.length > 1) {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/user/searchByEmail?email=${input}`
+          `${process.env.REACT_APP_BACKEND_URL}/user/searchByEmail?email=${input}`
         );
         setSuggestions(result.data);
       } catch (err) {
@@ -59,12 +59,12 @@ const Invite = () => {
 
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/invite/${id}/${userInfo._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/site/invite/${id}/${userInfo._id}`,
         { email, role }
       );
 
       const user = await axios.get(
-        `https://pro1-ubq1.onrender.com/user/getUserEmail/${email}`
+        `${process.env.REACT_APP_BACKEND_URL}/user/getUserEmail/${email}`
       );
 
       const successMessage =
@@ -76,11 +76,14 @@ const Invite = () => {
       setMessageType('success');
       toast.success(successMessage);
 
-      await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
-        recipientId: user.data._id,
-        senderId: userInfo._id,
-        message: successMessage,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+        {
+          recipientId: user.data._id,
+          senderId: userInfo._id,
+          message: successMessage,
+        }
+      );
 
       socket.emit('sendInvite', {
         recipientId: user.data._id,
@@ -119,7 +122,7 @@ const Invite = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo._id}`
         );
         setSite(result.data);
       } catch (err) {

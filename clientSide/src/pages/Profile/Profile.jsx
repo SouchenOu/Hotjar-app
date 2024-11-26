@@ -58,7 +58,7 @@ const Profile = () => {
 
     try {
       await axios.put(
-        `https://pro1-ubq1.onrender.com/user/updateUser/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/updateUser/${id}`,
         updatedUserInfo
       );
       const newUserInfo = {
@@ -84,7 +84,9 @@ const Profile = () => {
 
   const deleteAccount = async () => {
     try {
-      await axios.get(`https://pro1-ubq1.onrender.com/user/deleteUser/${id}`);
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/user/deleteUser/${id}`
+      );
       handleLogout();
       toast.success('Account deleted successfully');
       navigate('/');
@@ -108,7 +110,7 @@ const Profile = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro1-ubq1.onrender.com/site/lastSite/${id}`
+      `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);

@@ -7,7 +7,6 @@ import Response from '../Modules/Response.js';
 import { generateComponent } from './GlobalComponents.js';
 import { v2 as cloudinary } from 'cloudinary';
 
-
 const Component = mongoose.model('Component', ComponentSchema);
 
 export const createSurveys = async (req, res) => {
@@ -400,7 +399,7 @@ export const getSurveyById = async (req, res) => {
     }
     return res.status(200).json(survey);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({ error: 'Internal server error' });
   }
 };
@@ -430,7 +429,7 @@ export const getSurveyData = async (req, res) => {
     const textAlign = isArabic ? 'right' : 'left';
     let imagePath = '';
     let fullImageURL = '';
-    const baseURL = 'https://pro1-ubq1.onrender.com';
+    const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
     const feedbackComp = survey.components.find(
       (comp) => comp.type === 'designFeedback'
     );
@@ -604,4 +603,3 @@ export const updateLogo = async (req, res) => {
     res.status(500).send({ error: 'Internal server error' });
   }
 };
-

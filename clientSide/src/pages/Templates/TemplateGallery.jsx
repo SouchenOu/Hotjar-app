@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState, React } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Templates from '../Surveys/data/Templates';
 
 const TemplateGallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('All templates');
@@ -35,7 +36,7 @@ const TemplateGallery = () => {
     const getTemplates = async () => {
       try {
         const response = await axios.get(
-          'https://pro1-ubq1.onrender.com/templates/getTemplates'
+          `${process.env.REACT_APP_BACKEND_URL}/templates/getTemplates`
         );
         const result = response.data;
         setTemplates(result);
@@ -52,7 +53,7 @@ const TemplateGallery = () => {
   const searchTemplate = async (name) => {
     try {
       const response = await axios.post(
-        'https://pro1-ubq1.onrender.com/templates/searchTemplate',
+        `${process.env.REACT_APP_BACKEND_URL}/templates/searchTemplate`,
         { name }
       );
       const result = response.data;
@@ -62,7 +63,7 @@ const TemplateGallery = () => {
         setFiltredTemplate(templates);
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -149,7 +150,7 @@ const TemplateGallery = () => {
           </div>
 
           <div className="flex flex-wrap gap-6">
-            {filtredTemplate.map((template) => (
+            {Templates.map((template) => (
               <div
                 className="flex flex-col gap-4 border border-gray-300 rounded-md p-4  w-1/4 cursor-pointer hover:shadow-2xl"
                 key={template._id}

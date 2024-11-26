@@ -25,7 +25,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     setLoading(true);
     try {
       const result = await axios.post(
-        'https://pro1-ubq1.onrender.com/auth/sendVerificationCode',
+        `${process.env.REACT_APP_BACKEND_URL}/auth/sendVerificationCode`,
         { newEmail: emailValue }
       );
       if (result.status === 200) {
@@ -81,7 +81,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     const finalCode = verificationCode.join('');
     try {
       const response = await axios.post(
-        'https://pro1-ubq1.onrender.com/auth/verifyCodeAndUpdateEmail',
+        `${process.env.REACT_APP_BACKEND_URL}/auth/verifyCodeAndUpdateEmail`,
         {
           userId: id,
           newEmail: emailValue,
@@ -199,7 +199,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
 };
 
 ChangeEmail.propTypes = {
-  setCurrentForm: PropTypes.func.isRequired,
+  setCurrentForm: PropTypes.func,
 };
 
 export default ChangeEmail;

@@ -32,7 +32,7 @@ const EditSurvey = () => {
     const fetchSurveyData = async () => {
       try {
         const response = await axios.get(
-          `https://pro1-ubq1.onrender.com/survey/getSurvey/${surveyId}`
+          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
         );
         if (response.status === 200) {
           const surveyData = response.data;
@@ -111,7 +111,7 @@ const EditSurvey = () => {
     };
     try {
       const response = await axios.put(
-        `https://pro1-ubq1.onrender.com/survey/update/${surveyId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/survey/update/${surveyId}`,
         surveyData
       );
       if (response.status === 200) {
@@ -145,7 +145,7 @@ const EditSurvey = () => {
     const getSurveyId = async () => {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/survey/getSurvey/${surveyId}`
+          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
         );
         setTargetUrlVal(result.data.targetUrl);
         dispatch({
@@ -233,7 +233,7 @@ const EditSurvey = () => {
               )}
             </div>
             {openComponent === 'Qsm' && (
-              <div className="flex items-center overflow-y-auto justify-between ">
+              <div className="flex items-center overflow-hidden justify-between ">
                 <div className="flex flex-col gap-5  p-[20px]  ">
                   {state.components.map((component, index) =>
                     renderComponent(

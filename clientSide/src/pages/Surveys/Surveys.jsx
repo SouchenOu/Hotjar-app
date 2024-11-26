@@ -31,17 +31,22 @@ const Surveys = () => {
 
   const { id } = useParams();
   const getSurveys = async () => {
+    if (!userInfo || !userInfo._id) {
+      return;
+    }
     try {
       const AllSurveys = await axios.get(
-        `https://pro1-ubq1.onrender.com/survey/getSurveys/${id}/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/survey/getSurveys/${id}/${userInfo._id}`
       );
       const surveysData = await Promise.all(
         AllSurveys.data.surveys.map(async (survey) => {
           const responseCount = await countResponses(survey._id);
-          const countFinal = responseCount === 0 ? 'None' : responseCount;
           return {
             ...survey,
-            responseCount: countFinal,
+            responseCount: isNaN(Number(responseCount))
+              ? 0
+              : Number(responseCount),
+
             formattedCreatedAt: formatCreatedAt(survey.createdAt),
           };
         })
@@ -58,9 +63,12 @@ const Surveys = () => {
   };
 
   const searchSurveys = async (query) => {
+    if (!userInfo || !userInfo._id) {
+      return;
+    }
     try {
       const response = await axios.get(
-        `https://pro1-ubq1.onrender.com/survey/search/${userInfo._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/survey/search/${userInfo._id}`,
         { params: { query } }
       );
       const formattedSurveys = response.data.map((survey) => ({
@@ -116,7 +124,7 @@ const Surveys = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `https://pro1-ubq1.onrender.com/survey/delete/${deleteSurveyId}`
+        `${process.env.REACT_APP_BACKEND_URL}/survey/delete/${deleteSurveyId}`
       );
       setSurveys(surveys.filter((survey) => survey._id !== deleteSurveyId));
     } catch (error) {
@@ -135,7 +143,7 @@ const Surveys = () => {
   const toggleSurveyStatus = async (id, currentStatus) => {
     try {
       const response = await axios.post(
-        `https://pro1-ubq1.onrender.com/survey/updateStatus/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/survey/updateStatus/${id}`,
         { status: !currentStatus }
       );
       const updatedSurvey = response.data;
@@ -164,7 +172,7 @@ const Surveys = () => {
   const countResponses = async (id) => {
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/response/numberResponses/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/response/numberResponses/${id}`
       );
       return result.data.responseCount;
     } catch (error) {
@@ -189,16 +197,19 @@ const Surveys = () => {
   useEffect(() => {
     const getTemplates = async () => {
       const templates = await axios.get(
-        'https://pro1-ubq1.onrender.com/templates/getTemplates'
+        `${process.env.REACT_APP_BACKEND_URL}/templates/getTemplates`
       );
       const result = templates.data;
       const filteredTemplate = result.slice(0, 3);
       setTemplates(filteredTemplate);
     };
     const fetchTrackingCode = async () => {
+      if (!userInfo || !userInfo._id) {
+        return;
+      }
       try {
         const response = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo._id}`
         );
         setSiteData(response.data);
       } catch (error) {
@@ -213,9 +224,12 @@ const Surveys = () => {
 
   useEffect(() => {
     const getSiteId = async () => {
+      if (!userInfo || !userInfo._id) {
+        return;
+      }
       try {
         await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo._id}`
         );
       } catch (err) {
         console.error(err);

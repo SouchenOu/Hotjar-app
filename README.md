@@ -1,6 +1,5 @@
 # Hotjar-platform
 
-https://console.cloudinary.com/pm/c-a3adfdd0ee7d2055547471dd5c903c/getting-started
 
 Hotjar :  Survey Platform  (I am still working on the project....)
 
@@ -72,7 +71,7 @@ Running the Server
             cd serverSide
             npm run start
 
-    The server will start on https://pro1-ubq1.onrender.com.
+    The server will start on http://localhost:8000.
 
 2. Start the client:
 

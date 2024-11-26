@@ -68,11 +68,11 @@ ScoreBox.propTypes = {
   onChange: PropTypes.func.isRequired,
   components: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      question: PropTypes.string.isRequired,
-      highScoreTitle: PropTypes.string.isRequired,
-      lowScoreTitle: PropTypes.string.isRequired,
+      _id: PropTypes.string,
+      type: PropTypes.string,
+      question: PropTypes.string,
+      highScoreTitle: PropTypes.string,
+      lowScoreTitle: PropTypes.string,
     })
   ).isRequired,
 };

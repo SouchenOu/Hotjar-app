@@ -37,13 +37,12 @@ const SiteForm = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        'https://pro1-ubq1.onrender.com/site/AddSite',
+        `${process.env.REACT_APP_BACKEND_URL}/site/AddSite`,
         site
       );
       toast.success('Site added successfully');
       navigate('/sites');
     } catch (error) {
-      console.log('error-->', error);
       console.error('Error adding site:', error);
       toast.error(error.response.data.message);
     }
@@ -52,7 +51,7 @@ const SiteForm = () => {
   const navigateToSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/lastSite/${userInfo._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;
@@ -61,7 +60,7 @@ const SiteForm = () => {
         navigate('/site');
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

@@ -214,8 +214,8 @@ const Behavior = ({ openComponent, setOpenComponent, dispatch, state }) => {
 };
 
 Behavior.propTypes = {
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
     timing: PropTypes.shape({

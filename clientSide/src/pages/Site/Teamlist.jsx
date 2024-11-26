@@ -18,7 +18,7 @@ const TeamList = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const socket = io('https://pro1-ubq1.onrender.com', {
+  const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
     transports: ['websocket', 'polling'],
   });
 
@@ -27,7 +27,7 @@ const TeamList = () => {
 
     try {
       const result = await axios.post(
-        `https://pro1-ubq1.onrender.com/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
         { newRole }
       );
       if (result.status === 200) {
@@ -40,11 +40,14 @@ const TeamList = () => {
           )
         );
         const msg = `${userInfo.username} changed your role to ${newRole} in the site ${site.name}`;
-        await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
-          recipientId: member.user._id,
-          senderId: userInfo._id,
-          message: msg,
-        });
+        await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+          {
+            recipientId: member.user._id,
+            senderId: userInfo._id,
+            message: msg,
+          }
+        );
         socket.emit('sendInvite', {
           recipientId: member.user._id,
           message: `${userInfo.username} changed your role to ${newRole} in the site ${site.name}`,
@@ -59,7 +62,7 @@ const TeamList = () => {
   const deleteMember = async (member) => {
     try {
       const result = await axios.get(
-        `https://pro1-ubq1.onrender.com/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
       );
       if (result.status === 200) {
         const updatedMembers = members.filter(
@@ -70,11 +73,14 @@ const TeamList = () => {
           `The user ${member.user.username} is no longer a member of the site ${site.name}.`
         );
         const msg = `You are no longer a member of the site ${site.name}`;
-        await axios.post('https://pro1-ubq1.onrender.com/notification/createNotif', {
-          recipientId: member.user._id,
-          senderId: userInfo._id,
-          message: msg,
-        });
+        await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+          {
+            recipientId: member.user._id,
+            senderId: userInfo._id,
+            message: msg,
+          }
+        );
         socket.emit('sendInvite', {
           recipientId: member.user._id,
           message: `You are no longer a member of the site ${site.name}`,
@@ -94,7 +100,7 @@ const TeamList = () => {
     const listedMembers = async () => {
       try {
         const response = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/listedMembers/${id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/listedMembers/${id}`
         );
         setMembers(response.data.members);
         setCreator(response.data.creator);
@@ -109,7 +115,7 @@ const TeamList = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `https://pro1-ubq1.onrender.com/site/getSiteId/${id}/${userInfo?._id}`
+          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo?._id}`
         );
         setSite(result.data);
       } catch (err) {

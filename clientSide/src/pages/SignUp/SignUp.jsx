@@ -108,6 +108,7 @@ const SignUp = () => {
               layout="vertical"
               autoComplete="off"
               onFinish={handleClick}
+              form={form}
               className="w-full"
             >
               <Form.Item

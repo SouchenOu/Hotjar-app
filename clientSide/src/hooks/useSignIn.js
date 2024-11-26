@@ -11,8 +11,8 @@ const useSignIN = () => {
     try {
       setError(null);
       setLoading(true);
-
-      const res = await fetch('https://pro1-ubq1.onrender.com/auth/login', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const res = await fetch(`${backendUrl}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),

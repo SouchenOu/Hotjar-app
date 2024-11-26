@@ -12,7 +12,7 @@ const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
 
   const number = ['1', '2', '3', '4', '5'];
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = 'https://pro1-ubq1.onrender.com';
+  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -69,11 +69,7 @@ const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
                 <div style={{ background: bgColor }}>
                   <div className="w-full h-[60px] flex items-center justify-center mb-[20px]">
                     {logo && (
-                      <img
-                        alt=""
-                        src={logo}
-                        className="w-[40px] h-[40px]"
-                      />
+                      <img alt="" src={logo} className="w-[40px] h-[40px]" />
                     )}
                   </div>
 

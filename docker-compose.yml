@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./clientSide
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./serverSide
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      MONGO: "mongodb+srv://soukainaouchen:souchenavito@cluster0.vatqxqg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      PORT: 8000
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+
+volumes:
+  mongo-data:

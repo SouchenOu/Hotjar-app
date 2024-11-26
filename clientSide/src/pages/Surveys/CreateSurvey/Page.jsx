@@ -15,47 +15,33 @@ import defaultComponents from '../data/defaultComponent';
 import Summary from './Summary';
 import Questions from './Questions';
 import Behavior from './Behavior';
+import Templates from '../data/Templates';
 
 const Page = () => {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, initialeState);
   const [nextQuestion, setNextQuestion] = useState('');
   const [{ userInfo }] = useStateProvider();
-  const [template, setTemplate] = useState([]);
+  const [template, setTemplate] = useState(null);
   const { siteId, templateId } = useParams();
   const [openComponent, setOpenComponent] = useState(null);
 
   useEffect(() => {
-    const getTemplate = async () => {
-      try {
-        const result = await axios.post(
-          `https://pro1-ubq1.onrender.com/templates/getTemplateId/${templateId}`
-        );
-        setTemplate(result.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    const selectedTemplate = Templates.find((t) => t._id === templateId);
+    setTemplate(selectedTemplate);
 
-    if (templateId) {
-      getTemplate();
+    if (selectedTemplate && defaultComponents[selectedTemplate.type]) {
+      dispatch({
+        type: reducerCases.SET_COMPONENTS,
+        payload: defaultComponents[selectedTemplate.type],
+      });
+      dispatch({ type: reducerCases.SET_NAME, payload: selectedTemplate.name });
+      dispatch({
+        type: reducerCases.SET_DESCRIPTION,
+        payload: selectedTemplate.description,
+      });
     }
   }, [templateId]);
-
-  useEffect(() => {
-    if (!template || !template.type || !defaultComponents[template.type])
-      return;
-
-    dispatch({
-      type: reducerCases.SET_COMPONENTS,
-      payload: defaultComponents[template.type],
-    });
-    dispatch({ type: reducerCases.SET_NAME, payload: template.name });
-    dispatch({
-      type: reducerCases.SET_DESCRIPTION,
-      payload: template.description,
-    });
-  }, [template]);
 
   const NavigateToHome = () => {
     navigate(`/site/${siteId}/surveys`);
@@ -83,7 +69,7 @@ const Page = () => {
 
     try {
       const response = await axios.post(
-        `https://pro1-ubq1.onrender.com/survey/${siteId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/survey/${siteId}`,
         surveyData
       );
 

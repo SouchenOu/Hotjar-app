@@ -48,7 +48,7 @@ export const register = async (req, res) => {
       token,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
@@ -99,7 +99,7 @@ export const ForgotPassword = async (req, res, next) => {
     const token = jwt.sign({ email: user.email, _id: user._id }, secret, {
       expiresIn: '90d',
     });
-    const link = `https://pro1-ubq1.onrender.com/auth/reset-password/${user._id}/${token}`;
+    const link = `${process.env.REACT_APP_BACKEND_URL}/auth/reset-password/${user._id}/${token}`;
 
     await nodemailer.createTestAccount();
 

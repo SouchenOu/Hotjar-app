@@ -52,17 +52,15 @@ const Appearance = ({
       formData.append('logo', file);
       try {
         const response = await fetch(
-          'https://pro1-ubq1.onrender.com/survey/updateLogo',
+          `${process.env.REACT_APP_BACKEND_URL}/survey/updateLogo`,
           {
             method: 'POST',
             body: formData,
-
           }
         );
-        console.log("response", response);
+
         if (response.ok) {
           const data = await response.json();
-          console.log("data here-->", data.logoUrl);
           dispatch({ type: reducerCases.SET_LOGO, payload: data.logoUrl });
         } else {
           throw new Error('Error uploading logo');
@@ -308,8 +306,8 @@ const Appearance = ({
 };
 
 Appearance.propTypes = {
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
   state: PropTypes.shape({
     language: PropTypes.string.isRequired,
     logo: PropTypes.string,

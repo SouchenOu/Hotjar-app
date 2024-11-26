@@ -72,8 +72,8 @@ const Questions = ({
             }
           )}
         >
-          <div className="flex justify-between   py-[60px]">
-            <div className="flex flex-col gap-[50px] px-[20px]">
+          <div className="flex justify-between   py-[60px] items-start">
+            <div className="flex flex-col gap-[50px] px-[20px] ">
               <TemplateDetails
                 template={template}
                 dispatch={dispatch}
@@ -98,15 +98,15 @@ const Questions = ({
 };
 
 Questions.propTypes = {
-  openComponent: PropTypes.string.isRequired,
-  setOpenComponent: PropTypes.func.isRequired,
-  template: PropTypes.object.isRequired,
+  openComponent: PropTypes.string,
+  setOpenComponent: PropTypes.func,
+  template: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   state: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
   }).isRequired,
-  nextQuestion: PropTypes.func.isRequired,
+  nextQuestion: PropTypes.string,
 };
 
 export default Questions;

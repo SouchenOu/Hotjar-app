@@ -31,7 +31,7 @@ export const initialeState = {
     type: 'submit',
     enum: ['submit', 'once', 'always'],
   },
-  delayTime: '1',
+  delayTime: 1,
   components: [
     {
       _id: '',

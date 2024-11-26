@@ -11,7 +11,10 @@ const ForgotPassword = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('https://pro1-ubq1.onrender.com/auth/forgotPassword', { email });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/forgotPassword`,
+        { email }
+      );
       setSuccess('Email sent successfully.');
       setError(null);
     } catch (err) {
@@ -22,7 +25,6 @@ const ForgotPassword = () => {
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      <NavBarSign />
       <div className="flex flex-col gap-[20px] lg:flex-row items-center justify-center w-full max-w-7xl min-h-[90vh] px-4">
         <Card
           className="w-full max-w-[500px] lg:w-[400px] xl:w-[450px] p-4 mx-2"

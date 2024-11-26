@@ -15,8 +15,6 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
 
-
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 __dirname;
@@ -24,15 +22,15 @@ const router = express.Router();
 // Set up multer storage
 
 cloudinary.config({
-  cloud_name: 'dvxc2husm', 
-  api_key: '282365854686145', 
+  cloud_name: 'dvxc2husm',
+  api_key: '282365854686145',
   api_secret: 'DDLEfKt4W4LBuuzExyuqxkwzMa0',
 });
 
 // Set up multer storage (local storage)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');  
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -41,7 +39,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 router.post('/updateLogo', upload.single('logo'), updateLogo);
-
 router.post('/:siteId', createSurveys);
 router.get('/getSurveys/:siteId/:userId', getAllSurveysBySite);
 router.get('/search/:id', SearchSurvey);

@@ -9,8 +9,7 @@
     console.error('No site ID provided.');
     return;
   }
-
-  fetch(`https://pro1-ubq1.onrender.com/survey/getSurveyData/${siteId}`)
+  fetch(`http://localhost:8000/survey/getSurveyData/${siteId}`)
     .then((response) => response.json())
     .then((data) => {
       if (data && data.html) {
@@ -305,7 +304,6 @@
             adjustFixedComponentPosition();
 
             let response = null;
-
             // Checkboxes
             const checkboxComponent = components.find(
               (comp) => comp._doc.type === 'checkbox'
@@ -422,7 +420,7 @@
             if (response) {
               try {
                 const backendResponse = await fetch(
-                  'https://pro1-ubq1.onrender.com/response/saveResponse',
+                  `http://localhost:8000/response/saveResponse`,
                   {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -435,15 +433,15 @@
                 );
                 const result = await backendResponse.json();
                 if (backendResponse.ok) {
-                  console.log('test');
+                  console.error('test');
                 } else {
                   console.error('Server error:', result);
                 }
               } catch (error) {
-                console.log(error);
+                console.error(error);
               }
             } else {
-              console.log('No valid response to send.');
+              console.error('No valid response to send.');
             }
           });
         });
