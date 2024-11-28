@@ -64,7 +64,7 @@ const ChangePassword = ({ setCurrentForm }) => {
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/ChangePassword/${id}`,
+        `https://pro-1-hk8q.onrender.com/auth/ChangePassword/${id}`,
         {
           currentPassword,
           newPassword,

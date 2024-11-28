@@ -22,8 +22,8 @@ const app = express();
 dotenv.config();
 
 const allowedOrigins = [
-  'https://surveyss-platformm.netlify.app',
-  'https://websiteeee.netlify.app',
+  `${process.env.surveysDomain}`,
+  `${process.env.AvitoDomain}`,
 ];
 
 const corsOptions = {
@@ -92,8 +92,6 @@ io.on('connection', (socket) => {
 
     if (recipientSocketId) {
       io.to(recipientSocketId).emit('inviteNotification', recipientId, message);
-    } else {
-      console.log(`User ${recipientId} is not connected.`);
     }
   });
 

@@ -36,7 +36,7 @@ const Surveys = () => {
     }
     try {
       const AllSurveys = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/getSurveys/${id}/${userInfo._id}`
+        `https://pro-1-hk8q.onrender.com/survey/getSurveys/${id}/${userInfo._id}`
       );
       const surveysData = await Promise.all(
         AllSurveys.data.surveys.map(async (survey) => {
@@ -68,7 +68,7 @@ const Surveys = () => {
     }
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/search/${userInfo._id}`,
+        `https://pro-1-hk8q.onrender.com/survey/search/${userInfo._id}`,
         { params: { query } }
       );
       const formattedSurveys = response.data.map((survey) => ({
@@ -124,7 +124,7 @@ const Surveys = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/delete/${deleteSurveyId}`
+        `https://pro-1-hk8q.onrender.com/survey/delete/${deleteSurveyId}`
       );
       setSurveys(surveys.filter((survey) => survey._id !== deleteSurveyId));
     } catch (error) {
@@ -143,7 +143,7 @@ const Surveys = () => {
   const toggleSurveyStatus = async (id, currentStatus) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/updateStatus/${id}`,
+        `https://pro-1-hk8q.onrender.com/survey/updateStatus/${id}`,
         { status: !currentStatus }
       );
       const updatedSurvey = response.data;
@@ -172,7 +172,7 @@ const Surveys = () => {
   const countResponses = async (id) => {
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/response/numberResponses/${id}`
+        `https://pro-1-hk8q.onrender.com/response/numberResponses/${id}`
       );
       return result.data.responseCount;
     } catch (error) {
@@ -197,7 +197,7 @@ const Surveys = () => {
   useEffect(() => {
     const getTemplates = async () => {
       const templates = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/templates/getTemplates`
+        `https://pro-1-hk8q.onrender.com/templates/getTemplates`
       );
       const result = templates.data;
       const filteredTemplate = result.slice(0, 3);
@@ -209,7 +209,7 @@ const Surveys = () => {
       }
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo._id}`
+          `https://pro-1-hk8q.onrender.com/site/getSiteId/${id}/${userInfo._id}`
         );
         setSiteData(response.data);
       } catch (error) {
@@ -229,7 +229,7 @@ const Surveys = () => {
       }
       try {
         await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo._id}`
+          `https://pro-1-hk8q.onrender.com/site/getSiteId/${id}/${userInfo._id}`
         );
       } catch (err) {
         console.error(err);

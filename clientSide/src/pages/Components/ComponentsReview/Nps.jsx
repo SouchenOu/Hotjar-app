@@ -21,7 +21,7 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
+  const baseURL = `https://pro-1-hk8q.onrender.com`;
 
   return (
     <div

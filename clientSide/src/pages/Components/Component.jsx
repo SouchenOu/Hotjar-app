@@ -14,7 +14,10 @@ import PropTypes from 'prop-types';
 
 const Component = ({ state, nextQuestion }) => {
   const { currentType, components, language } = state;
-  const compo = components.find((comp) => comp.type === 'checkbox');
+  const compo = components.find(
+    (comp) => comp.type === 'checkbox' || comp.type === 'radio'
+  ) || { options: [] };
+
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [checkboxStates, setCheckboxStates] = useState(

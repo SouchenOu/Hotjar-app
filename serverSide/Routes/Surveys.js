@@ -8,6 +8,7 @@ import {
   updateLogo,
   updateStatus,
   updateSurvey,
+  uploadImage,
 } from '../Controllers/Surveys.js';
 import { getSurveyById } from '../Controllers/Surveys.js';
 import multer from 'multer';
@@ -39,6 +40,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 router.post('/updateLogo', upload.single('logo'), updateLogo);
+// router.post('/upload', upload.single('image'), (req, res) => {
+//   res.json({ filePath: `/uploads/${req.file.filename}` });
+// });
+router.post('/uploadImage', upload.single('image'), uploadImage);
+
 router.post('/:siteId', createSurveys);
 router.get('/getSurveys/:siteId/:userId', getAllSurveysBySite);
 router.get('/search/:id', SearchSurvey);

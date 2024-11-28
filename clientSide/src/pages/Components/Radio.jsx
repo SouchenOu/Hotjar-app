@@ -8,9 +8,16 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 
 const Radio = ({ onChange, components }) => {
-  const currentComponent = components.find((comp) => comp.type === 'radio');
-  const [options, setOptions] = useState(currentComponent.options);
-  const [TemplateTitle, setTemplateTitle] = useState(currentComponent.question);
+  const currentComponent = components.find((comp) => comp.type === 'radio') || {
+    _id: '',
+    question: '',
+    options: [],
+  };
+
+  const [options, setOptions] = useState(currentComponent.options || []); // Fallback in useState
+  const [TemplateTitle, setTemplateTitle] = useState(
+    currentComponent.question || ''
+  );
 
   useEffect(() => {
     onChange({
@@ -96,7 +103,6 @@ const Radio = ({ onChange, components }) => {
     </div>
   );
 };
-
 Radio.propTypes = {
   onChange: PropTypes.func.isRequired,
   components: PropTypes.arrayOf(

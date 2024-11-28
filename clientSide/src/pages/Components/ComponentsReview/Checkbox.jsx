@@ -17,7 +17,7 @@ const Checkbox = ({
 
   const [openCheckbox, setOpenCheckbox] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
+  const baseURL = `https://pro-1-hk8q.onrender.com`;
 
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>

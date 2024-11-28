@@ -59,6 +59,7 @@ const Page = () => {
       textColor: state.textColor,
       language: state.language,
       logo: state.logo,
+      ImageFeedback: state.ImageFeedback,
       timing: state.timing.type,
       frequency: state.frequency.type,
       createdUser: userInfo._id,
@@ -69,7 +70,7 @@ const Page = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/${siteId}`,
+        `https://pro-1-hk8q.onrender.com/survey/${siteId}`,
         surveyData
       );
 

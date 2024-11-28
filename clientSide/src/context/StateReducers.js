@@ -13,6 +13,7 @@ export const initialeState = {
   textColor: '#000000',
   language: 'en',
   logo: '',
+  ImageFeedback: '',
   openType: false,
   openAppearance: false,
   openTarget: false,
@@ -43,6 +44,32 @@ export const initialeState = {
         'It was too expensive for me',
         'I found a better product/price elsewhere',
       ],
+    },
+    {
+      _id: '',
+      type: 'radio',
+      question: 'Help us improve:',
+      options: [
+        'Give feedback 💬',
+        'Suggest an idea 💡',
+        'Report an issue 🐞',
+        'Something else (please specify)',
+      ],
+    },
+    {
+      _id: '',
+      type: 'designFeedback',
+      question: 'How satisfied are you with this design?',
+      image: '/home.png',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+    {
+      _id: '',
+      type: 'scoreBox',
+      question: 'How likely are you to recommend us to a friend or colleague?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
     },
     {
       _id: '',
@@ -122,6 +149,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         logo: action.payload,
+      };
+    case reducerCases.SET_IMAGE_FEEDBACK:
+      return {
+        ...state,
+        ImageFeedback: action.payload,
       };
     case reducerCases.SET_OPEN_TYPE:
       return {

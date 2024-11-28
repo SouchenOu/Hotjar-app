@@ -1,22 +1,30 @@
 import {
   faFaceSmile,
+  faImage,
   faPlus,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import React from 'react';
+import { reducerCases } from '../../context/constants';
 
-const DesignFeedback = ({ onChange, components }) => {
-  const currentComponent = components.find(
-    (comp) => comp.type === 'designFeedback'
+const DesignFeedback = ({ onChange, components, dispatch }) => {
+  const currentComponent =
+    components.find((comp) => comp.type === 'designFeedback') || {};
+
+  const [TemplateTitle, setTemplateTitle] = useState(
+    currentComponent.question || ''
   );
-  const [TemplateTitle, setTemplateTitle] = useState(currentComponent.question);
-  const [HighScore, setHighScore] = useState(currentComponent.highScoreTitle);
-  const [image, setImage] = useState(currentComponent.image);
-  const [removeImage, setRemoveImage] = useState(false);
-  const [LowScore, setLowScore] = useState(currentComponent.lowScoreTitle);
+  const [HighScore, setHighScore] = useState(
+    currentComponent.highScoreTitle || ''
+  );
+  const [image, setImage] = useState(currentComponent.image || '');
+  const [LowScore, setLowScore] = useState(
+    currentComponent.lowScoreTitle || ''
+  );
+  const [removeImage, setRemoveImage] = useState(true);
 
   useEffect(() => {
     onChange({
@@ -40,6 +48,10 @@ const DesignFeedback = ({ onChange, components }) => {
 
   const handleremoveImage = () => {
     setRemoveImage(true);
+    dispatch({
+      type: reducerCases.SET_IMAGE_FEEDBACK,
+      payload: '',
+    });
     setImage('');
   };
   const handleAddImage = async (event) => {
@@ -50,16 +62,24 @@ const DesignFeedback = ({ onChange, components }) => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/survey/upload`,
+          `https://pro-1-hk8q.onrender.com/survey/uploadImage`,
           {
             method: 'POST',
             body: formData,
           }
         );
+        if (response.ok) {
+          const data = await response.json();
+          dispatch({
+            type: reducerCases.SET_IMAGE_FEEDBACK,
+            payload: data.filePath,
+          });
+          setRemoveImage(false);
+        } else {
+          throw new Error('Error uploading logo');
+        }
 
-        const data = await response.json();
         setImage(data.filePath);
-        setRemoveImage(false);
       } catch (error) {
         console.error('Error uploading image:', error);
       }
@@ -93,26 +113,22 @@ const DesignFeedback = ({ onChange, components }) => {
         </div>
       )}
       {removeImage && (
-        <div className="flex items-center gap-[10px]">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleAddImage}
-            className="hidden"
-            id="image-upload"
-          />
+        <div className="flex items-center gap-4">
+          <FontAwesomeIcon icon={faImage} className="text-blue-600 w-4 h-4" />
           <label
-            htmlFor="image-upload"
-            className=" flex items-center  gap-[20px] cursor-pointer relative"
+            aria-label="logo-uploaded"
+            htmlFor="logo-upload"
+            className="px-4 py-2 font-bold text-[13px] bg-blue-600 text-white rounded-lg cursor-pointer transition-all hover:bg-blue-700"
           >
-            <FontAwesomeIcon
-              icon={faPlus}
-              className="w-[20px] h-[20px] absolute text-blue-700 px-[10px]"
-            />
-            <button className="border-[2px] border-blue-700 rounded-lg hover:border-[3px] px-[19px] py-[9px] w-[200px]  text-[13px] font-bold text-blue-700">
-              Add Image
-            </button>
+            Add Image
           </label>
+          <input
+            id="logo-upload"
+            type="file"
+            accept=".png, .jpg, .jpeg"
+            className="hidden"
+            onChange={handleAddImage}
+          />
         </div>
       )}
       <div className="flex flex-col gap-[20px]">

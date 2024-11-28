@@ -8,11 +8,11 @@ import React from 'react';
 const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openScoreBox, setScoreBox] = useState(true);
-  const [selectedNumber, setSelectedNumber] = useState('0');
+  const [selectedNumber, setSelectedNumber] = useState(0);
 
   const number = ['1', '2', '3', '4', '5'];
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
+  const baseURL = `https://pro-1-hk8q.onrender.com`;
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -151,6 +151,6 @@ ScoreBox.propTypes = {
     lowScoreTitle: PropTypes.string.isRequired,
     highScoreTitle: PropTypes.string.isRequired,
   }).isRequired,
-  nextComponent: PropTypes.string.isRequired,
+  nextComponent: PropTypes.func.isRequired,
 };
 export default ScoreBox;

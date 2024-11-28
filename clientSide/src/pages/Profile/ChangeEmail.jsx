@@ -25,7 +25,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     setLoading(true);
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/sendVerificationCode`,
+        `https://pro-1-hk8q.onrender.com/auth/sendVerificationCode`,
         { newEmail: emailValue }
       );
       if (result.status === 200) {
@@ -81,7 +81,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     const finalCode = verificationCode.join('');
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/verifyCodeAndUpdateEmail`,
+        `https://pro-1-hk8q.onrender.com/auth/verifyCodeAndUpdateEmail`,
         {
           userId: id,
           newEmail: emailValue,

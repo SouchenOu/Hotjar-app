@@ -8,7 +8,7 @@ const Cta = ({ state, displayMode, component, handleClose }) => {
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openCta, setOpenCta] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
+  const baseURL = `https://pro-1-hk8q.onrender.com`;
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.slice(0, maxLength) + '...';

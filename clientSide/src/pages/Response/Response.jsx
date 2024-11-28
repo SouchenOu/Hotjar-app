@@ -25,14 +25,14 @@ const Response = () => {
     const getSurvey = async () => {
       try {
         const survey = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
+          `https://pro-1-hk8q.onrender.com/survey/getSurvey/${surveyId}`
         );
         if (survey.status === 200) {
           const surveyData = survey.data;
           const surveyQuestions = surveyData.components.map(
             (component) => component.question
           );
-          const result = surveyQuestions.slice(0, 3);
+          const result = surveyQuestions.slice(0, 4);
           setQuestions(result);
 
           if (surveyData.language === 'ar') {
@@ -49,7 +49,7 @@ const Response = () => {
     const getResponses = async () => {
       try {
         const response = await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/response/responseSurvey/${surveyId}`
+          `https://pro-1-hk8q.onrender.com/response/responseSurvey/${surveyId}`
         );
         if (response.status === 200) {
           setResponses(response.data);
@@ -65,7 +65,7 @@ const Response = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/site/lastSite/${userInfo._id}`
+      `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);
@@ -74,7 +74,7 @@ const Response = () => {
   const deleteResponse = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/response/deleteResponse/${deleteResponseId}`
+        `https://pro-1-hk8q.onrender.com/response/deleteResponse/${deleteResponseId}`
       );
       if (response.status === 200) {
         setResponses(Responses.filter((r) => r._id !== deleteResponseId));

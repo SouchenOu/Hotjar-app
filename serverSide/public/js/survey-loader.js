@@ -9,6 +9,7 @@
     console.error('No site ID provided.');
     return;
   }
+
   fetch(`https://pro-1-hk8q.onrender.com/survey/getSurveyData/${siteId}`)
     .then((response) => response.json())
     .then((data) => {
@@ -32,7 +33,7 @@
         let additionalStyles = '';
         if (targetDevices.length === 2) {
           additionalStyles = `
-                     <style>
+                    <style>
                         @media (max-width:  440px) {
                                 .component {
                                     position: fixed;
@@ -304,6 +305,7 @@
             adjustFixedComponentPosition();
 
             let response = null;
+
             // Checkboxes
             const checkboxComponent = components.find(
               (comp) => comp._doc.type === 'checkbox'
@@ -321,6 +323,9 @@
                   question: checkboxComponent._doc.question,
                   responseValue: checkboxAnswers,
                 };
+                checkboxes.forEach((checkbox) => {
+                  checkbox.checked = false;
+                });
               }
             }
             //scoreBoxs
@@ -334,6 +339,7 @@
                   question: scoreBox._doc.question,
                   responseValue: selectedScore,
                 };
+                selectedScore = null;
               }
             }
             //designFeedback
@@ -347,6 +353,7 @@
                   question: feedback._doc.question,
                   responseValue: selectedScore,
                 };
+                selectedScore = null;
               }
             }
             //Radio
@@ -366,6 +373,9 @@
                   question: radioComponent._doc.question,
                   responseValue: radioAnswers,
                 };
+                radios.forEach((radio) => {
+                  radio.checked = false;
+                });
               }
             }
 
@@ -377,12 +387,16 @@
               const npsAnswers = document.querySelector(
                 'input[type="range"]'
               )?.value;
-              if (npsAnswers) {
+              if (npsAnswers && Number(npsAnswers) > 0) {
                 response = {
                   componentId: npsComponent._doc._id,
                   question: npsComponent._doc.question,
                   responseValue: npsAnswers,
                 };
+              }
+              const rangeInput = document.querySelector('input[type="range"]');
+              if (rangeInput) {
+                rangeInput.value = '';
               }
             }
 
@@ -400,6 +414,7 @@
                   responseValue: longTextAnswer,
                 };
               }
+              document.getElementById('longTextAnswer').value = '';
             }
 
             // Email Input
@@ -420,7 +435,7 @@
             if (response) {
               try {
                 const backendResponse = await fetch(
-                  `https://pro-1-hk8q.onrender.com/response/saveResponse`,
+                  'https://pro-1-hk8q.onrender.com/response/saveResponse',
                   {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -433,15 +448,15 @@
                 );
                 const result = await backendResponse.json();
                 if (backendResponse.ok) {
-                  console.error('test');
+                  response = '';
                 } else {
                   console.error('Server error:', result);
                 }
               } catch (error) {
-                console.error(error);
+                console.log(error);
               }
             } else {
-              console.error('No valid response to send.');
+              console.log('No valid response to send.');
             }
           });
         });

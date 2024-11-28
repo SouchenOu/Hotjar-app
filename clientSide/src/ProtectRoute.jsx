@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
       if (isAuthenticated && userInfo) {
         try {
           const checkRes = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/site/checkSites/${userInfo._id}`
+            `https://pro-1-hk8q.onrender.com/site/checkSites/${userInfo._id}`
           );
           setHasSites(checkRes.data.hasSites);
         } catch (error) {

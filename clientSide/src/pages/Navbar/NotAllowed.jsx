@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 const NotAllowed = () => {
   const [{ userInfo }] = useStateProvider();
   const [site, setSite] = useState('');
-  const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+  const socket = io(`https://pro-1-hk8q.onrender.com`, {
     transports: ['websocket', 'polling'],
   });
   const { id } = useParams();
@@ -19,7 +19,7 @@ const NotAllowed = () => {
     const getSite = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/site/getSite/${id}`
+          `https://pro-1-hk8q.onrender.com/site/getSite/${id}`
         );
         setSite(res.data);
       } catch (err) {
@@ -31,13 +31,13 @@ const NotAllowed = () => {
   const handleSendInvite = async () => {
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/site/sendInvite/${site._id}/${userInfo._id}/${site.user}`
+        `https://pro-1-hk8q.onrender.com/site/sendInvite/${site._id}/${userInfo._id}/${site.user}`
       );
       if (result.status === 200) {
         toast.success('request send successfully');
         const msg = `${userInfo.username} has requested to join ${site.name}`;
         await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
           {
             recipientId: site.user,
             senderId: userInfo._id,

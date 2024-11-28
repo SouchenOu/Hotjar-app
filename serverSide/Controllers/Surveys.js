@@ -28,6 +28,7 @@ export const createSurveys = async (req, res) => {
       textColor,
       language,
       logo,
+      ImageFeedback,
       templateId,
       targetUrl,
       timing,
@@ -80,6 +81,7 @@ export const createSurveys = async (req, res) => {
       textColor,
       language,
       logo,
+      ImageFeedback,
       timing,
       frequency,
       site: site._id,
@@ -257,6 +259,7 @@ export const updateSurvey = async (req, res) => {
       textColor,
       language,
       logo,
+      ImageFeedback,
       targetUrl,
       timing,
       delayTime,
@@ -338,6 +341,7 @@ export const updateSurvey = async (req, res) => {
     if (textColor) survey.textColor = textColor;
     if (language) survey.language = language;
     if (logo) survey.logo = logo;
+    if (ImageFeedback) survey.ImageFeedback = ImageFeedback;
     if (createdUser) survey.createdUser = createdUser;
     if (targetUrl) survey.targetUrl = targetUrl;
     if (delayTime) survey.delayTime = delayTime;
@@ -429,13 +433,12 @@ export const getSurveyData = async (req, res) => {
     const textAlign = isArabic ? 'right' : 'left';
     let imagePath = '';
     let fullImageURL = '';
-    const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
     const feedbackComp = survey.components.find(
       (comp) => comp.type === 'designFeedback'
     );
     if (feedbackComp) {
       imagePath = feedbackComp.image ? `${feedbackComp.image}` : '';
-      fullImageURL = `${baseURL}${imagePath}`;
+      fullImageURL = `${imagePath}`;
     }
 
     const logoPath = survey.logo ? `${survey.logo}` : '';
@@ -582,6 +585,24 @@ export const getSurveyData = async (req, res) => {
   } catch (error) {
     console.error('Error fetching survey data:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+};
+export const uploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).send({ error: 'No file uploaded' });
+    }
+    cloudinary.uploader.upload(req.file.path, (error, result) => {
+      if (error) {
+        return res.status(500).send({ error: 'Error uploading to Cloudinary' });
+      }
+
+      const filePath = result.secure_url;
+      res.send({ filePath: filePath });
+    });
+  } catch (error) {
+    console.error('Error saving the logo URL', error);
+    res.status(500).send({ error: 'Internal server error' });
   }
 };
 

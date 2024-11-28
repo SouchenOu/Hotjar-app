@@ -6,15 +6,15 @@ import { ButtonScore } from './data/ButtonScore';
 import PropTypes from 'prop-types';
 
 const DesignFeedback = ({ state, displayMode, component, nextComponent }) => {
-  const { bgColor, buttonColor, textColor, logo, language } = state;
+  const { bgColor, buttonColor, textColor, logo, language, ImageFeedback } =
+    state;
   const [openDesign, setOpenDesign] = useState(true);
   const [selectedNumber, setSelectedNumber] = useState('0');
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `${process.env.REACT_APP_BACKEND_URL}`;
+  const baseURL = `https://pro-1-hk8q.onrender.com`;
 
   const number = ['1', '2', '3', '4', '5'];
-
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.slice(0, maxLength) + '...';
@@ -24,7 +24,7 @@ const DesignFeedback = ({ state, displayMode, component, nextComponent }) => {
 
   let imagePath = '';
   if (component && component.image) {
-    imagePath = `${baseURL}${component.image}`;
+    imagePath = `${component.image}`;
   }
 
   return (
@@ -79,11 +79,11 @@ const DesignFeedback = ({ state, displayMode, component, nextComponent }) => {
               >
                 {component.question}
               </h1>
-              {component.image ? (
+              {ImageFeedback ? (
                 <div className="flex justify-center items-center">
                   <img
-                    src={imagePath}
-                    className="w-full h-auto max-h-[300px] object-contain"
+                    src={ImageFeedback}
+                    className="w-full h-[300px]  object-contain"
                     alt="Website Screenshot"
                   />
                 </div>
@@ -161,7 +161,7 @@ DesignFeedback.propTypes = {
     buttonColor: PropTypes.string,
     textColor: PropTypes.string,
     logo: PropTypes.string,
-    language: PropTypes.oneOf(['en', 'ar']), // or add other languages as needed
+    language: PropTypes.oneOf(['en', 'ar']),
   }),
   displayMode: PropTypes.oneOf(['mobile', 'desktop']),
   component: PropTypes.shape({

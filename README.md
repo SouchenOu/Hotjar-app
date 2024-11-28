@@ -79,7 +79,7 @@ Running the Server
             cd clientSide
             npm run start
 
-    The client will start on http://localhost:3000.
+    The client will start on http://172.0.67.224:3000.
 
 Database Setup
 --------------
@@ -89,7 +89,7 @@ Ensure MongoDB is running on your local machine or connected to a cloud instance
 Usage
 ------
 
-1. Open your browser and navigate to http://localhost:3000 to access the platform.
+1. Open your browser and navigate to http://172.0.67.224:3000 to access the platform.
 2. Sign up or log in to access survey creation and management features.
 3. click new Survey button to go to the survey creation form to build and deploy surveys.
 4. Manage survey templates from the template list page.

@@ -154,12 +154,24 @@ const SignUp = () => {
                 label="Password"
                 name="password"
                 rules={[
-                  { required: true, message: 'Please input your password' },
+                  {
+                    required: true,
+                    message: (
+                      <span className="text-[13px]">
+                        Please input your password
+                      </span>
+                    ),
+                  },
                   {
                     pattern:
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.{8,})/,
-                    message:
-                      'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit.',
+                    message: (
+                      <span className="text-red-600 text-[13px]">
+                        Password must be at least 8 characters long, contain at
+                        least one uppercase letter, one lowercase letter, and
+                        one digit.
+                      </span>
+                    ),
                   },
                 ]}
               >

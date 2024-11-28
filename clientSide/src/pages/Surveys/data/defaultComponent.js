@@ -255,6 +255,99 @@ const defaultComponents = {
         'Thank you for answering this survey. Your feedback is highly appreciated!',
     },
   ],
+  textAnswer: [
+    {
+      type: 'longTextAnswer',
+      question: 'What could we do to improve?',
+      text: '',
+    },
+    {
+      type: 'radio',
+      question: 'Where did you first hear about us?',
+      options: [
+        'Colleague',
+        'Social media',
+        'Search engine (Google, Bing, etc)',
+        'Blog/publications',
+        'Webinar',
+        'Other (please specify)',
+      ],
+    },
+    {
+      type: 'email',
+      question:
+        "We may want to follow up. If you're happy to be contacted, enter your email:",
+      validation: '',
+    },
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
+  AllSurveys: [
+    {
+      type: 'radio',
+      question: 'Where did you first hear about us?',
+      options: [
+        'Colleague',
+        'Social media',
+        'Search engine (Google, Bing, etc)',
+      ],
+    },
+    {
+      type: 'scoreBox',
+      question: 'What was your first impression of our website?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+
+    {
+      type: 'longTextAnswer',
+      question: 'What could we do to improve?',
+      text: '',
+    },
+    {
+      type: 'email',
+      question:
+        "We may want to follow up. If you're happy to be contacted, enter your email:",
+      validation: '',
+    },
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
+  CheckboxScore: [
+    {
+      type: 'scoreBox',
+      question: 'What was your first impression of our website?',
+      lowScoreTitle: 'Not likely at all',
+      highScoreTitle: 'Extremely likely',
+    },
+    {
+      type: 'checkbox',
+      question: "We're sorry to see you go! What's your reason for leaving?",
+      options: [
+        "I didn't find what I was looking for",
+        "I didn't find the website easy to use",
+        'It was too expensive for me',
+        'I found a better product/price elsewhere',
+      ],
+    },
+    {
+      type: 'email',
+      question:
+        "We may want to follow up. If you're happy to be contacted, enter your email:",
+      validation: '',
+    },
+    {
+      type: 'cta',
+      question:
+        'Thank you for answering this survey. Your feedback is highly appreciated!',
+    },
+  ],
 };
 
 export default defaultComponents;

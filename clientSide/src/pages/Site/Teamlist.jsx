@@ -18,7 +18,7 @@ const TeamList = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+  const socket = io(`https://pro-1-hk8q.onrender.com`, {
     transports: ['websocket', 'polling'],
   });
 
@@ -27,7 +27,7 @@ const TeamList = () => {
 
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
+        `https://pro-1-hk8q.onrender.com/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
         { newRole }
       );
       if (result.status === 200) {
@@ -41,7 +41,7 @@ const TeamList = () => {
         );
         const msg = `${userInfo.username} changed your role to ${newRole} in the site ${site.name}`;
         await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
           {
             recipientId: member.user._id,
             senderId: userInfo._id,
@@ -62,7 +62,7 @@ const TeamList = () => {
   const deleteMember = async (member) => {
     try {
       const result = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
+        `https://pro-1-hk8q.onrender.com/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
       );
       if (result.status === 200) {
         const updatedMembers = members.filter(
@@ -74,7 +74,7 @@ const TeamList = () => {
         );
         const msg = `You are no longer a member of the site ${site.name}`;
         await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/notification/createNotif`,
+          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
           {
             recipientId: member.user._id,
             senderId: userInfo._id,
@@ -100,7 +100,7 @@ const TeamList = () => {
     const listedMembers = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/site/listedMembers/${id}`
+          `https://pro-1-hk8q.onrender.com/site/listedMembers/${id}`
         );
         setMembers(response.data.members);
         setCreator(response.data.creator);
@@ -115,7 +115,7 @@ const TeamList = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/site/getSiteId/${id}/${userInfo?._id}`
+          `https://pro-1-hk8q.onrender.com/site/getSiteId/${id}/${userInfo?._id}`
         );
         setSite(result.data);
       } catch (err) {

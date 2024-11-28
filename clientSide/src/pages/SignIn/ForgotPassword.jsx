@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/forgotPassword`,
+        `https://pro-1-hk8q.onrender.com/auth/forgotPassword`,
         { email }
       );
       setSuccess('Email sent successfully.');

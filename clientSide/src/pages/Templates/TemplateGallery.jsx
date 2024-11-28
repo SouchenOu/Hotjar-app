@@ -1,21 +1,20 @@
 import { faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
-import { useEffect, useState, React } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Templates from '../Surveys/data/Templates';
 
 const TemplateGallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('All templates');
-  const [templates, setTemplates] = useState([]);
+  const [templates, setTemplates] = useState(Templates);
   const [value, setValue] = useState('');
-  const [filtredTemplate, setFiltredTemplate] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [filteredTemplates, setFilteredTemplates] = useState(Templates);
+  const [loading, setLoading] = useState(false);
   const { id: siteId } = useParams();
   const navigate = useNavigate();
 
   const categories = [
-    { name: 'All templates', count: 6, value: 'All templates' },
+    { name: 'All templates', count: Templates.length, value: 'All templates' },
     { name: 'Most Popular', count: 3, value: 'Most Popular' },
     {
       name: 'Customer satisfaction & NPS',
@@ -32,64 +31,31 @@ const TemplateGallery = () => {
     navigate(`/site/${siteId}/survey/create/template/${id}`);
   };
 
-  useEffect(() => {
-    const getTemplates = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/templates/getTemplates`
-        );
-        const result = response.data;
-        setTemplates(result);
-        setFiltredTemplate(result);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-      }
-    };
-
-    getTemplates();
-  }, []);
-
-  const searchTemplate = async (name) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/templates/searchTemplate`,
-        { name }
-      );
-      const result = response.data;
-      if (result.length > 0) {
-        setFiltredTemplate(result);
-      } else {
-        setFiltredTemplate(templates);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const handleChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setValue(value);
+
     if (value) {
-      searchTemplate(value);
+      const filtered = templates.filter((template) =>
+        template.name.toLowerCase().includes(value)
+      );
+      setFilteredTemplates(filtered);
     } else {
-      setFiltredTemplate(templates);
+      setFilteredTemplates(templates);
     }
   };
-
-  if (loading) {
-    return <div className="text-center py-20">Loading...</div>;
-  }
 
   const filterTemplates = (category) => {
     if (category === 'Most Popular') {
-      setFiltredTemplate(templates.slice(0, 3));
+      setFilteredTemplates(templates.slice(0, 3));
     } else if (category === 'Customer satisfaction & NPS') {
-      setFiltredTemplate(
-        templates.filter((template) => template.name.includes('NPS'))
+      setFilteredTemplates(
+        templates.filter((template) =>
+          template.name.toLowerCase().includes('nps')
+        )
       );
     } else {
-      setFiltredTemplate(templates);
+      setFilteredTemplates(templates);
     }
   };
 
@@ -126,7 +92,11 @@ const TemplateGallery = () => {
             <div
               key={index}
               onClick={() => handleCategoryClick(category.value)}
-              className={`flex items-center justify-between cursor-pointer px-4 py-2 rounded-md ${selectedCategory === category.value ? 'bg-indigo-100' : 'hover:bg-indigo-100'}`}
+              className={`flex items-center justify-between cursor-pointer px-4 py-2 rounded-md ${
+                selectedCategory === category.value
+                  ? 'bg-indigo-100'
+                  : 'hover:bg-indigo-100'
+              }`}
             >
               <h1 className="text-[15px] text-gray-800 font-medium">
                 {category.name}
@@ -139,20 +109,20 @@ const TemplateGallery = () => {
           <div className="relative w-full max-w-full">
             <FontAwesomeIcon
               icon={faSearch}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
             />
             <input
               placeholder="Search a template"
               value={value}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md pl-12 pr-4 py-2 text-[16px] placeholder-gray-400 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none shadow-sm transition-all duration-200"
+              className="w-full border border-gray-300 rounded-md pl-12 pr-4 py-2 text-[16px] placeholder-gray-400 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             />
           </div>
 
           <div className="flex flex-wrap gap-6">
-            {Templates.map((template) => (
+            {filteredTemplates.map((template) => (
               <div
-                className="flex flex-col gap-4 border border-gray-300 rounded-md p-4  w-1/4 cursor-pointer hover:shadow-2xl"
+                className="flex flex-col gap-4 border border-gray-300 rounded-md p-4 w-1/4 cursor-pointer hover:shadow-2xl"
                 key={template._id}
                 onClick={() => handleClick(template._id)}
               >

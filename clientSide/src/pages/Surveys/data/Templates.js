@@ -47,30 +47,29 @@ const Templates = [
     type: 'score',
     image: '/7.png',
   },
-  // {
-  //     _id: "7",
-  //     name: "Market research survey",
-  //     description: "Building a brand new product? Learn more about your target users",
-  //     type: "textAnswer",
-  //     image: "/text.png",
-
-  // },
-  // {
-  //     _id: "8",
-  //     name: "7 website survey questions",
-  //     description: "Spot issues, find opportunities, and prioritize your work by asking these 10 questions",
-  //     type: "AllSurveys",
-  //     image: "/22.png",
-
-  // },
-  // {
-  //     _id: "9",
-  //     name: "Feature prioritization survey",
-  //     description: "Get feedback from your users about what to work on next",
-  //     type: "CheckboxScore",
-  //     image: "/21.png",
-
-  // },
+  {
+    _id: '7',
+    name: 'Market research survey',
+    description:
+      'Building a brand new product? Learn more about your target users',
+    type: 'textAnswer',
+    image: '/text.png',
+  },
+  {
+    _id: '8',
+    name: '7 website survey questions',
+    description:
+      'Spot issues, find opportunities, and prioritize your work by asking these 10 questions',
+    type: 'AllSurveys',
+    image: '/22.png',
+  },
+  {
+    _id: '9',
+    name: 'Feature prioritization survey',
+    description: 'Get feedback from your users about what to work on next',
+    type: 'CheckboxScore',
+    image: '/21.png',
+  },
 ];
 
 export default Templates;

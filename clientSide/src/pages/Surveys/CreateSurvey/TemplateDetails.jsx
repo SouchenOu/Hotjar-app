@@ -64,6 +64,7 @@ const renderComponent = (
       <DesignFeedback
         onChange={(newComponent) => handleComponentChange(index, newComponent)}
         components={state.components}
+        dispatch={dispatch}
       />
     ),
   };

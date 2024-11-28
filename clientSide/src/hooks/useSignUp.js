@@ -12,7 +12,7 @@ const useSignUp = () => {
       setError(null);
       setLoading(true);
       const emailVerificationResult = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/sendVerificationCode`,
+        `https://pro-1-hk8q.onrender.com/auth/sendVerificationCode`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -43,7 +43,7 @@ const useSignUp = () => {
       const body = { ...values, verificationCode };
 
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
+        `https://pro-1-hk8q.onrender.com/auth/register`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

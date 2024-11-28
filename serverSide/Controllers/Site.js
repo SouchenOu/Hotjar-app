@@ -352,7 +352,7 @@ export const inviteMember = async (req, res) => {
         },
       });
 
-      const linkUrl = `http://localhost:3000/site/${id}/surveys`;
+      const linkUrl = `http://172.0.67.224:3000/site/${id}/surveys`;
 
       await transporter.sendMail({
         from: 'soukainaouchenuai@gmail.com',
@@ -555,7 +555,7 @@ export const sendInvite = async (req, res) => {
         .status(400)
         .json({ message: `You are already a member of ${site.name}` });
     }
-    const acceptRequestUrl = `${process.env.REACT_APP_BACKEND_URL}/site/accept-request/${siteId}/${senderUserId}`;
+    const acceptRequestUrl = `https://pro-1-hk8q.onrender.com/site/accept-request/${siteId}/${senderUserId}`;
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

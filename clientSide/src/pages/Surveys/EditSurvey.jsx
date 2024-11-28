@@ -32,7 +32,7 @@ const EditSurvey = () => {
     const fetchSurveyData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
+          `https://pro-1-hk8q.onrender.com/survey/getSurvey/${surveyId}`
         );
         if (response.status === 200) {
           const surveyData = response.data;
@@ -101,6 +101,7 @@ const EditSurvey = () => {
       status: state.status,
       backgroundColor: state.bgColor,
       buttonColor: state.buttonColor,
+      ImageFeedback: state.ImageFeedback,
       textColor: state.textColor,
       language: state.language,
       logo: state.logo,
@@ -111,7 +112,7 @@ const EditSurvey = () => {
     };
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/survey/update/${surveyId}`,
+        `https://pro-1-hk8q.onrender.com/survey/update/${surveyId}`,
         surveyData
       );
       if (response.status === 200) {
@@ -145,7 +146,7 @@ const EditSurvey = () => {
     const getSurveyId = async () => {
       try {
         const result = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/survey/getSurvey/${surveyId}`
+          `https://pro-1-hk8q.onrender.com/survey/getSurvey/${surveyId}`
         );
         setTargetUrlVal(result.data.targetUrl);
         dispatch({
