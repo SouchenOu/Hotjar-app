@@ -9,7 +9,7 @@ const generateTrackingCode = (siteId) => {
         (function() {
             const siteId = '${siteId}';
             const script = document.createElement('script');
-            script.src = "${process.env.backendUrl}/js/survey-loader.js?siteId=" + siteId;
+            script.src = "https://pro-1-hk8q.onrender.com/js/survey-loader.js?siteId=" + siteId;
             document.head.appendChild(script);
         })();
       </script>`;
