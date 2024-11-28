@@ -23,6 +23,7 @@ dotenv.config();
 
 const allowedOrigins = [
   `${process.env.surveysDomain}`,
+  `https://solo-portfolioo.netlify.app`,
   `${process.env.AvitoDomain}`,
 ];
 
