@@ -25,7 +25,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     setLoading(true);
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/auth/sendVerificationCode`,
+        `https://hotjar-app.onrender.com/auth/sendVerificationCode`,
         { newEmail: emailValue }
       );
       if (result.status === 200) {
@@ -81,7 +81,7 @@ const ChangeEmail = ({ setCurrentForm }) => {
     const finalCode = verificationCode.join('');
     try {
       const response = await axios.post(
-        `https://pro-1-hk8q.onrender.com/auth/verifyCodeAndUpdateEmail`,
+        `https://hotjar-app.onrender.com/auth/verifyCodeAndUpdateEmail`,
         {
           userId: id,
           newEmail: emailValue,

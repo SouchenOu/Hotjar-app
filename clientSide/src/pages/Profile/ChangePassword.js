@@ -64,7 +64,7 @@ const ChangePassword = ({ setCurrentForm }) => {
 
     try {
       await axios.post(
-        `https://pro-1-hk8q.onrender.com/auth/ChangePassword/${id}`,
+        `https://hotjar-app.onrender.com/auth/ChangePassword/${id}`,
         {
           currentPassword,
           newPassword,

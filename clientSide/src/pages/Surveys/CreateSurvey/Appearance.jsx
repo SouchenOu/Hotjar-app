@@ -52,7 +52,7 @@ const Appearance = ({
       formData.append('logo', file);
       try {
         const response = await fetch(
-          `https://pro-1-hk8q.onrender.com/survey/updateLogo`,
+          `https://hotjar-app.onrender.com/survey/updateLogo`,
           {
             method: 'POST',
             body: formData,

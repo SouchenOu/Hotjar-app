@@ -21,7 +21,7 @@ const Nps = ({ state, displayMode, component, nextComponent }) => {
   };
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `https://pro-1-hk8q.onrender.com`;
+  const baseURL = `https://hotjar-app.onrender.com`;
 
   return (
     <div

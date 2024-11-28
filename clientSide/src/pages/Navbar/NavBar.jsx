@@ -50,7 +50,7 @@ const NavBar = () => {
 
     try {
       const result = await axios.get(
-        `https://pro-1-hk8q.onrender.com/notification/getNotification/${userInfo._id}`
+        `https://hotjar-app.onrender.com/notification/getNotification/${userInfo._id}`
       );
       setNotifications(result.data.notifications);
     } catch (error) {
@@ -60,7 +60,7 @@ const NavBar = () => {
   useEffect(() => {
     if (!userInfo?._id) return;
 
-    const socket = io(`https://pro-1-hk8q.onrender.com`, {
+    const socket = io(`https://hotjar-app.onrender.com`, {
       transports: ['websocket', 'polling'],
     });
 
@@ -69,7 +69,7 @@ const NavBar = () => {
     });
     socket.on('inviteNotification', async () => {
       const Result = await axios.get(
-        `https://pro-1-hk8q.onrender.com/notification/getNotification/${userInfo._id}`
+        `https://hotjar-app.onrender.com/notification/getNotification/${userInfo._id}`
       );
       setNotifications(Result.data.notifications);
     });
@@ -83,7 +83,7 @@ const NavBar = () => {
     const unreadNotif = async () => {
       try {
         const result = await axios.get(
-          `https://pro-1-hk8q.onrender.com/notification/getUnreadNotif/${userInfo._id}`
+          `https://hotjar-app.onrender.com/notification/getUnreadNotif/${userInfo._id}`
         );
         setUnreadCount(result.data.unreadCount);
       } catch (error) {
@@ -123,7 +123,7 @@ const NavBar = () => {
 
     try {
       const response = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/GetUserSites/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/GetUserSites/${userInfo._id}`
       );
       const { createdSites, memberSites } = response.data.sites;
 
@@ -156,7 +156,7 @@ const NavBar = () => {
   const searchByUrl = async (url) => {
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/searchSite/${userInfo._id}`,
+        `https://hotjar-app.onrender.com/site/searchSite/${userInfo._id}`,
         { url }
       );
       if (result.data.createdSites) {
@@ -211,7 +211,7 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       try {
         await axios.get(
-          `https://pro-1-hk8q.onrender.com/notification/marknotifRead/${userInfo?._id}`
+          `https://hotjar-app.onrender.com/notification/marknotifRead/${userInfo?._id}`
         );
       } catch (err) {
         console.error(err);

@@ -37,7 +37,7 @@ const SiteForm = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/AddSite`,
+        `https://hotjar-app.onrender.com/site/AddSite`,
         site
       );
       toast.success('Site added successfully');
@@ -51,7 +51,7 @@ const SiteForm = () => {
   const navigateToSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;

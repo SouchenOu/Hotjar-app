@@ -25,7 +25,7 @@ const Response = () => {
     const getSurvey = async () => {
       try {
         const survey = await axios.get(
-          `https://pro-1-hk8q.onrender.com/survey/getSurvey/${surveyId}`
+          `https://hotjar-app.onrender.com/survey/getSurvey/${surveyId}`
         );
         if (survey.status === 200) {
           const surveyData = survey.data;
@@ -49,7 +49,7 @@ const Response = () => {
     const getResponses = async () => {
       try {
         const response = await axios.post(
-          `https://pro-1-hk8q.onrender.com/response/responseSurvey/${surveyId}`
+          `https://hotjar-app.onrender.com/response/responseSurvey/${surveyId}`
         );
         if (response.status === 200) {
           setResponses(response.data);
@@ -65,7 +65,7 @@ const Response = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
+      `https://hotjar-app.onrender.com/site/lastSite/${userInfo._id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);
@@ -74,7 +74,7 @@ const Response = () => {
   const deleteResponse = async () => {
     try {
       const response = await axios.post(
-        `https://pro-1-hk8q.onrender.com/response/deleteResponse/${deleteResponseId}`
+        `https://hotjar-app.onrender.com/response/deleteResponse/${deleteResponseId}`
       );
       if (response.status === 200) {
         setResponses(Responses.filter((r) => r._id !== deleteResponseId));

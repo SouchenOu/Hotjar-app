@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        `https://pro-1-hk8q.onrender.com/auth/forgotPassword`,
+        `https://hotjar-app.onrender.com/auth/forgotPassword`,
         { email }
       );
       setSuccess('Email sent successfully.');

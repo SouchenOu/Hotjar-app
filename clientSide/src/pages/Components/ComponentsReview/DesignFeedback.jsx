@@ -12,7 +12,7 @@ const DesignFeedback = ({ state, displayMode, component, nextComponent }) => {
   const [selectedNumber, setSelectedNumber] = useState('0');
 
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `https://pro-1-hk8q.onrender.com`;
+  const baseURL = `https://hotjar-app.onrender.com`;
 
   const number = ['1', '2', '3', '4', '5'];
   const truncateText = (text, maxLength) => {

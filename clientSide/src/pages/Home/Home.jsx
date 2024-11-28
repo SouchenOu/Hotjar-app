@@ -39,14 +39,14 @@ const Home = () => {
   const handleGetStarted = async () => {
     try {
       const checkRes = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/checkSites/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/checkSites/${userInfo._id}`
       );
       const { hasSites } = checkRes.data;
       if (!hasSites) {
         navigate('/site');
       } else {
         const lastSiteRes = await axios.get(
-          `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
+          `https://hotjar-app.onrender.com/site/lastSite/${userInfo._id}`
         );
         const lastSite = lastSiteRes.data;
         navigate(`/site/${lastSite.siteId}/surveys`);

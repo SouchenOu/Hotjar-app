@@ -16,7 +16,7 @@ const Radio = ({
   const { bgColor, buttonColor, textColor, logo, language } = state;
   const [openRadio, setOpenRadio] = useState(true);
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `https://pro-1-hk8q.onrender.com`;
+  const baseURL = `https://hotjar-app.onrender.com`;
   const handleCheckboxChange = (index) => {
     const updatedCheckboxStates = checkboxStates.map((state, idx) =>
       idx === index ? !state : state

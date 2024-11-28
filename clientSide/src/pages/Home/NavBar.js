@@ -32,7 +32,7 @@ const NavBar = () => {
   const [notifications, setNotifications] = useState([]);
   const [sitesVisible, setSitesVisible] = useState(false);
 
-  const socket = io(`https://pro-1-hk8q.onrender.com`, {
+  const socket = io(`https://hotjar-app.onrender.com`, {
     transports: ['websocket', 'polling'],
   });
   const fetchNotifications = async () => {
@@ -40,7 +40,7 @@ const NavBar = () => {
 
     try {
       const result = await axios.get(
-        `https://pro-1-hk8q.onrender.com/notification/getNotification/${userInfo._id}`
+        `https://hotjar-app.onrender.com/notification/getNotification/${userInfo._id}`
       );
       setNotifications(result.data.notifications);
     } catch (error) {
@@ -53,7 +53,7 @@ const NavBar = () => {
     if (userInfo && userInfo?._id) {
       try {
         await axios.get(
-          `https://pro-1-hk8q.onrender.com/notification/marknotifRead/${userInfo?._id}`
+          `https://hotjar-app.onrender.com/notification/marknotifRead/${userInfo?._id}`
         );
       } catch (err) {
         console.error(err);
@@ -71,7 +71,7 @@ const NavBar = () => {
   const handleSites = async () => {
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/getSites/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/getSites/${userInfo._id}`
       );
       setSites(result.data);
       setSitesVisible(!sitesVisible);
@@ -85,13 +85,13 @@ const NavBar = () => {
   const handleSendInvite = async (site) => {
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/sendInvite/${site.id}/${userInfo._id}/${site.created._id}`
+        `https://hotjar-app.onrender.com/site/sendInvite/${site.id}/${userInfo._id}/${site.created._id}`
       );
       if (result.status === 200) {
         toast.success('request send successfully');
         const msg = `${userInfo.username} has requested to join ${site.name}`;
         await axios.post(
-          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
+          `https://hotjar-app.onrender.com/notification/createNotif`,
           {
             recipientId: site.created._id,
             senderId: userInfo._id,
@@ -116,7 +116,7 @@ const NavBar = () => {
   const handleSurveys = async () => {
     try {
       const checkRes = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/checkSites/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/checkSites/${userInfo._id}`
       );
       const { hasSites } = checkRes.data;
 
@@ -124,7 +124,7 @@ const NavBar = () => {
         navigate('/site');
       } else {
         const lastSiteRes = await axios.get(
-          `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
+          `https://hotjar-app.onrender.com/site/lastSite/${userInfo._id}`
         );
         const lastSite = lastSiteRes.data;
         navigate(`/site/${lastSite.siteId}/surveys`);
@@ -142,7 +142,7 @@ const NavBar = () => {
   useEffect(() => {
     if (!userInfo?._id) return;
 
-    const socket = io(`https://pro-1-hk8q.onrender.com`, {
+    const socket = io(`https://hotjar-app.onrender.com`, {
       transports: ['websocket', 'polling'],
     });
 
@@ -153,7 +153,7 @@ const NavBar = () => {
 
     socket.on('inviteNotification', async () => {
       const Result = await axios.get(
-        `https://pro-1-hk8q.onrender.com/notification/getNotification/${userInfo._id}`
+        `https://hotjar-app.onrender.com/notification/getNotification/${userInfo._id}`
       );
       setNotifications(Result.data.notifications);
     });
@@ -168,7 +168,7 @@ const NavBar = () => {
     const unreadNotif = async () => {
       try {
         const result = await axios.get(
-          `https://pro-1-hk8q.onrender.com/notification/getUnreadNotif/${userInfo._id}`
+          `https://hotjar-app.onrender.com/notification/getUnreadNotif/${userInfo._id}`
         );
         setUnreadCount(result.data.unreadCount);
       } catch (error) {

@@ -18,7 +18,7 @@ const TeamList = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const socket = io(`https://pro-1-hk8q.onrender.com`, {
+  const socket = io(`https://hotjar-app.onrender.com`, {
     transports: ['websocket', 'polling'],
   });
 
@@ -27,7 +27,7 @@ const TeamList = () => {
 
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
+        `https://hotjar-app.onrender.com/site/updateRole/${id}/${userInfo._id}/${member.user._id}`,
         { newRole }
       );
       if (result.status === 200) {
@@ -41,7 +41,7 @@ const TeamList = () => {
         );
         const msg = `${userInfo.username} changed your role to ${newRole} in the site ${site.name}`;
         await axios.post(
-          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
+          `https://hotjar-app.onrender.com/notification/createNotif`,
           {
             recipientId: member.user._id,
             senderId: userInfo._id,
@@ -62,7 +62,7 @@ const TeamList = () => {
   const deleteMember = async (member) => {
     try {
       const result = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
+        `https://hotjar-app.onrender.com/site/deleteMember/${id}/${userInfo._id}/${member.user._id}`
       );
       if (result.status === 200) {
         const updatedMembers = members.filter(
@@ -74,7 +74,7 @@ const TeamList = () => {
         );
         const msg = `You are no longer a member of the site ${site.name}`;
         await axios.post(
-          `https://pro-1-hk8q.onrender.com/notification/createNotif`,
+          `https://hotjar-app.onrender.com/notification/createNotif`,
           {
             recipientId: member.user._id,
             senderId: userInfo._id,
@@ -100,7 +100,7 @@ const TeamList = () => {
     const listedMembers = async () => {
       try {
         const response = await axios.get(
-          `https://pro-1-hk8q.onrender.com/site/listedMembers/${id}`
+          `https://hotjar-app.onrender.com/site/listedMembers/${id}`
         );
         setMembers(response.data.members);
         setCreator(response.data.creator);
@@ -115,7 +115,7 @@ const TeamList = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `https://pro-1-hk8q.onrender.com/site/getSiteId/${id}/${userInfo?._id}`
+          `https://hotjar-app.onrender.com/site/getSiteId/${id}/${userInfo?._id}`
         );
         setSite(result.data);
       } catch (err) {

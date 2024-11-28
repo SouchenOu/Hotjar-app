@@ -9,7 +9,7 @@ const generateTrackingCode = (siteId) => {
         (function() {
             const siteId = '${siteId}';
             const script = document.createElement('script');
-            script.src = "https://pro-1-hk8q.onrender.com/js/survey-loader.js?siteId=" + siteId;
+            script.src = "https://hotjar-app.onrender.com/js/survey-loader.js?siteId=" + siteId;
             document.head.appendChild(script);
         })();
       </script>`;
@@ -555,7 +555,7 @@ export const sendInvite = async (req, res) => {
         .status(400)
         .json({ message: `You are already a member of ${site.name}` });
     }
-    const acceptRequestUrl = `https://pro-1-hk8q.onrender.com/site/accept-request/${siteId}/${senderUserId}`;
+    const acceptRequestUrl = `https://hotjar-app.onrender.com/site/accept-request/${siteId}/${senderUserId}`;
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

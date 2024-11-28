@@ -25,7 +25,7 @@ const Notification = ({
   const deleteNotif = async (id) => {
     try {
       await axios.get(
-        `https://pro-1-hk8q.onrender.com/notification/deleteNotification/${id}`
+        `https://hotjar-app.onrender.com/notification/deleteNotification/${id}`
       );
 
       setNotifications((prevNotifications) =>

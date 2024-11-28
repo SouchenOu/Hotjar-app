@@ -26,7 +26,7 @@ const Invite = () => {
   const navigate = useNavigate();
   const [Error, setError] = useState(false);
   const [{ userInfo }] = useStateProvider();
-  const socket = io(`https://pro-1-hk8q.onrender.com`, {
+  const socket = io(`https://hotjar-app.onrender.com`, {
     transports: ['websocket', 'polling'],
   });
 
@@ -36,7 +36,7 @@ const Invite = () => {
     if (input.length > 1) {
       try {
         const result = await axios.get(
-          `https://pro-1-hk8q.onrender.com/user/searchByEmail?email=${input}`
+          `https://hotjar-app.onrender.com/user/searchByEmail?email=${input}`
         );
         setSuggestions(result.data);
       } catch (err) {
@@ -59,12 +59,12 @@ const Invite = () => {
 
     try {
       const result = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/invite/${id}/${userInfo._id}`,
+        `https://hotjar-app.onrender.com/site/invite/${id}/${userInfo._id}`,
         { email, role }
       );
 
       const user = await axios.get(
-        `https://pro-1-hk8q.onrender.com/user/getUserEmail/${email}`
+        `https://hotjar-app.onrender.com/user/getUserEmail/${email}`
       );
 
       const successMessage =
@@ -77,7 +77,7 @@ const Invite = () => {
       toast.success(successMessage);
 
       await axios.post(
-        `https://pro-1-hk8q.onrender.com/notification/createNotif`,
+        `https://hotjar-app.onrender.com/notification/createNotif`,
         {
           recipientId: user.data._id,
           senderId: userInfo._id,
@@ -122,7 +122,7 @@ const Invite = () => {
     const getSiteId = async () => {
       try {
         const result = await axios.get(
-          `https://pro-1-hk8q.onrender.com/site/getSiteId/${id}/${userInfo._id}`
+          `https://hotjar-app.onrender.com/site/getSiteId/${id}/${userInfo._id}`
         );
         setSite(result.data);
       } catch (err) {

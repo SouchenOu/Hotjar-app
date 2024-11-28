@@ -71,7 +71,7 @@ Running the Server
             cd serverSide
             npm run start
 
-    The server will start on https://pro-1-hk8q.onrender.com.
+    The server will start on https://hotjar-app.onrender.com.
 
 2. Start the client:
 

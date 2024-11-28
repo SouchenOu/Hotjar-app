@@ -70,7 +70,7 @@ const Page = () => {
 
     try {
       const response = await axios.post(
-        `https://pro-1-hk8q.onrender.com/survey/${siteId}`,
+        `https://hotjar-app.onrender.com/survey/${siteId}`,
         surveyData
       );
 

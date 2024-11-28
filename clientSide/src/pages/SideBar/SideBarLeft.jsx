@@ -47,7 +47,7 @@ const SideBarLeft = () => {
   const handleSurveys = async () => {
     try {
       const lastSiteRes = await axios.get(
-        `https://pro-1-hk8q.onrender.com/site/lastSite/${userInfo._id}`
+        `https://hotjar-app.onrender.com/site/lastSite/${userInfo._id}`
       );
       if (lastSiteRes.status === 200) {
         const lastSite = lastSiteRes.data;

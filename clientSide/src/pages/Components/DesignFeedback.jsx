@@ -62,7 +62,7 @@ const DesignFeedback = ({ onChange, components, dispatch }) => {
 
       try {
         const response = await fetch(
-          `https://pro-1-hk8q.onrender.com/survey/uploadImage`,
+          `https://hotjar-app.onrender.com/survey/uploadImage`,
           {
             method: 'POST',
             body: formData,

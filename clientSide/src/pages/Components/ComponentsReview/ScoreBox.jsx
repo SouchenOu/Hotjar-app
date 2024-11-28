@@ -12,7 +12,7 @@ const ScoreBox = ({ state, displayMode, component, nextComponent }) => {
 
   const number = ['1', '2', '3', '4', '5'];
   const textDirection = language === 'ar' ? 'rtl' : 'ltr';
-  const baseURL = `https://pro-1-hk8q.onrender.com`;
+  const baseURL = `https://hotjar-app.onrender.com`;
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {

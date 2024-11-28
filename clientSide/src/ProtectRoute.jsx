@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
       if (isAuthenticated && userInfo) {
         try {
           const checkRes = await axios.get(
-            `https://pro-1-hk8q.onrender.com/site/checkSites/${userInfo._id}`
+            `https://hotjar-app.onrender.com/site/checkSites/${userInfo._id}`
           );
           setHasSites(checkRes.data.hasSites);
         } catch (error) {

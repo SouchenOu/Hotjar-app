@@ -12,7 +12,7 @@ const useSignUp = () => {
       setError(null);
       setLoading(true);
       const emailVerificationResult = await fetch(
-        `https://pro-1-hk8q.onrender.com/auth/sendVerificationCode`,
+        `https://hotjar-app.onrender.com/auth/sendVerificationCode`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -43,7 +43,7 @@ const useSignUp = () => {
       const body = { ...values, verificationCode };
 
       const res = await fetch(
-        `https://pro-1-hk8q.onrender.com/auth/register`,
+        `https://hotjar-app.onrender.com/auth/register`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

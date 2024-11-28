@@ -58,7 +58,7 @@ const Profile = () => {
 
     try {
       await axios.put(
-        `https://pro-1-hk8q.onrender.com/user/updateUser/${id}`,
+        `https://hotjar-app.onrender.com/user/updateUser/${id}`,
         updatedUserInfo
       );
       const newUserInfo = {
@@ -85,7 +85,7 @@ const Profile = () => {
   const deleteAccount = async () => {
     try {
       await axios.get(
-        `https://pro-1-hk8q.onrender.com/user/deleteUser/${id}`
+        `https://hotjar-app.onrender.com/user/deleteUser/${id}`
       );
       handleLogout();
       toast.success('Account deleted successfully');
@@ -110,7 +110,7 @@ const Profile = () => {
 
   const navigateToSurveys = async () => {
     const lastSiteRes = await axios.get(
-      `https://pro-1-hk8q.onrender.com/site/lastSite/${id}`
+      `https://hotjar-app.onrender.com/site/lastSite/${id}`
     );
     const lastSite = lastSiteRes.data;
     navigate(`/site/${lastSite.siteId}/surveys`);

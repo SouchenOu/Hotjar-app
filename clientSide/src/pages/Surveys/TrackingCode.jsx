@@ -16,7 +16,7 @@ const TrackingCode = ({ setOpenTracking, siteData, handleCopyCode }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `https://pro-1-hk8q.onrender.com/site/verifyTracking`,
+        `https://hotjar-app.onrender.com/site/verifyTracking`,
         {
           url: siteData.url,
           trackingCode: siteData.trackingCode,
