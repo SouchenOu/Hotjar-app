@@ -22,8 +22,8 @@ const app = express();
 dotenv.config();
 
 const allowedOrigins = [
-'https://websiteeehotjarrr.netlify.app/',
-'https://solo-portfolioo.netlify.app/',
+'https://websiteeehotjarrr.netlify.app',
+'https://solo-portfolioo.netlify.app',
 ];
 
 const corsOptions = {
