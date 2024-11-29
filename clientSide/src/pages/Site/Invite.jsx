@@ -26,10 +26,15 @@ const Invite = () => {
   const navigate = useNavigate();
   const [Error, setError] = useState(false);
   const [{ userInfo }] = useStateProvider();
-  const socket = io(`https://hotjar-app.onrender.com`, {
-    transports: ['websocket', 'polling'],
-  });
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+      transports: ['websocket', 'polling'],
+    });
 
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   const handleEmailInput = async (e) => {
     const input = e.target.value;
     setEmail(input);
@@ -112,12 +117,7 @@ const Invite = () => {
     navigate(`/site/${id}/team/list`);
   };
 
-  useEffect(() => {
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
+ 
   useEffect(() => {
     const getSiteId = async () => {
       try {

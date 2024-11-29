@@ -18,9 +18,15 @@ const TeamList = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const socket = io(`https://hotjar-app.onrender.com`, {
-    transports: ['websocket', 'polling'],
-  });
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+      transports: ['websocket', 'polling'],
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const handleRoleChange = async (event, member) => {
     const newRole = event.target.value;

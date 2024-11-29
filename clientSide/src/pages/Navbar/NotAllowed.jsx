@@ -11,9 +11,15 @@ import { useParams } from 'react-router-dom';
 const NotAllowed = () => {
   const [{ userInfo }] = useStateProvider();
   const [site, setSite] = useState('');
-  const socket = io(`https://hotjar-app.onrender.com`, {
-    transports: ['websocket', 'polling'],
-  });
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+      transports: ['websocket', 'polling'],
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   const { id } = useParams();
   useEffect(() => {
     const getSite = async () => {

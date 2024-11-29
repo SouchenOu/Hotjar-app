@@ -32,9 +32,15 @@ const NavBar = () => {
   const [notifications, setNotifications] = useState([]);
   const [sitesVisible, setSitesVisible] = useState(false);
 
-  const socket = io(`https://hotjar-app.onrender.com`, {
-    transports: ['websocket', 'polling'],
-  });
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_BACKEND_URL}`, {
+      transports: ['websocket', 'polling'],
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   const fetchNotifications = async () => {
     if (!userInfo?._id) return;
 
@@ -137,7 +143,7 @@ const NavBar = () => {
     if (userInfo && userInfo._id) {
       fetchNotifications();
     }
-  });
+  },[userInfo,userInfo?._id]);
 
   useEffect(() => {
     if (!userInfo?._id) return;
@@ -161,7 +167,7 @@ const NavBar = () => {
     return () => {
       socket.disconnect();
     };
-  }, [userInfo?._id]);
+  }, [userInfo,userInfo?._id]);
 
   useEffect(() => {
     if (!userInfo) return;
